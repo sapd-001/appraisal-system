@@ -1,7 +1,8 @@
 const express = require('express');
-const userRoutes = require('./routes/user.routes');
-const taskRoutes = require('./routes/task.routes');
+require('./process')()
 const config = require('./config');
+const { baseLogger } = require('./logger');
+const api = require('./api');
 
 const app = express();
 
@@ -9,11 +10,9 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use('/api/users', userRoutes);
-app.use('/api/tasks', taskRoutes);
-
+app.use('/api/v1',api());
 
 app.listen(config.port, () => {
-    console.log(`Server on port ${config.port}`);
+    baseLogger.info(`Server on port ${config.port}`)
 }
 );

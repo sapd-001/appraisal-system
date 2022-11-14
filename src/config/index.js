@@ -1,9 +1,8 @@
-const dotenv = require('dotenv');
-
-dotenv.config();
+const { baseDir, dbUrl: mongoUrl, port, secret } = require('./../../node.config')
 
 module.exports = {
-    port: process.env.PORT,
-    db: process.env.DB,
-    secret: process.env.SECRET
-};
+    baseDir,
+    mongoUrl,
+    port,
+    secret
+}
