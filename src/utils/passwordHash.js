@@ -1,3 +1,11 @@
+/**
+ * @ Author: Felix Orinda
+ * @ Create Time: 2022-11-14 11:51:15
+ * @ Modified by: Felix Orinda
+ * @ Modified time: 2022-11-14 18:00:42
+ * @ Description:
+ */
+
 const bcryptjs = require('bcryptjs');
 
 module.exports.hashPassword = async (password) => {

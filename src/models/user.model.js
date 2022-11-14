@@ -1,3 +1,10 @@
+/**
+ * @ Author: Felix Orinda
+ * @ Create Time: 2022-11-14 11:11:19
+ * @ Modified by: Felix Orinda
+ * @ Modified time: 2022-11-14 18:00:09
+ * @ Description:
+ */
 const mongoose = require('./../db')
 
 const UserSchema = new mongoose.Schema({

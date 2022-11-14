@@ -1,3 +1,10 @@
+/**
+ * @ Author: Felix Orinda
+ * @ Create Time: 2022-11-14 11:11:33
+ * @ Modified by: Felix Orinda
+ * @ Modified time: 2022-11-14 17:59:19
+ * @ Description:
+ */
 const mongoose = require('mongoose');
 
 const { dbUrl } = require('./../config');
