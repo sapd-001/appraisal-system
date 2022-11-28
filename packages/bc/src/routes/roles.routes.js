@@ -2,7 +2,7 @@
  * @ Author: Felix Orinda
  * @ Create Time: 2022-11-28 08:13:32
  * @ Modified by: Felix Orinda
- * @ Modified time: 2022-11-28 18:13:45
+ * @ Modified time: 2022-11-28 18:25:03
  * @ Description:
  */
 
@@ -19,8 +19,8 @@ router.post("/create", adminRequired, (req, res, next) => {});
 /**
  * Get all roles
  */
-router.get("/all", adminRequired, (req, res, next) => {
-  const roles = RoleModel.find({});
+router.get("/all", adminRequired, async (req, res, next) => {
+  const roles = await RoleModel.find({});
   res.status(200).json({ roles });
 });
 
