@@ -1,7 +1,7 @@
+import AddAdminEmployees from './AddAdminEmployees';
 import React from 'react';
 import { useAppSelector } from '../../state/hooks';
 
-import AddAdminEmployees from './AddAdminEmployees';
 import Table, { TableColumnProps } from '../../components/Table';
 
 const cols: TableColumnProps[] = [
@@ -9,7 +9,8 @@ const cols: TableColumnProps[] = [
 		columnName: 'name',
 		id: 2,
 		title: 'Name',
-		customElement: false
+		customElement: true,
+		element: ({ data }) => <div className='capitalize'>{data.firstName} {data.lastName}</div>
 	},
 	{
 		columnName: 'email',
@@ -49,14 +50,13 @@ const cols: TableColumnProps[] = [
 	}
 ];
 
-
 const AdminEmployees = () => {
 	const { employees } = useAppSelector((state) => state.employees);
 	const [addingEmployees, setAddingEmployees] =
-	React.useState<boolean>(false);
-const closeOpenModal = () => {
-	setAddingEmployees(false);
-};
+		React.useState<boolean>(false);
+	const closeOpenModal = () => {
+		setAddingEmployees(false);
+	};
 
 	return (
 		<div>
@@ -73,7 +73,7 @@ const closeOpenModal = () => {
 				</button>
 			</div>
 			<div>
-			{addingEmployees && (
+				{addingEmployees && (
 					<AddAdminEmployees closeModal={closeOpenModal} />
 				)}
 				<Table columns={cols} rows={employees} />

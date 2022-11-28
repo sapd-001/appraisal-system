@@ -1,10 +1,10 @@
+import { AxiosError } from 'axios';
+import InputElement from '../../components/InputElement';
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React from 'react';
 import { apiRequest } from '../../api';
 import { useAppSelector } from '../../state/hooks';
 
-import { AxiosError } from 'axios';
-import InputElement from '../../components/InputElement';
 import { ToastContainer, toast } from 'react-toastify';
 
 type EmployeesFormProps = {
@@ -40,7 +40,7 @@ const AddAdminEmployees: React.FC<{ closeModal: () => void }> = ({
 
 		try {
 			const res = await apiRequest.post(
-				'/employees/create',
+				'/users/create/employee',
 				employeesForm,
 				{
 					headers: {
