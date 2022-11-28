@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import { configureStore } from '@reduxjs/toolkit';
 import departmentsReducer from '../slices/departmentsSlice';
 import designationReducer from '../slices/designationsSlice';
+import employeesReducer from './../slices/employeesSlice';
 import rolesReducer from '../slices/rolesSlice';
 import storage from 'redux-persist/lib/storage';
 import tasksReducer from '../slices/tasksSlice';
@@ -37,7 +38,8 @@ const store = configureStore({
 		tasks: tasksReducer,
 		roles: rolesReducer,
 		designations: designationReducer,
-		departments: departmentsReducer
+		departments: departmentsReducer,
+		employees: employeesReducer
 	},
 	middleware: (getDefaultMiddleware) =>
 		getDefaultMiddleware({

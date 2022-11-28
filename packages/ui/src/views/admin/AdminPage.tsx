@@ -2,17 +2,23 @@ import AdminLayout from '../../layouts/AdminLayout';
 import { Outlet } from 'react-router-dom';
 import React from 'react';
 import { apiRequest } from '../../api';
-import { useAppSelector } from '../../state/hooks';
+import { loadDepartmentSuccess } from '../../state/slices/departmentsSlice';
+import { loadDesignationSuccess } from '../../state/slices/designationsSlice';
+import { loadEmployeeSuccess } from '../../state/slices/employeesSlice';
+import { loadRoleSuccess } from '../../state/slices/rolesSlice';
+
+import { useAppDispatch, useAppSelector } from '../../state/hooks';
 
 const Admin = () => {
 	const { token } = useAppSelector((state) => state.root.user);
+	const dispatch = useAppDispatch();
 	const fetchDepartments = async () => {
 		const res = await apiRequest.get('/departments/all', {
 			headers: {
 				Authorization: `Bearer ${token}`
 			}
 		});
-		console.log(res);
+		dispatch(loadDepartmentSuccess(res.data.data));
 	};
 
 	const fetchEmployees = async () => {
@@ -21,7 +27,8 @@ const Admin = () => {
 				Authorization: `Bearer ${token}`
 			}
 		});
-		console.log(res);
+		
+		dispatch(loadEmployeeSuccess(res.data.data));
 	};
 
 	const fetchRoles = async () => {
@@ -30,7 +37,8 @@ const Admin = () => {
 				Authorization: `Bearer ${token}`
 			}
 		});
-		console.log(res);
+		
+		dispatch(loadRoleSuccess(res.data.data));
 	};
 
 	const fetchDesignations = async () => {
@@ -39,7 +47,7 @@ const Admin = () => {
 				Authorization: `Bearer ${token}`
 			}
 		});
-		console.log(res);
+		dispatch(loadDesignationSuccess(res.data.data));
 	};
 
 	React.useEffect(() => {

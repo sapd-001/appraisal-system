@@ -1,5 +1,8 @@
 import React from 'react';
+import { useAppSelector } from '../../state/hooks';
+
 import Table, { TableColumnProps } from '../../components/Table';
+
 const cols: TableColumnProps[] = [
 	// id,name,description,actions
 	{
@@ -68,11 +71,13 @@ const rows = [
 ];
 
 const AdminDesignations = () => {
+	const { designations } = useAppSelector((state) => state.designations);
+	
 	return (
 		<div>
 			<h1>Designations</h1>
 			<div>
-				<Table columns={cols} rows={rows} />
+				<Table columns={cols} rows={designations} />
 			</div>
 		</div>
 	);

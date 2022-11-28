@@ -1,36 +1,38 @@
 import React from 'react';
+import { useAppSelector } from '../../state/hooks';
+
 import Table, { TableColumnProps } from '../../components/Table';
 
 const cols: TableColumnProps[] = [
 	{
-		columnName: 'id',
+		columnName: '_id',
 		id: 1,
 		title: '#',
 		customElement: false
 	},
-	{
-		columnName: 'name',
-		id: 2,
-		title: 'Name',
-		customElement: false
-	},
-	{
-		columnName: 'description',
-		id: 3,
-		title: 'Description',
-		customElement: false,
-		element:({data})=> (
-			<span className='w-[10rem] text-sm text-clip'>{data.description}</span>
-		)
-			
-		
-	},
-	{
-		columnName: 'actions',
-		id: 4,
-		title: 'Actions',
-		customElement: false
-	}
+	// {
+	// 	columnName: 'name',
+	// 	id: 2,
+	// 	title: 'Name',
+	// 	customElement: false
+	// },
+	// {
+	// 	columnName: 'description',
+	// 	id: 3,
+	// 	title: 'Description',
+	// 	customElement: false,
+	// 	element: ({ data }) => (
+	// 		<span className="w-[10rem] text-sm text-clip">
+	// 			{data.description}
+	// 		</span>
+	// 	)
+	// },
+	// {
+	// 	columnName: 'actions',
+	// 	id: 4,
+	// 	title: 'Actions',
+	// 	customElement: false
+	// }
 ];
 const rows = [
 	{
@@ -42,13 +44,16 @@ const rows = [
 ];
 
 const AdminDepartments = () => {
+	const { departments } = useAppSelector((state) => state.departments);
+	console.log(departments);
+
 	return (
 		<div>
 			<div className="px-4 py-1 my-4 border mx-2">
 				<h1>Departements</h1>
 			</div>
 			<div>
-				<Table columns={cols} rows={rows} />
+				<Table columns={cols} rows={departments} />
 			</div>
 		</div>
 	);
