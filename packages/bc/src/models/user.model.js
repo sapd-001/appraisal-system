@@ -2,7 +2,7 @@
  * @ Author: Felix Orinda
  * @ Create Time: 2022-11-14 11:11:19
  * @ Modified by: Felix Orinda
- * @ Modified time: 2022-11-28 09:00:37
+ * @ Modified time: 2022-11-28 15:30:55
  * @ Description:
  */
 const mongoose = require("../db");
@@ -31,6 +31,7 @@ const UserSchema = new mongoose.Schema({
     lowerCase: true,
     trim: true,
     unique: true,
+    select: false,
   },
   role: {
     type: mongoose.SchemaTypes.ObjectId,

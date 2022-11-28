@@ -2,7 +2,7 @@
  * @ Author: Felix Orinda
  * @ Create Time: 2022-11-14 11:17:35
  * @ Modified by: Felix Orinda
- * @ Modified time: 2022-11-28 13:13:35
+ * @ Modified time: 2022-11-28 15:25:05
  * @ Description:
  */
 const dotenv = require("dotenv");
@@ -14,7 +14,7 @@ const config = {
   baseDir: path.resolve(path.dirname(__filename)),
   port: process.env.PORT,
   dbUrl: process.env.MONGO_URL,
-  secret: process.env.SECRET,
+  secret: process.env.JWT_SECRET,
   mailer: {
     host: process.env.MAILER_HOST,
     port: process.env.MAILER_PORT,

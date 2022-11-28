@@ -20,6 +20,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
 api({ app });
 
+
 app.listen(config.port, () => {
   baseLogger.info(`Server on port ${config.port}`);
 });

@@ -19,7 +19,7 @@ module.exports.loginRequired = async (req, res, next) => {
     if (!token) {
       return res.status(400).json({ error: "No auth token provided" });
     }
-    const user = await verifyToken(token, config.secret);
+    const user = await verifyToken(token);
     const role = await RoleModel.findById(user.role);
     if (!role) throw new Error("Role not found");
     if (role.name === "evaluator") {

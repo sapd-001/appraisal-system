@@ -3,11 +3,9 @@ const { secret } = require("./../config");
 
 /**
  * Create a token
- * @param {string} id
- * @param {string} email
- * @param {string} role
+ * @param {{id:string, email:string, role:string}} param
  */
-module.exports.createToken = (id, email, city) => {
+module.exports.createToken = ({ id, email, role } = {}) => {
   return jwt.sign(
     {
       id,
