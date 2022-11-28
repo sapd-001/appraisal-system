@@ -3,6 +3,8 @@ import { AxiosError } from 'axios';
 import React from 'react';
 import WidthWrapper from '../wrappers/WidthWrapper';
 import { apiRequest } from '../api';
+import { loginUser } from '../state/slices/userSlice';
+import { useAppDispatch } from '../state/hooks';
 import { useNavigate } from 'react-router-dom';
 
 import { ToastContainer, toast } from 'react-toastify';
@@ -13,6 +15,7 @@ type LoginProps = {
 };
 
 const Homepage = () => {
+	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
 	const navigateToDashboardbasedOnRole = (
 		path: 'admin' | 'evaluator' | 'user'
@@ -58,6 +61,7 @@ const Homepage = () => {
 			};
 			toast.success('Login successful');
 			setTimeout(() => {
+				dispatch(loginUser({ token, user: res.data.data }));
 				localStorage.setItem('user', JSON.stringify(user));
 				navigateToDashboardbasedOnRole(res.data.data.role);
 			}, 2000);
