@@ -1,32 +1,46 @@
 const nodemailer = require("nodemailer");
 const { mailConfig } = require("./../config");
 const { baseLogger } = require("../logger");
-
 const transporter = nodemailer.createTransport({
-  ...mailConfig,
+  host: mailConfig.host,
+  port: mailConfig.port,
+  auth: {
+    user: mailConfig.auth.user,
+    pass: mailConfig.auth.pass,
+  },
+  secure: false,
+  tls: {
+    rejectUnauthorized: false,
+  },
 });
 
 /**
  *
- * @param {{first_name:string,last_name:string}} user
+ * @param {{first_name:string,last_name:string,password:string,email:string}} user
  */
-module.exports.sendWelcomeEmail = async (user) => {
+const sendWelcomeEmail = (user, callback) => {
+  console.log(user);
   const mailOptions = {
     from: "webstaff-company@web.co.ke",
     to: user.email,
     subject: "Welcome to Webstaff",
-    text: `Welcome ${user.first_name} ${user.last_name} to Webstaff. We are glad to have you on board.`,
+    text: `
+    Welcome ${user.first_name} ${user.last_name} to Webstaff.\n
+    We are glad to have you on board.\n 
+    use your email: ${user.email} and password: ${user.password} to login to your account\n`,
   };
-  const info = await transporter.sendMail(mailOptions);
-  baseLogger.info("Message sent: %s", info.messageId);
-  return info;
+  try {
+    const info = transporter.sendMail(mailOptions);
+    return callback(null, info);
+  } catch (error) {
+    return callback(error, null);
+  }
 };
-
 /**
  * Send a password reset email to the user
  * @param {{token:string}} user
  */
-module.exports.sendPasswordResetEmail = async (user) => {
+const sendPasswordResetEmail = async (user) => {
   const mailOptions = {
     from: "webstaff-company@web.co.ke",
     to: user.email,
@@ -36,4 +50,9 @@ module.exports.sendPasswordResetEmail = async (user) => {
   const info = await transporter.sendMail(mailOptions);
   baseLogger.info("Message sent: %s", info.messageId);
   return info;
+};
+
+module.exports = {
+  sendWelcomeEmail,
+  sendPasswordResetEmail,
 };
