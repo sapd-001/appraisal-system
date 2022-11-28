@@ -1,6 +1,7 @@
 import React from 'react';
 import { useAppSelector } from '../../state/hooks';
 
+import AddAdminDesignation from './AddAdminDesignation';
 import Table, { TableColumnProps } from '../../components/Table';
 
 const cols: TableColumnProps[] = [
@@ -43,40 +44,33 @@ const cols: TableColumnProps[] = [
 	}
 ];
 
-const rows = [
-	{
-		id: 1,
-		name: 'Software Engineer',
-		description: 'Software Engineer',
-		actions: ''
-	},
-	{
-		id: 2,
-		name: 'Software Engineer',
-		description: 'Software Engineer',
-		actions: ''
-	},
-	{
-		id: 3,
-		name: 'Software Engineer',
-		description: 'Software Engineer',
-		actions: ''
-	},
-	{
-		id: 4,
-		name: 'Software Engineer',
-		description: 'Software Engineer',
-		actions: ''
-	}
-];
 
 const AdminDesignations = () => {
-	const { designations } = useAppSelector((state) => state.designations);
+	const { designations:{designations}} = useAppSelector((state) => state);
+	const [addingDesignation, setAddingDesignation] =
+		React.useState<boolean>(false);
+	const closeOpenModal = () => {
+		setAddingDesignation(false);
+	};
 	
 	return (
 		<div>
-			<h1>Designations</h1>
+			<div className="px-4 py-1 my-4 border mx-2 flex justify-between">
+				<h1>Designation</h1>
+				<button
+					onClick={(e) => {
+						e.stopPropagation();
+						setAddingDesignation(true);
+					}}
+					className="bg-blue-700 text-white px-4 py-2 rounded"
+				>
+					<span className="material-icons">add new Designation</span>
+				</button>
+			</div>
 			<div>
+			{addingDesignation && (
+					<AddAdminDesignation closeModal={closeOpenModal} />
+				)}
 				<Table columns={cols} rows={designations} />
 			</div>
 		</div>
