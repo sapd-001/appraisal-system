@@ -1,5 +1,7 @@
+import AddAdminTasks from './AddAdminTasks';
 import React from 'react';
 import StatusBadge from '../../components/StatusBadge';
+import { useAppSelector } from '../../state/hooks';
 import Table, { TableColumnProps } from '../../components/Table';
 
 const AdminTasks = () => {
@@ -7,7 +9,7 @@ const AdminTasks = () => {
 		{
 			columnName: 'id',
 			id: 1,
-			title: '#',
+			title: 'UID',
 			customElement: false
 		},
 		{
@@ -93,13 +95,33 @@ const AdminTasks = () => {
 		console.log(`Deleting task id ${id}`);
 	};
 
+	const { tasks } = useAppSelector((state) => state.tasks);
+	const [addingTasks, setAddingTasks] =
+	React.useState<boolean>(false);
+	const closeOpenModal = () => {
+		setAddingTasks(false);
+	};
 	return (
 		<div>
+		<div className="px-4 py-1 my-4 border mx-2 flex justify-between">
 			<h1>Tasks</h1>
-			<div>
-				<Table columns={cols} rows={data} />
-			</div>
+			<button
+				onClick={(e) => {
+					e.stopPropagation();
+					setAddingTasks(true);
+				}}
+				className="bg-blue-700 text-white px-4 py-2 rounded"
+			>
+				<span className="material-icons">add new Task</span>
+			</button>
 		</div>
+		<div>
+			{addingTasks && (
+				<AddAdminTasks closeModal={closeOpenModal} />
+			)}
+			<Table columns={cols} rows={data} />
+		</div>
+	</div>
 	);
 };
 

@@ -8,7 +8,8 @@ import InputElement from '../../components/InputElement';
 import { ToastContainer, toast } from 'react-toastify';
 
 type EvaluatorsFormProps = {
-	name: string;
+	firstName: string;
+	lastName: string;
 	email: string;
 	department: string;
 	designation: string;
@@ -106,12 +107,20 @@ const AddAdminEvaluators: React.FC<{ closeModal: () => void }> = ({
 					Add new Evaluator
 				</h1>
 				<InputElement
-					name="name"
+					name="fistName"
 					onChange={handleEvaluatorsFormChange}
 					type="text"
-					value={evaluatorsForm.name}
-					labelText="Name"
-					placeholder="Enter Name"
+					value={evaluatorsForm.firstName}
+					labelText="First Name"
+					placeholder="Enter First Name"
+				/>
+				<InputElement
+					name="lastName"
+					onChange={handleEvaluatorsFormChange}
+					type="text"
+					value={evaluatorsForm.lastName}
+					labelText="Last Name"
+					placeholder="Enter Last Name"
 				/>
 				<InputElement
 					name="email"

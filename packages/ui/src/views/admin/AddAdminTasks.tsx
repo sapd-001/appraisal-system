@@ -7,32 +7,32 @@ import { AxiosError } from 'axios';
 import InputElement from '../../components/InputElement';
 import { ToastContainer, toast } from 'react-toastify';
 
-type EmployeesFormProps = {
-	firstName: string;
-	lastName: string;
-	email: string;
-	department: string;
-	designation: string;
+type TasksFormProps = {
+	name: string;
+	dueDate: Date;
+	assignedTo: string;
+	status: string;
+	employees: string;
 };
-const AddAdminEmployees: React.FC<{ closeModal: () => void }> = ({
+const AddAdminTasks: React.FC<{ closeModal: () => void }> = ({
 	closeModal
 }) => {
 	// Fullscreen modal with form
-	const [employeesForm, setEmployeesForm] =
-		React.useState<EmployeesFormProps>({} as EmployeesFormProps);
-	const { departments } = useAppSelector((state) => state.departments);
-	const { designations } = useAppSelector((state) => state.designations);
-	const handleEmployeesFormChange = (
+	const [TasksForm, setTasksForm] = React.useState<TasksFormProps>(
+		{} as TasksFormProps
+	);
+	const { employees } = useAppSelector((state) => state.employees);
+	const handleTasksFormChange = (
 		e: React.ChangeEvent<
 			HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
 		>
 	) => {
 		const { name, value } = e.target;
 		console.log(name, value);
-		setEmployeesForm((prev) => ({ ...prev, [name]: value }));
+		setTasksForm((prev) => ({ ...prev, [name]: value }));
 	};
 	const { token } = useAppSelector((state) => state.root.user);
-	const handleEmployeesFormSubmit = async (
+	const handleTasksFormSubmit = async (
 		e: React.FormEvent<HTMLFormElement>
 	) => {
 		console.log('Submitting form');
@@ -40,18 +40,14 @@ const AddAdminEmployees: React.FC<{ closeModal: () => void }> = ({
 		e.preventDefault();
 
 		try {
-			const res = await apiRequest.post(
-				'/employees/create',
-				employeesForm,
-				{
-					headers: {
-						authorization: `Bearer ${token}`
-					}
+			const res = await apiRequest.post('/tasks/create', TasksForm, {
+				headers: {
+					authorization: `Bearer ${token}`
 				}
-			);
+			});
 
 			if (res.status === 201) {
-				toast.success('Employee added successfully');
+				toast.success('Task added successfully');
 				setTimeout(() => {
 					closeModal();
 				}, 2000);
@@ -99,88 +95,67 @@ const AddAdminEmployees: React.FC<{ closeModal: () => void }> = ({
 			<ToastContainer />
 			<form
 				action=""
-				onSubmit={handleEmployeesFormSubmit}
+				onSubmit={handleTasksFormSubmit}
 				className="min-w-[30rem] p-10 bg-white flex flex-col gap-4"
 				onClick={(e) => e.stopPropagation()}
 			>
 				<h1 className="text-3xl font-bold text-center">
-					Add new employee
+					Add new Task
 				</h1>
 				<InputElement
-					name="firstName"
-					onChange={handleEmployeesFormChange}
+					name="name"
+					onChange={handleTasksFormChange}
 					type="text"
-					value={employeesForm.firstName}
-					labelText="First Name"
-					placeholder="Enter First Name"
+					value={TasksForm.name}
+					labelText="Task Name"
+					placeholder="Enter Task Name"
 				/>
 				<InputElement
-					name="lastName"
-					onChange={handleEmployeesFormChange}
-					type="text"
-					value={employeesForm.lastName}
-					labelText="Last Name"
-					placeholder="Enter Last Name"
-				/>
-				<InputElement
-					name="email"
-					onChange={handleEmployeesFormChange}
-					type="text"
-					value={employeesForm.email}
-					labelText="Email"
-					placeholder="Enter Email"
+					name="dueDate"
+					onChange={handleTasksFormChange}
+					type="Date"
+					value={TasksForm.dueDate}
+					labelText="Due Date"
+					placeholder="Enter Due Date"
 				/>
 				<div>
-				<label htmlFor="department">Department: </label>
+					<label htmlFor="department">Assigned To: </label>
 					<select
 						name="department"
-						value={employeesForm.department}
-						onChange={handleEmployeesFormChange}
+						value={TasksForm.employees}
+						onChange={handleTasksFormChange}
 					>
 						<option value="" disabled>
-							Select Department
+							Select Employee
 						</option>
-						{departments.length &&
-							departments.map((department) => (
-								<option
-									key={department._id}
-									value={department._id}
-								>
-									{department.name}
+						{employees.length &&
+							employees.map((employee) => (
+								<option key={employee._id} value={employee._id}>
+									{employee.firstName}
 								</option>
 							))}
 					</select>
 				</div>
 				<div>
-				<label htmlFor="designation">Designation: </label>
-					<select
-						name="designation"
-						value={employeesForm.designation}
-						onChange={handleEmployeesFormChange}
-					>
+					<label htmlFor="department">Status: </label>
+					<select name="status" onChange={handleTasksFormChange}>
 						<option value="" disabled>
-							Select Designation
+							Select Status
 						</option>
-						{designations.length &&
-							designations.map((designation) => (
-								<option
-									key={designation._id}
-									value={designation._id}
-								>
-									{designation.name}
-								</option>
-							))}
+						<option value="Done">Done</option>
+						<option value="Pending">Pending</option>
+						<option value="Overdue">Overdue</option>
 					</select>
 				</div>
 				<button
 					className="w-full py-4 bg-blue-700 text-white rounded-md"
 					type="submit"
 				>
-					Add Employee
+					Add Task
 				</button>
 			</form>
 		</div>
 	);
 };
 
-export default AddAdminEmployees;
+export default AddAdminTasks;

@@ -8,7 +8,7 @@ const cols: TableColumnProps[] = [
 	{
 		columnName: 'id',
 		id: 1,
-		title: '#',
+		title: 'UID',
 		customElement: false
 	},
 	{
