@@ -2,7 +2,7 @@
  * @ Author: Felix Orinda
  * @ Create Time: 2022-11-14 08:37:11
  * @ Modified by: Felix Orinda
- * @ Modified time: 2022-11-29 00:19:53
+ * @ Modified time: 2022-11-29 00:30:43
  * @ Description:
  */
 const { sendWelcomeEmail } = require("../mailer");
@@ -54,7 +54,81 @@ router.post(
     try {
       const originalPassword = req.body.password;
       req.body.password = await hashPassword(req.body.password);
-      const newUser = await userModel.create(req.body);
+      const userRole = await RoleModel.findOne({ name: "user" });
+      const newUser = await userModel.create({
+        ...req.body,
+        role: userRole._id,
+      });
+      const response = await sendWelcomeEmail({
+        password: originalPassword,
+        email: req.body.email,
+        first_name: req.body.firstName,
+        last_name: req.body.lastName,
+      });
+      res.status(201).json({
+        status: "success please check your email for login details",
+        newEntry: newUser._id,
+      });
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({
+        status: "error",
+        message: error.message,
+      });
+    }
+  }
+);
+/**
+ * Create regular an evaluator
+ */
+router.post(
+  "/create/evaluator",
+  adminRequired,
+  userValidator,
+  async (req, res, next) => {
+    try {
+      const originalPassword = req.body.password;
+      req.body.password = await hashPassword(req.body.password);
+      const evaluatorRole = await RoleModel.findOne({ name: "evaluator" });
+      const newUser = await userModel.create({
+        ...req.body,
+        role: evaluatorRole._id,
+      });
+      const response = await sendWelcomeEmail({
+        password: originalPassword,
+        email: req.body.email,
+        first_name: req.body.firstName,
+        last_name: req.body.lastName,
+      });
+      res.status(201).json({
+        status: "success please check your email for login details",
+        newEntry: newUser._id,
+      });
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({
+        status: "error",
+        message: error.message,
+      });
+    }
+  }
+);
+/**
+ * Create regular an Admin
+ */
+router.post(
+  "/create/admin",
+  adminRequired,
+  userValidator,
+  async (req, res, next) => {
+    try {
+      const originalPassword = req.body.password;
+      req.body.password = await hashPassword(req.body.password);
+      const adminRole = await RoleModel.findOne({ name: "admin" });
+      const newUser = await userModel.create({
+        ...req.body,
+        role: adminRole._id,
+      });
       const response = await sendWelcomeEmail({
         password: originalPassword,
         email: req.body.email,
