@@ -5,6 +5,7 @@ import { useAppSelector } from '../../state/hooks';
 
 import { ToastContainer, toast } from 'react-toastify';
 import InputElement from '../../components/InputElement';
+import { AxiosError } from 'axios';
 
 type DesignationFormProps = {
 	name: string;
@@ -19,9 +20,12 @@ const AddAdminDesignation: React.FC<{ closeModal: () => void }> = ({
 		React.useState<DesignationFormProps>({} as DesignationFormProps);
 	const { departments } = useAppSelector((state) => state.departments);
 	const handleDesignationFormChange = (
-		e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+		e: React.ChangeEvent<
+			HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+		>
 	) => {
 		const { name, value } = e.target;
+		console.log(name, value);
 		setDesignationForm((prev) => ({ ...prev, [name]: value }));
 	};
 	const { token } = useAppSelector((state) => state.root.user);
@@ -50,9 +54,8 @@ const AddAdminDesignation: React.FC<{ closeModal: () => void }> = ({
 				}, 2000);
 			}
 		} catch (error) {
-			console.log(error);
-
-			toast.error('Something went wrong');
+			if (error instanceof AxiosError)
+				toast.error(error.response!.data.message);
 		}
 	};
 	const wrapperRef = React.useRef<HTMLDivElement>(null);
@@ -106,12 +109,13 @@ const AddAdminDesignation: React.FC<{ closeModal: () => void }> = ({
 					type="text"
 					value={designationForm.name}
 					labelText="Name"
-                    placeholder='Enter Designation Name'
+					placeholder="Enter Designation Name"
 				/>
 				<div>
 					<select
 						name="department"
 						value={designationForm.department}
+						onChange={handleDesignationFormChange}
 					>
 						<option value="" disabled>
 							Select Department
