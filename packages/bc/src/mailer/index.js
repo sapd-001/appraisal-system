@@ -2,23 +2,20 @@ const nodemailer = require("nodemailer");
 const { mailConfig } = require("./../config");
 const { baseLogger } = require("../logger");
 const transporter = nodemailer.createTransport({
-  host: mailConfig.host,
-  port: mailConfig.port,
+  host: "smtp.mailtrap.io",
+  port: 2525,
   auth: {
-    user: mailConfig.auth.user,
-    pass: mailConfig.auth.pass,
-  },
-  secure: false,
-  tls: {
-    rejectUnauthorized: false,
-  },
+    user: "b6695e458f195d",
+    pass: "95033326e19078"
+  }
+  
 });
 
 /**
  *
  * @param {{first_name:string,last_name:string,password:string,email:string}} user
  */
-const sendWelcomeEmail = (user, callback) => {
+const sendWelcomeEmail = (user) => {
   console.log(user);
   const mailOptions = {
     from: "webstaff-company@web.co.ke",
@@ -29,12 +26,9 @@ const sendWelcomeEmail = (user, callback) => {
     We are glad to have you on board.\n 
     use your email: ${user.email} and password: ${user.password} to login to your account\n`,
   };
-  try {
-    const info = transporter.sendMail(mailOptions);
-    return callback(null, info);
-  } catch (error) {
-    return callback(error, null);
-  }
+
+  const info = transporter.sendMail(mailOptions);
+  return info;
 };
 /**
  * Send a password reset email to the user
