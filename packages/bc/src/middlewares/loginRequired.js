@@ -21,7 +21,9 @@ module.exports.loginRequired = async (req, res, next) => {
     }
     const user = await verifyToken(token);
     const role = await RoleModel.findById(user.role);
-    if (!role) throw new Error("Role not found");
+    if (!role) {
+      return res.status(400).json({ error: "Please login again" });
+    }
     if (role.name === "evaluator") {
       user.isEvaluator = true;
       user.isAdmin = false;
