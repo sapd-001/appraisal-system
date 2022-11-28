@@ -9,7 +9,7 @@ import { ToastContainer, toast } from 'react-toastify';
 
 type TasksFormProps = {
 	name: string;
-	dueDate: Date;
+	dueDate: string;
 	assignedTo: string;
 	status: string;
 	employees: string;
@@ -34,7 +34,6 @@ const AddAdminTasks: React.FC<{ closeModal: () => void }> = ({
 	const handleTasksFormSubmit = async (
 		e: React.FormEvent<HTMLFormElement>
 	) => {
-
 		e.preventDefault();
 
 		try {
@@ -97,9 +96,7 @@ const AddAdminTasks: React.FC<{ closeModal: () => void }> = ({
 				className="min-w-[30rem] p-10 bg-white flex flex-col gap-4"
 				onClick={(e) => e.stopPropagation()}
 			>
-				<h1 className="text-3xl font-bold text-center">
-					Add new Task
-				</h1>
+				<h1 className="text-3xl font-bold text-center">Add new Task</h1>
 				<InputElement
 					name="name"
 					onChange={handleTasksFormChange}
@@ -111,7 +108,7 @@ const AddAdminTasks: React.FC<{ closeModal: () => void }> = ({
 				<InputElement
 					name="dueDate"
 					onChange={handleTasksFormChange}
-					type="Date"
+					type="date"
 					value={TasksForm.dueDate}
 					labelText="Due Date"
 					placeholder="Enter Due Date"

@@ -2,6 +2,7 @@ import AddAdminTasks from './AddAdminTasks';
 import React from 'react';
 import StatusBadge from '../../components/StatusBadge';
 import { useAppSelector } from '../../state/hooks';
+
 import Table, { TableColumnProps } from '../../components/Table';
 
 const AdminTasks = () => {
@@ -71,23 +72,6 @@ const AdminTasks = () => {
 		}
 	];
 
-	const data = [
-		{
-			id: 1,
-			title: 'Hold financial meeting',
-			dueDate: '20th October 2022',
-			assignee: 'Jane Doe',
-			status: 'done'
-		},
-		{
-			id: 2,
-			title: 'Hold financial meeting',
-			dueDate: '20th October 2022',
-			assignee: 'Nita Rose',
-			status: 'overdue'
-		}
-	];
-
 	const updateTask = async (id: string) => {
 		console.log(`Updating task id ${id}`);
 	};
@@ -96,32 +80,30 @@ const AdminTasks = () => {
 	};
 
 	const { tasks } = useAppSelector((state) => state.tasks);
-	const [addingTasks, setAddingTasks] =
-	React.useState<boolean>(false);
+	const [addingTasks, setAddingTasks] = React.useState<boolean>(false);
 	const closeOpenModal = () => {
 		setAddingTasks(false);
 	};
+	
 	return (
 		<div>
-		<div className="px-4 py-1 my-4 border mx-2 flex justify-between">
-			<h1>Tasks</h1>
-			<button
-				onClick={(e) => {
-					e.stopPropagation();
-					setAddingTasks(true);
-				}}
-				className="bg-blue-700 text-white px-4 py-2 rounded"
-			>
-				<span className="material-icons">add new Task</span>
-			</button>
+			<div className="px-4 py-1 my-4 border mx-2 flex justify-between">
+				<h1>Tasks</h1>
+				<button
+					onClick={(e) => {
+						e.stopPropagation();
+						setAddingTasks(true);
+					}}
+					className="bg-blue-700 text-white px-4 py-2 rounded"
+				>
+					<span className="material-icons">add new Task</span>
+				</button>
+			</div>
+			<div>
+				{addingTasks && <AddAdminTasks closeModal={closeOpenModal} />}
+				<Table columns={cols} rows={tasks} />
+			</div>
 		</div>
-		<div>
-			{addingTasks && (
-				<AddAdminTasks closeModal={closeOpenModal} />
-			)}
-			<Table columns={cols} rows={data} />
-		</div>
-	</div>
 	);
 };
 
