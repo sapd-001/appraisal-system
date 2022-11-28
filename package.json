@@ -1,32 +1,29 @@
 {
-  "name": "backend",
+  "name": "nancy-appraisal",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "private": true,
   "scripts": {
-    "start": "node ./src/index.js",
-    "dev": "node --watch ./src/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "migrate": "node ./src/migrate/index.js"
+    "start": "concurrently \"pnpm --filter -r ./packages/bc run start\" \"pnpm  --filter ./packages/ui run preview\"",
+    "prestart": "pnpm build:ui",
+    "build:ui": "pnpm --filter -r ./packages/ui run build",
+    "dev": "concurrently \"pnpm run dev:bc\" \"pnpm run dev:ui\"",
+    "dev:bc": " pnpm --filter ./packages/bc run dev",
+    "dev:ui": " pnpm --filter ./packages/ui run dev",
+    "gitignore": "pnpm ngitignore create",
+    "watch": "pnpm -r --filter ./packages --parallel run dev"
   },
   "keywords": [],
+  "workspaces": [
+    "packages/*",
+    "packages/*/*",
+    "packages/*/*/*"
+  ],
   "author": "",
   "license": "ISC",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/sapd-001/nodejs-backend-server.git"
-  },
-  "bugs": {
-    "url": "https://github.com/sapd-001/nodejs-backend-server/issues"
-  },
-  "homepage": "https://github.com/sapd-001/nodejs-backend-server#readme",
-  "dependencies": {
-    "bcryptjs": "^2.4.3",
-    "dotenv": "^16.0.3",
-    "express": "^4.18.2",
-    "express-winston": "^4.2.0",
-    "moment": "^2.29.4",
-    "mongoose": "^6.7.2",
-    "winston": "^3.8.2"
+  "devDependencies": {
+    "concurrently": "^7.6.0",
+    "ngitignore": "^3.0.1"
   }
 }

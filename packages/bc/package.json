@@ -1,0 +1,32 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./src/index.js",
+    "dev": "node --watch ./src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "migrate": "node ./src/migrate/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sapd-001/nodejs-backend-server.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sapd-001/nodejs-backend-server/issues"
+  },
+  "homepage": "https://github.com/sapd-001/nodejs-backend-server#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-winston": "^4.2.0",
+    "moment": "^2.29.4",
+    "mongoose": "^6.7.2",
+    "winston": "^3.8.2"
+  }
+}
