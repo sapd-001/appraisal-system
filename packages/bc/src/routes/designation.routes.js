@@ -2,7 +2,7 @@
  * @ Author: Felix Orinda
  * @ Create Time: 2022-11-28 08:13:32
  * @ Modified by: Felix Orinda
- * @ Modified time: 2022-11-28 21:53:26
+ * @ Modified time: 2022-11-28 21:54:17
  * @ Description:
  */
 
@@ -29,7 +29,7 @@ router.post("/create", adminRequired, async (req, res, next) => {
       });
     }
 
-    const newDesignation = await DesignationModel.create({
+    await DesignationModel.create({
       name,
       description,
       department,
