@@ -2,13 +2,14 @@
  * @ Author: Felix Orinda
  * @ Create Time: 2022-11-28 08:21:56
  * @ Modified by: Felix Orinda
- * @ Modified time: 2022-11-28 09:01:01
+ * @ Modified time: 2022-11-28 09:03:34
  * @ Description:
  */
 
 const { baseLogger } = require("../logger");
 const RoleModel = require("../models/role.model");
 const UserModel = require("../models/user.model");
+const { hashPassword } = require("../utils/passwordHash");
 
 // Create roles and then create a default admin user
 
@@ -34,7 +35,7 @@ const UserModel = require("../models/user.model");
         name: "admin",
         email: "admin@gmail.com",
         role: adminRole,
-        password: "admin1234",
+        password: await hashPassword("admin1234"),
       });
       baseLogger.info("Admin created successfully");
     }
