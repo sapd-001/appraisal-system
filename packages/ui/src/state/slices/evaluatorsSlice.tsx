@@ -15,13 +15,13 @@ type EValuatorType = {
 };
 
 type EvaluatorStateType = {
-	employees: EValuatorType[];
+	evaluators: EValuatorType[];
 	loading: boolean;
 	error: string | null;
 };
 
 const initialState: EvaluatorStateType = {
-	employees: [],
+	evaluators: [],
 	loading: false,
 	error: null
 };
