@@ -1,9 +1,11 @@
+import adminsReducer from './../slices/adminUserSlice';
 import { combineReducers } from 'redux';
 import { configureStore } from '@reduxjs/toolkit';
 import departmentsReducer from '../slices/departmentsSlice';
 import designationReducer from '../slices/designationsSlice';
 import employeesReducer from './../slices/employeesSlice';
 import evaluatorReducer from './../slices/evaluatorsSlice';
+import normalUsersReducer from './../slices/normalUsersSlice';
 import rolesReducer from '../slices/rolesSlice';
 import storage from 'redux-persist/lib/storage';
 import tasksReducer from '../slices/tasksSlice';
@@ -41,7 +43,9 @@ const store = configureStore({
 		designations: designationReducer,
 		departments: departmentsReducer,
 		employees: employeesReducer,
-		evaluators: evaluatorReducer
+		evaluators: evaluatorReducer,
+		admins: adminsReducer,
+		normalUsers: normalUsersReducer
 	},
 	middleware: (getDefaultMiddleware) =>
 		getDefaultMiddleware({

@@ -2,7 +2,7 @@
  * @ Author: Felix Orinda
  * @ Create Time: 2022-11-10 13:55:28
  * @ Modified by: Felix Orinda
- * @ Modified time: 2022-11-29 01:57:02
+ * @ Modified time: 2022-11-29 01:56:30
  * @ Description:
  */
 
@@ -10,38 +10,38 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
-type EmployeeType = {
+type AdminType = {
 	[any: string]: any;
 };
 
-type EmployeeStateType = {
-	employees: EmployeeType[];
+type AdminStateType = {
+	admins: AdminType[];
 	loading: boolean;
 	error: string | null;
 };
 
-const initialState: EmployeeStateType = {
-	employees: [],
+const initialState: AdminStateType = {
+	admins: [],
 	loading: false,
 	error: null
 };
 
-const employeeSlice = createSlice({
-	name: 'employees',
+const adminSlice = createSlice({
+	name: 'admins',
 	initialState,
 	reducers: {
-		loadEmployeeStart: (state) => {
+		loadAdminStart: (state) => {
 			state.loading = true;
 			state.error = null;
 		},
-		loadEmployeeSuccess: (state, action: PayloadAction<EmployeeType[]>) => {
-			state.employees = action.payload;
+		loadAdminSuccess: (state, action: PayloadAction<AdminType[]>) => {
+			state.admins = action.payload;
 			state.loading = false;
 			state.error = null;
 		},
-		loadEmployeeFailure: (
+		loadAdminFailure: (
 			state,
-			action: PayloadAction<Pick<EmployeeStateType, 'error'>>
+			action: PayloadAction<Pick<AdminStateType, 'error'>>
 		) => {
 			state.loading = false;
 			state.error = action.payload.error;
@@ -49,7 +49,7 @@ const employeeSlice = createSlice({
 	}
 });
 
-export const { loadEmployeeFailure, loadEmployeeStart, loadEmployeeSuccess } =
-	employeeSlice.actions;
+export const { loadAdminFailure, loadAdminStart, loadAdminSuccess } =
+	adminSlice.actions;
 
-export default employeeSlice.reducer;
+export default adminSlice.reducer;

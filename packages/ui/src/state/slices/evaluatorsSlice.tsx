@@ -2,7 +2,7 @@
  * @ Author: Felix Orinda
  * @ Create Time: 2022-11-10 13:55:28
  * @ Modified by: Felix Orinda
- * @ Modified time: 2022-11-28 19:24:50
+ * @ Modified time: 2022-11-29 01:14:55
  * @ Description:
  */
 
@@ -35,7 +35,7 @@ const departmentSlice = createSlice({
 			state.error = null;
 		},
 		loadEvaluatorSuccess: (state, action: PayloadAction<EValuatorType[]>) => {
-			state.employees = action.payload;
+			state.evaluators = action.payload;
 			state.loading = false;
 			state.error = null;
 		},

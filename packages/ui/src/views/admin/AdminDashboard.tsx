@@ -11,7 +11,10 @@ const AdminDashboard = () => {
 		designations: { designations },
 		employees: { employees },
 		roles: { roles },
-		tasks: { tasks }
+		tasks: { tasks },
+		evaluators: { evaluators },
+		admins: { admins },
+		normalUsers: { normalUsers }
 	} = useAppSelector((state) => state);
 
 	return (
@@ -21,10 +24,25 @@ const AdminDashboard = () => {
 					Welcome to the admin dashboard
 				</h1>
 			</div>
-			<div className="grid grid-cols-[repeat(auto-fit,minmax(360px,1fr))] p-4 gap-4">
+			<div className="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] p-4 gap-4">
 				<DashSummaryItem
 					count={departments.length}
 					title={'Departments'}
+					icon={faLightbulb}
+				/>
+				<DashSummaryItem
+					count={admins.length}
+					title={'Administrators'}
+					icon={faLightbulb}
+				/>
+				<DashSummaryItem
+					count={evaluators.length}
+					title={'Evaluators'}
+					icon={faLightbulb}
+				/>
+				<DashSummaryItem
+					count={normalUsers.length}
+					title={'Normal'}
 					icon={faLightbulb}
 				/>
 				<DashSummaryItem

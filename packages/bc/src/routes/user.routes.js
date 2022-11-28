@@ -2,7 +2,7 @@
  * @ Author: Felix Orinda
  * @ Create Time: 2022-11-14 08:37:11
  * @ Modified by: Felix Orinda
- * @ Modified time: 2022-11-29 01:09:49
+ * @ Modified time: 2022-11-29 02:11:52
  * @ Description:
  */
 const { sendWelcomeEmail } = require("../mailer");
@@ -11,6 +11,7 @@ const {
   loginRequired,
 } = require("../middlewares/loginRequired");
 const userValidator = require("../middlewares/userValidator");
+const RoleModel = require("../models/role.model");
 const userModel = require("../models/user.model");
 const { hashPassword } = require("../utils/passwordHash");
 const router = require("express").Router();
