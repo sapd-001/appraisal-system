@@ -2,7 +2,7 @@
  * @ Author: Felix Orinda
  * @ Create Time: 2022-11-14 11:31:42
  * @ Modified by: Felix Orinda
- * @ Modified time: 2022-11-28 15:17:40
+ * @ Modified time: 2022-11-28 18:19:12
  * @ Description:
  */
 
@@ -12,7 +12,9 @@ const userRouter = require("../routes/user.routes");
 const taskRoutes = require("../routes/task.routes");
 const evaluatorRoutes = require("../routes/evaluation.routes");
 const departmentRoutes = require("../routes/department.routes");
+const designationRoutes = require("../routes/designation.routes");
 const authRoutes = require("../routes/auth.routes");
+const rolesRoutes = require("../routes/roles.routes");
 
 /**
  *
@@ -25,7 +27,9 @@ module.exports = function ({ app } = {}) {
   router.use("/tasks", taskRoutes);
   router.use("/evaluators", evaluatorRoutes);
   router.use("/departments", departmentRoutes);
+  router.use("/designations", designationRoutes);
   router.use("/auth", authRoutes);
+  router.use("/roles", rolesRoutes);
   app.use(expressErrorHandler);
 
   app.use("/api/v1", router);

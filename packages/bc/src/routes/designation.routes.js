@@ -2,38 +2,38 @@
  * @ Author: Felix Orinda
  * @ Create Time: 2022-11-28 08:13:32
  * @ Modified by: Felix Orinda
- * @ Modified time: 2022-11-28 18:13:45
+ * @ Modified time: 2022-11-28 18:11:47
  * @ Description:
  */
 
 const { adminRequired } = require("../middlewares/loginRequired");
-const RoleModel = require("../models/role.model");
+const DesignationModel = require("../models/designation.model");
 
 const router = require("express").Router();
 
 /**
- * Create a new role
+ * Create a new designation
  */
 router.post("/create", adminRequired, (req, res, next) => {});
 
 /**
- * Get all roles
+ * Get all designations
  */
-router.get("/all", adminRequired, (req, res, next) => {
-  const roles = RoleModel.find({});
-  res.status(200).json({ roles });
+router.get("/all", adminRequired, async (req, res, next) => {
+  const data = await DesignationModel.find({});
+  res.status(200).json({ data });
 });
 
 /**
- * Get a role by id
+ * Get a designation by id
  */
 router.get("/:id", adminRequired, (req, res, next) => {});
 /**
- * Update a role by id
+ * Update a designation by id
  */
 router.put("/:id", adminRequired, (req, res, next) => {});
 /**
- * Delete a role by id
+ * Delete a designation by id
  */
 router.delete("/:id", adminRequired, (req, res, next) => {});
 
