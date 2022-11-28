@@ -26,7 +26,6 @@ const AddAdminDepartment: React.FC<{ closeModal: () => void }> = ({
 	const handleDepartmentFormSubmit = async (
 		e: React.FormEvent<HTMLFormElement>
 	) => {
-		console.log('Submitting form');
 
 		e.preventDefault();
 

@@ -1,0 +1,184 @@
+Date : 2022-11-29 02:17:54
+Directory : /home/orinda/Documents/dev/nancy-appraisal
+Total : 111 files,  12723 codes, 504 comments, 1652 blanks, all 14879 lines
+
+Languages
++--------------------+------------+------------+------------+------------+------------+
+| language           | files      | code       | comment    | blank      | total      |
++--------------------+------------+------------+------------+------------+------------+
+| YAML               |          4 |      8,155 |          3 |      1,168 |      9,326 |
+| TypeScript React   |         50 |      2,790 |        111 |        299 |      3,200 |
+| JavaScript         |         33 |      1,256 |        377 |        149 |      1,782 |
+| JSON with Comments |          3 |        213 |          0 |          2 |        215 |
+| JSON               |          7 |        164 |          0 |          5 |        169 |
+| TypeScript         |          6 |         60 |          3 |         16 |         79 |
+| Shell Script       |          1 |         40 |          9 |          3 |         52 |
+| CSS                |          1 |         19 |          1 |          5 |         25 |
+| HTML               |          1 |         13 |          0 |          1 |         14 |
+| Markdown           |          3 |         11 |          0 |          4 |         15 |
+| XML                |          2 |          2 |          0 |          0 |          2 |
++--------------------+------------+------------+------------+------------+------------+
+
+Directories
++---------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                              | files      | code       | comment    | blank      | total      |
++---------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                 |        111 |     12,723 |        504 |      1,652 |     14,879 |
+| components                                                                                        |          5 |         71 |          5 |          7 |         83 |
+| components/component2                                                                             |          3 |         55 |          0 |          5 |         60 |
+| components/component2/src                                                                         |          1 |         14 |          0 |          3 |         17 |
+| components/test-component                                                                         |          2 |         16 |          5 |          2 |         23 |
+| packages                                                                                          |        100 |      8,269 |        487 |      1,021 |      9,777 |
+| packages/bc                                                                                       |         33 |      2,729 |        370 |        343 |      3,442 |
+| packages/bc/src                                                                                   |         29 |      1,210 |        363 |        143 |      1,716 |
+| packages/bc/src/api                                                                               |          1 |         28 |         12 |          4 |         44 |
+| packages/bc/src/config                                                                            |          1 |         14 |          7 |          1 |         22 |
+| packages/bc/src/db                                                                                |          1 |         35 |          7 |          5 |         47 |
+| packages/bc/src/errors                                                                            |          2 |         55 |          6 |          6 |         67 |
+| packages/bc/src/logger                                                                            |          1 |        160 |          8 |          8 |        176 |
+| packages/bc/src/mailer                                                                            |          1 |         40 |          8 |          5 |         53 |
+| packages/bc/src/middlewares                                                                       |          2 |        119 |         63 |         10 |        192 |
+| packages/bc/src/migrate                                                                           |          1 |         37 |         10 |          5 |         52 |
+| packages/bc/src/models                                                                            |          6 |        204 |          7 |         17 |        228 |
+| packages/bc/src/routes                                                                            |          7 |        446 |        183 |         63 |        692 |
+| packages/bc/src/utils                                                                             |          4 |         41 |         30 |         10 |         81 |
+| packages/ui                                                                                       |         67 |      5,540 |        117 |        678 |      6,335 |
+| packages/ui/public                                                                                |          1 |          1 |          0 |          0 |          1 |
+| packages/ui/src                                                                                   |         55 |      2,839 |        114 |        312 |      3,265 |
+| packages/ui/src/api                                                                               |          1 |          8 |          1 |          2 |         11 |
+| packages/ui/src/assets                                                                            |          1 |          1 |          0 |          0 |          1 |
+| packages/ui/src/components                                                                        |         11 |        355 |          1 |         52 |        408 |
+| packages/ui/src/data                                                                              |          2 |        122 |          0 |          7 |        129 |
+| packages/ui/src/helpers                                                                           |          1 |         10 |          0 |          4 |         14 |
+| packages/ui/src/layouts                                                                           |          2 |         32 |          0 |          8 |         40 |
+| packages/ui/src/router                                                                            |          2 |        115 |          3 |          6 |        124 |
+| packages/ui/src/state                                                                             |         11 |        443 |         79 |         82 |        604 |
+| packages/ui/src/state/hooks                                                                       |          1 |          4 |          0 |          2 |          6 |
+| packages/ui/src/state/slices                                                                      |          9 |        376 |         79 |         71 |        526 |
+| packages/ui/src/state/store                                                                       |          1 |         63 |          0 |          9 |         72 |
+| packages/ui/src/types                                                                             |          1 |         21 |          0 |          5 |         26 |
+| packages/ui/src/views                                                                             |         18 |      1,682 |         28 |        128 |      1,838 |
+| packages/ui/src/views/admin                                                                       |         14 |      1,531 |         26 |        106 |      1,663 |
+| packages/ui/src/views/employee                                                                    |          1 |          5 |          0 |          3 |          8 |
+| packages/ui/src/views/evaluator                                                                   |          1 |          5 |          0 |          3 |          8 |
+| packages/ui/src/wrappers                                                                          |          1 |          8 |          0 |          4 |         12 |
+| scripts                                                                                           |          1 |         12 |          0 |          3 |         15 |
++---------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++---------------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| filename                                                                                          | language           | code       | comment    | blank      | total      |
++---------------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| /home/orinda/Documents/dev/nancy-appraisal/README.md                                              | Markdown           |          9 |          0 |          3 |         12 |
+| /home/orinda/Documents/dev/nancy-appraisal/components/component2/package.json                     | JSON               |         13 |          0 |          1 |         14 |
+| /home/orinda/Documents/dev/nancy-appraisal/components/component2/src/index.ts                     | TypeScript         |         14 |          0 |          3 |         17 |
+| /home/orinda/Documents/dev/nancy-appraisal/components/component2/tsconfig.json                    | JSON with Comments |         28 |          0 |          1 |         29 |
+| /home/orinda/Documents/dev/nancy-appraisal/components/test-component/index.js                     | JavaScript         |          3 |          5 |          1 |          9 |
+| /home/orinda/Documents/dev/nancy-appraisal/components/test-component/package.json                 | JSON               |         13 |          0 |          1 |         14 |
+| /home/orinda/Documents/dev/nancy-appraisal/package.json                                           | JSON               |         35 |          0 |          1 |         36 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/bc/README.md                                  | Markdown           |          1 |          0 |          1 |          2 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/bc/node.config.js                             | JavaScript         |         18 |          7 |          3 |         28 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/bc/package.json                               | JSON               |         36 |          0 |          1 |         37 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/bc/pnpm-lock.yaml                             | YAML               |      1,464 |          0 |        195 |      1,659 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/bc/src/api/index.js                           | JavaScript         |         28 |         12 |          4 |         44 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/bc/src/config/index.js                        | JavaScript         |         14 |          7 |          1 |         22 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/bc/src/db/index.js                            | JavaScript         |         35 |          7 |          5 |         47 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/bc/src/errors/ExpressError.js                 | JavaScript         |         18 |          0 |          2 |         20 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/bc/src/errors/errorHandler.js                 | JavaScript         |         37 |          6 |          4 |         47 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/bc/src/index.js                               | JavaScript         |         16 |          7 |          6 |         29 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/bc/src/logger/index.js                        | JavaScript         |        160 |          8 |          8 |        176 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/bc/src/mailer/index.js                        | JavaScript         |         40 |          8 |          5 |         53 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/bc/src/middlewares/loginRequired.js           | JavaScript         |         75 |         27 |          5 |        107 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/bc/src/middlewares/userValidator.js           | JavaScript         |         44 |         36 |          5 |         85 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/bc/src/migrate/index.js                       | JavaScript         |         37 |         10 |          5 |         52 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/bc/src/models/department.model.js             | JavaScript         |         18 |          0 |          3 |         21 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/bc/src/models/designation.model.js            | JavaScript         |         26 |          0 |          2 |         28 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/bc/src/models/evaluation.model.js             | JavaScript         |         37 |          0 |          3 |         40 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/bc/src/models/role.model.js                   | JavaScript         |         21 |          0 |          3 |         24 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/bc/src/models/task.model.js                   | JavaScript         |         60 |          0 |          3 |         63 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/bc/src/models/user.model.js                   | JavaScript         |         42 |          7 |          3 |         52 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/bc/src/process.js                             | JavaScript         |         15 |         15 |          3 |         33 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/bc/src/routes/auth.routes.js                  | JavaScript         |         57 |         11 |          7 |         75 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/bc/src/routes/department.routes.js            | JavaScript         |         21 |         22 |          8 |         51 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/bc/src/routes/designation.routes.js           | JavaScript         |         37 |         22 |          9 |         68 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/bc/src/routes/evaluation.routes.js            | JavaScript         |         45 |         15 |          9 |         69 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/bc/src/routes/roles.routes.js                 | JavaScript         |         12 |         22 |          7 |         41 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/bc/src/routes/task.routes.js                  | JavaScript         |         48 |         34 |          9 |         91 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/bc/src/routes/user.routes.js                  | JavaScript         |        226 |         57 |         14 |        297 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/bc/src/utils/generateRandomPassword.js        | JavaScript         |         12 |          5 |          2 |         19 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/bc/src/utils/mongoId.js                       | JavaScript         |          4 |          3 |          1 |          8 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/bc/src/utils/passwordHash.js                  | JavaScript         |         10 |         13 |          4 |         27 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/bc/src/utils/tokens.js                        | JavaScript         |         15 |          9 |          3 |         27 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/ui/.eslintrc.json                             | JSON with Comments |        164 |          0 |          0 |        164 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/ui/.prettierrc.json                           | JSON               |         12 |          0 |          0 |         12 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/ui/README.md                                  | Markdown           |          1 |          0 |          0 |          1 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/ui/index.html                                 | HTML               |         13 |          0 |          1 |         14 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/ui/package.json                               | JSON               |         46 |          0 |          0 |         46 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/ui/pnpm-lock.yaml                             | YAML               |      2,404 |          0 |        359 |      2,763 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/ui/postcss.config.cjs                         | JavaScript         |          6 |          0 |          1 |          7 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/ui/public/vite.svg                            | XML                |          1 |          0 |          0 |          1 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/App.tsx                                | TypeScript React   |          6 |          0 |          4 |         10 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/api/index.ts                           | TypeScript         |          8 |          1 |          2 |         11 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/assets/react.svg                       | XML                |          1 |          0 |          0 |          1 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/components/AdminProtected.tsx          | TypeScript React   |         17 |          0 |          5 |         22 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/components/AdminSidebar.tsx            | TypeScript React   |         41 |          0 |          4 |         45 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/components/DashSummaryItem.tsx         | TypeScript React   |         28 |          0 |          3 |         31 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/components/EvaluatorProtected.tsx      | TypeScript React   |         17 |          0 |          5 |         22 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/components/InputElement.tsx            | TypeScript React   |         74 |          0 |          6 |         80 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/components/LayoutFooter.tsx            | TypeScript React   |          5 |          0 |          3 |          8 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/components/LayoutHeader.tsx            | TypeScript React   |         25 |          0 |          5 |         30 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/components/PerformanceBadge.tsx        | TypeScript React   |         17 |          0 |          3 |         20 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/components/Protected.tsx               | TypeScript React   |         17 |          0 |          4 |         21 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/components/StatusBadge.tsx             | TypeScript React   |         51 |          0 |          8 |         59 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/components/Table.tsx                   | TypeScript React   |         63 |          1 |          6 |         70 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/data/adminDashboardSummary.tsx         | TypeScript React   |         40 |          0 |          4 |         44 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/data/nav.tsx                           | TypeScript React   |         82 |          0 |          3 |         85 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/helpers/TopScroll.tsx                  | TypeScript React   |         10 |          0 |          4 |         14 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/index.css                              | CSS                |         19 |          1 |          5 |         25 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/layouts/AdminLayout.tsx                | TypeScript React   |         20 |          0 |          4 |         24 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/layouts/BaseLayout.tsx                 | TypeScript React   |         12 |          0 |          4 |         16 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/main.tsx                               | TypeScript React   |         17 |          0 |          4 |         21 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/router/index.tsx                       | TypeScript React   |          9 |          1 |          3 |         13 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/router/routes.tsx                      | TypeScript React   |        106 |          2 |          3 |        111 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/state/hooks/index.tsx                  | TypeScript React   |          4 |          0 |          2 |          6 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/state/slices/adminUserSlice.tsx        | TypeScript React   |         39 |          9 |          8 |         56 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/state/slices/departmentsSlice.tsx      | TypeScript React   |         47 |          9 |          8 |         64 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/state/slices/designationsSlice.tsx     | TypeScript React   |         48 |          9 |          8 |         65 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/state/slices/employeesSlice.tsx        | TypeScript React   |         39 |          9 |          8 |         56 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/state/slices/evaluatorsSlice.tsx       | TypeScript React   |         39 |          9 |          8 |         56 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/state/slices/normalUsersSlice.tsx      | TypeScript React   |         45 |          9 |          8 |         62 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/state/slices/rolesSlice.tsx            | TypeScript React   |         41 |          9 |          8 |         58 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/state/slices/tasksSlice.tsx            | TypeScript React   |         48 |          8 |          7 |         63 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/state/slices/userSlice.tsx             | TypeScript React   |         30 |          8 |          8 |         46 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/state/store/index.tsx                  | TypeScript React   |         63 |          0 |          9 |         72 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/types/index.d.ts                       | TypeScript         |         21 |          0 |          5 |         26 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/views/Homepage.tsx                     | TypeScript React   |        125 |          2 |         12 |        139 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/views/Profile.tsx                      | TypeScript React   |         16 |          0 |          4 |         20 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/views/admin/AddAdminDepartment.tsx     | TypeScript React   |        122 |          4 |         12 |        138 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/views/admin/AddAdminDesignation.tsx    | TypeScript React   |        145 |          4 |         10 |        159 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/views/admin/AddAdminEmployees.tsx      | TypeScript React   |        173 |          4 |         10 |        187 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/views/admin/AddAdminEvaluators.tsx     | TypeScript React   |        173 |          4 |         10 |        187 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/views/admin/AddAdminTasks.tsx          | TypeScript React   |        148 |          4 |         10 |        162 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/views/admin/AdminDashboard.tsx         | TypeScript React   |         68 |          2 |          4 |         74 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/views/admin/AdminDepartments.tsx       | TypeScript React   |         67 |          0 |          5 |         72 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/views/admin/AdminDesignations.tsx      | TypeScript React   |         73 |          1 |          7 |         81 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/views/admin/AdminEmployees.tsx         | TypeScript React   |         80 |          0 |          6 |         86 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/views/admin/AdminEvaluations.tsx       | TypeScript React   |        111 |          0 |          4 |        115 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/views/admin/AdminEvaluators.tsx        | TypeScript React   |         84 |          2 |          4 |         90 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/views/admin/AdminPage.tsx              | TypeScript React   |        101 |          0 |         15 |        116 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/views/admin/AdminTasks.tsx             | TypeScript React   |        123 |          0 |          6 |        129 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/views/admin/AdminUsers.tsx             | TypeScript React   |         63 |          1 |          3 |         67 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/views/employee/EmployeeDashboard.tsx   | TypeScript React   |          5 |          0 |          3 |          8 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/views/evaluator/EvaluatorDashboard.tsx | TypeScript React   |          5 |          0 |          3 |          8 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/vite-env.d.ts                          | TypeScript         |          0 |          1 |          1 |          2 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/wrappers/WidthWrapper.tsx              | TypeScript React   |          8 |          0 |          4 |         12 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/ui/tailwind.config.cjs                        | JavaScript         |         19 |          2 |          1 |         22 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/ui/tsconfig.json                              | JSON with Comments |         21 |          0 |          1 |         22 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/ui/tsconfig.node.json                         | JSON               |          9 |          0 |          1 |         10 |
+| /home/orinda/Documents/dev/nancy-appraisal/packages/ui/vite.config.ts                             | TypeScript         |          5 |          1 |          2 |          8 |
+| /home/orinda/Documents/dev/nancy-appraisal/pnpm-lock.yaml                                         | YAML               |      4,283 |          0 |        614 |      4,897 |
+| /home/orinda/Documents/dev/nancy-appraisal/pnpm-workspace.yaml                                    | YAML               |          4 |          3 |          0 |          7 |
+| /home/orinda/Documents/dev/nancy-appraisal/scripts/index.ts                                       | TypeScript         |         12 |          0 |          3 |         15 |
+| /home/orinda/Documents/dev/nancy-appraisal/start.sh                                               | Shell Script       |         40 |          9 |          3 |         52 |
+| Total                                                                                             |                    |     12,723 |        504 |      1,652 |     14,879 |
++---------------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+

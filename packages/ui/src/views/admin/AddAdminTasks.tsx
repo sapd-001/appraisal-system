@@ -1,10 +1,10 @@
+import { AxiosError } from 'axios';
+import InputElement from '../../components/InputElement';
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React from 'react';
 import { apiRequest } from '../../api';
 import { useAppSelector } from '../../state/hooks';
 
-import { AxiosError } from 'axios';
-import InputElement from '../../components/InputElement';
 import { ToastContainer, toast } from 'react-toastify';
 
 type TasksFormProps = {
@@ -28,14 +28,12 @@ const AddAdminTasks: React.FC<{ closeModal: () => void }> = ({
 		>
 	) => {
 		const { name, value } = e.target;
-		console.log(name, value);
 		setTasksForm((prev) => ({ ...prev, [name]: value }));
 	};
 	const { token } = useAppSelector((state) => state.root.user);
 	const handleTasksFormSubmit = async (
 		e: React.FormEvent<HTMLFormElement>
 	) => {
-		console.log('Submitting form');
 
 		e.preventDefault();
 

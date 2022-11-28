@@ -1,11 +1,11 @@
+import { AxiosError } from 'axios';
+import InputElement from '../../components/InputElement';
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React from 'react';
 import { apiRequest } from '../../api';
 import { useAppSelector } from '../../state/hooks';
 
 import { ToastContainer, toast } from 'react-toastify';
-import InputElement from '../../components/InputElement';
-import { AxiosError } from 'axios';
 
 type DesignationFormProps = {
 	name: string;
@@ -25,14 +25,12 @@ const AddAdminDesignation: React.FC<{ closeModal: () => void }> = ({
 		>
 	) => {
 		const { name, value } = e.target;
-		console.log(name, value);
 		setDesignationForm((prev) => ({ ...prev, [name]: value }));
 	};
 	const { token } = useAppSelector((state) => state.root.user);
 	const handleDesignationFormSubmit = async (
 		e: React.FormEvent<HTMLFormElement>
 	) => {
-		console.log('Submitting form');
 
 		e.preventDefault();
 

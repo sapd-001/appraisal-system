@@ -1,0 +1,113 @@
+"filename", "language", "Markdown", "YAML", "TypeScript React", "Shell Script", "TypeScript", "XML", "CSS", "HTML", "JSON", "JSON with Comments", "JavaScript", "comment", "blank", "total"
+"/home/orinda/Documents/dev/nancy-appraisal/README.md", "Markdown", 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 12
+"/home/orinda/Documents/dev/nancy-appraisal/components/component2/package.json", "JSON", 0, 0, 0, 0, 0, 0, 0, 0, 13, 0, 0, 0, 1, 14
+"/home/orinda/Documents/dev/nancy-appraisal/components/component2/src/index.ts", "TypeScript", 0, 0, 0, 0, 14, 0, 0, 0, 0, 0, 0, 0, 3, 17
+"/home/orinda/Documents/dev/nancy-appraisal/components/component2/tsconfig.json", "JSON with Comments", 0, 0, 0, 0, 0, 0, 0, 0, 0, 28, 0, 0, 1, 29
+"/home/orinda/Documents/dev/nancy-appraisal/components/test-component/index.js", "JavaScript", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 5, 1, 9
+"/home/orinda/Documents/dev/nancy-appraisal/components/test-component/package.json", "JSON", 0, 0, 0, 0, 0, 0, 0, 0, 13, 0, 0, 0, 1, 14
+"/home/orinda/Documents/dev/nancy-appraisal/package.json", "JSON", 0, 0, 0, 0, 0, 0, 0, 0, 35, 0, 0, 0, 1, 36
+"/home/orinda/Documents/dev/nancy-appraisal/packages/bc/README.md", "Markdown", 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2
+"/home/orinda/Documents/dev/nancy-appraisal/packages/bc/node.config.js", "JavaScript", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 18, 7, 3, 28
+"/home/orinda/Documents/dev/nancy-appraisal/packages/bc/package.json", "JSON", 0, 0, 0, 0, 0, 0, 0, 0, 36, 0, 0, 0, 1, 37
+"/home/orinda/Documents/dev/nancy-appraisal/packages/bc/pnpm-lock.yaml", "YAML", 0, 1464, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 195, 1659
+"/home/orinda/Documents/dev/nancy-appraisal/packages/bc/src/api/index.js", "JavaScript", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 28, 12, 4, 44
+"/home/orinda/Documents/dev/nancy-appraisal/packages/bc/src/config/index.js", "JavaScript", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 14, 7, 1, 22
+"/home/orinda/Documents/dev/nancy-appraisal/packages/bc/src/db/index.js", "JavaScript", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 35, 7, 5, 47
+"/home/orinda/Documents/dev/nancy-appraisal/packages/bc/src/errors/ExpressError.js", "JavaScript", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 18, 0, 2, 20
+"/home/orinda/Documents/dev/nancy-appraisal/packages/bc/src/errors/errorHandler.js", "JavaScript", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 37, 6, 4, 47
+"/home/orinda/Documents/dev/nancy-appraisal/packages/bc/src/index.js", "JavaScript", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 16, 7, 6, 29
+"/home/orinda/Documents/dev/nancy-appraisal/packages/bc/src/logger/index.js", "JavaScript", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 160, 8, 8, 176
+"/home/orinda/Documents/dev/nancy-appraisal/packages/bc/src/mailer/index.js", "JavaScript", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 40, 8, 5, 53
+"/home/orinda/Documents/dev/nancy-appraisal/packages/bc/src/middlewares/loginRequired.js", "JavaScript", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 75, 27, 5, 107
+"/home/orinda/Documents/dev/nancy-appraisal/packages/bc/src/middlewares/userValidator.js", "JavaScript", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 44, 36, 5, 85
+"/home/orinda/Documents/dev/nancy-appraisal/packages/bc/src/migrate/index.js", "JavaScript", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 37, 10, 5, 52
+"/home/orinda/Documents/dev/nancy-appraisal/packages/bc/src/models/department.model.js", "JavaScript", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 18, 0, 3, 21
+"/home/orinda/Documents/dev/nancy-appraisal/packages/bc/src/models/designation.model.js", "JavaScript", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 26, 0, 2, 28
+"/home/orinda/Documents/dev/nancy-appraisal/packages/bc/src/models/evaluation.model.js", "JavaScript", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 37, 0, 3, 40
+"/home/orinda/Documents/dev/nancy-appraisal/packages/bc/src/models/role.model.js", "JavaScript", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 21, 0, 3, 24
+"/home/orinda/Documents/dev/nancy-appraisal/packages/bc/src/models/task.model.js", "JavaScript", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 60, 0, 3, 63
+"/home/orinda/Documents/dev/nancy-appraisal/packages/bc/src/models/user.model.js", "JavaScript", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 42, 7, 3, 52
+"/home/orinda/Documents/dev/nancy-appraisal/packages/bc/src/process.js", "JavaScript", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 15, 3, 33
+"/home/orinda/Documents/dev/nancy-appraisal/packages/bc/src/routes/auth.routes.js", "JavaScript", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 57, 11, 7, 75
+"/home/orinda/Documents/dev/nancy-appraisal/packages/bc/src/routes/department.routes.js", "JavaScript", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 21, 22, 8, 51
+"/home/orinda/Documents/dev/nancy-appraisal/packages/bc/src/routes/designation.routes.js", "JavaScript", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 37, 22, 9, 68
+"/home/orinda/Documents/dev/nancy-appraisal/packages/bc/src/routes/evaluation.routes.js", "JavaScript", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 45, 15, 9, 69
+"/home/orinda/Documents/dev/nancy-appraisal/packages/bc/src/routes/roles.routes.js", "JavaScript", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 12, 22, 7, 41
+"/home/orinda/Documents/dev/nancy-appraisal/packages/bc/src/routes/task.routes.js", "JavaScript", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 48, 34, 9, 91
+"/home/orinda/Documents/dev/nancy-appraisal/packages/bc/src/routes/user.routes.js", "JavaScript", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 226, 57, 14, 297
+"/home/orinda/Documents/dev/nancy-appraisal/packages/bc/src/utils/generateRandomPassword.js", "JavaScript", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 12, 5, 2, 19
+"/home/orinda/Documents/dev/nancy-appraisal/packages/bc/src/utils/mongoId.js", "JavaScript", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 3, 1, 8
+"/home/orinda/Documents/dev/nancy-appraisal/packages/bc/src/utils/passwordHash.js", "JavaScript", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 13, 4, 27
+"/home/orinda/Documents/dev/nancy-appraisal/packages/bc/src/utils/tokens.js", "JavaScript", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 9, 3, 27
+"/home/orinda/Documents/dev/nancy-appraisal/packages/ui/.eslintrc.json", "JSON with Comments", 0, 0, 0, 0, 0, 0, 0, 0, 0, 164, 0, 0, 0, 164
+"/home/orinda/Documents/dev/nancy-appraisal/packages/ui/.prettierrc.json", "JSON", 0, 0, 0, 0, 0, 0, 0, 0, 12, 0, 0, 0, 0, 12
+"/home/orinda/Documents/dev/nancy-appraisal/packages/ui/README.md", "Markdown", 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1
+"/home/orinda/Documents/dev/nancy-appraisal/packages/ui/index.html", "HTML", 0, 0, 0, 0, 0, 0, 0, 13, 0, 0, 0, 0, 1, 14
+"/home/orinda/Documents/dev/nancy-appraisal/packages/ui/package.json", "JSON", 0, 0, 0, 0, 0, 0, 0, 0, 46, 0, 0, 0, 0, 46
+"/home/orinda/Documents/dev/nancy-appraisal/packages/ui/pnpm-lock.yaml", "YAML", 0, 2404, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 359, 2763
+"/home/orinda/Documents/dev/nancy-appraisal/packages/ui/postcss.config.cjs", "JavaScript", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 0, 1, 7
+"/home/orinda/Documents/dev/nancy-appraisal/packages/ui/public/vite.svg", "XML", 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1
+"/home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/App.tsx", "TypeScript React", 0, 0, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 10
+"/home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/api/index.ts", "TypeScript", 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 1, 2, 11
+"/home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/assets/react.svg", "XML", 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1
+"/home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/components/AdminProtected.tsx", "TypeScript React", 0, 0, 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 22
+"/home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/components/AdminSidebar.tsx", "TypeScript React", 0, 0, 41, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 45
+"/home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/components/DashSummaryItem.tsx", "TypeScript React", 0, 0, 28, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 31
+"/home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/components/EvaluatorProtected.tsx", "TypeScript React", 0, 0, 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 22
+"/home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/components/InputElement.tsx", "TypeScript React", 0, 0, 74, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 80
+"/home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/components/LayoutFooter.tsx", "TypeScript React", 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 8
+"/home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/components/LayoutHeader.tsx", "TypeScript React", 0, 0, 25, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 30
+"/home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/components/PerformanceBadge.tsx", "TypeScript React", 0, 0, 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 20
+"/home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/components/Protected.tsx", "TypeScript React", 0, 0, 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 21
+"/home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/components/StatusBadge.tsx", "TypeScript React", 0, 0, 51, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 59
+"/home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/components/Table.tsx", "TypeScript React", 0, 0, 63, 0, 0, 0, 0, 0, 0, 0, 0, 1, 6, 70
+"/home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/data/adminDashboardSummary.tsx", "TypeScript React", 0, 0, 40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 44
+"/home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/data/nav.tsx", "TypeScript React", 0, 0, 82, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 85
+"/home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/helpers/TopScroll.tsx", "TypeScript React", 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 14
+"/home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/index.css", "CSS", 0, 0, 0, 0, 0, 0, 19, 0, 0, 0, 0, 1, 5, 25
+"/home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/layouts/AdminLayout.tsx", "TypeScript React", 0, 0, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 24
+"/home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/layouts/BaseLayout.tsx", "TypeScript React", 0, 0, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 16
+"/home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/main.tsx", "TypeScript React", 0, 0, 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 21
+"/home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/router/index.tsx", "TypeScript React", 0, 0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3, 13
+"/home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/router/routes.tsx", "TypeScript React", 0, 0, 106, 0, 0, 0, 0, 0, 0, 0, 0, 2, 3, 111
+"/home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/state/hooks/index.tsx", "TypeScript React", 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 6
+"/home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/state/slices/adminUserSlice.tsx", "TypeScript React", 0, 0, 39, 0, 0, 0, 0, 0, 0, 0, 0, 9, 8, 56
+"/home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/state/slices/departmentsSlice.tsx", "TypeScript React", 0, 0, 47, 0, 0, 0, 0, 0, 0, 0, 0, 9, 8, 64
+"/home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/state/slices/designationsSlice.tsx", "TypeScript React", 0, 0, 48, 0, 0, 0, 0, 0, 0, 0, 0, 9, 8, 65
+"/home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/state/slices/employeesSlice.tsx", "TypeScript React", 0, 0, 39, 0, 0, 0, 0, 0, 0, 0, 0, 9, 8, 56
+"/home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/state/slices/evaluatorsSlice.tsx", "TypeScript React", 0, 0, 39, 0, 0, 0, 0, 0, 0, 0, 0, 9, 8, 56
+"/home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/state/slices/normalUsersSlice.tsx", "TypeScript React", 0, 0, 45, 0, 0, 0, 0, 0, 0, 0, 0, 9, 8, 62
+"/home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/state/slices/rolesSlice.tsx", "TypeScript React", 0, 0, 41, 0, 0, 0, 0, 0, 0, 0, 0, 9, 8, 58
+"/home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/state/slices/tasksSlice.tsx", "TypeScript React", 0, 0, 48, 0, 0, 0, 0, 0, 0, 0, 0, 8, 7, 63
+"/home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/state/slices/userSlice.tsx", "TypeScript React", 0, 0, 30, 0, 0, 0, 0, 0, 0, 0, 0, 8, 8, 46
+"/home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/state/store/index.tsx", "TypeScript React", 0, 0, 63, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 72
+"/home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/types/index.d.ts", "TypeScript", 0, 0, 0, 0, 21, 0, 0, 0, 0, 0, 0, 0, 5, 26
+"/home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/views/Homepage.tsx", "TypeScript React", 0, 0, 125, 0, 0, 0, 0, 0, 0, 0, 0, 2, 12, 139
+"/home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/views/Profile.tsx", "TypeScript React", 0, 0, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 20
+"/home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/views/admin/AddAdminDepartment.tsx", "TypeScript React", 0, 0, 122, 0, 0, 0, 0, 0, 0, 0, 0, 4, 12, 138
+"/home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/views/admin/AddAdminDesignation.tsx", "TypeScript React", 0, 0, 145, 0, 0, 0, 0, 0, 0, 0, 0, 4, 10, 159
+"/home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/views/admin/AddAdminEmployees.tsx", "TypeScript React", 0, 0, 173, 0, 0, 0, 0, 0, 0, 0, 0, 4, 10, 187
+"/home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/views/admin/AddAdminEvaluators.tsx", "TypeScript React", 0, 0, 173, 0, 0, 0, 0, 0, 0, 0, 0, 4, 10, 187
+"/home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/views/admin/AddAdminTasks.tsx", "TypeScript React", 0, 0, 148, 0, 0, 0, 0, 0, 0, 0, 0, 4, 10, 162
+"/home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/views/admin/AdminDashboard.tsx", "TypeScript React", 0, 0, 68, 0, 0, 0, 0, 0, 0, 0, 0, 2, 4, 74
+"/home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/views/admin/AdminDepartments.tsx", "TypeScript React", 0, 0, 67, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 72
+"/home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/views/admin/AdminDesignations.tsx", "TypeScript React", 0, 0, 73, 0, 0, 0, 0, 0, 0, 0, 0, 1, 7, 81
+"/home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/views/admin/AdminEmployees.tsx", "TypeScript React", 0, 0, 80, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 86
+"/home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/views/admin/AdminEvaluations.tsx", "TypeScript React", 0, 0, 111, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 115
+"/home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/views/admin/AdminEvaluators.tsx", "TypeScript React", 0, 0, 84, 0, 0, 0, 0, 0, 0, 0, 0, 2, 4, 90
+"/home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/views/admin/AdminPage.tsx", "TypeScript React", 0, 0, 101, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 116
+"/home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/views/admin/AdminTasks.tsx", "TypeScript React", 0, 0, 123, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 129
+"/home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/views/admin/AdminUsers.tsx", "TypeScript React", 0, 0, 63, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3, 67
+"/home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/views/employee/EmployeeDashboard.tsx", "TypeScript React", 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 8
+"/home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/views/evaluator/EvaluatorDashboard.tsx", "TypeScript React", 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 8
+"/home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/vite-env.d.ts", "TypeScript", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 2
+"/home/orinda/Documents/dev/nancy-appraisal/packages/ui/src/wrappers/WidthWrapper.tsx", "TypeScript React", 0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 12
+"/home/orinda/Documents/dev/nancy-appraisal/packages/ui/tailwind.config.cjs", "JavaScript", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 19, 2, 1, 22
+"/home/orinda/Documents/dev/nancy-appraisal/packages/ui/tsconfig.json", "JSON with Comments", 0, 0, 0, 0, 0, 0, 0, 0, 0, 21, 0, 0, 1, 22
+"/home/orinda/Documents/dev/nancy-appraisal/packages/ui/tsconfig.node.json", "JSON", 0, 0, 0, 0, 0, 0, 0, 0, 9, 0, 0, 0, 1, 10
+"/home/orinda/Documents/dev/nancy-appraisal/packages/ui/vite.config.ts", "TypeScript", 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 1, 2, 8
+"/home/orinda/Documents/dev/nancy-appraisal/pnpm-lock.yaml", "YAML", 0, 4283, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 614, 4897
+"/home/orinda/Documents/dev/nancy-appraisal/pnpm-workspace.yaml", "YAML", 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 7
+"/home/orinda/Documents/dev/nancy-appraisal/scripts/index.ts", "TypeScript", 0, 0, 0, 0, 12, 0, 0, 0, 0, 0, 0, 0, 3, 15
+"/home/orinda/Documents/dev/nancy-appraisal/start.sh", "Shell Script", 0, 0, 0, 40, 0, 0, 0, 0, 0, 0, 0, 9, 3, 52
+"Total", "-", 11, 8155, 2790, 40, 60, 2, 19, 13, 164, 213, 1256, 504, 1652, 14879

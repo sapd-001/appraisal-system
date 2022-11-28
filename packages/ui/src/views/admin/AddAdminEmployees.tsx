@@ -28,14 +28,12 @@ const AddAdminEmployees: React.FC<{ closeModal: () => void }> = ({
 		>
 	) => {
 		const { name, value } = e.target;
-		console.log(name, value);
 		setEmployeesForm((prev) => ({ ...prev, [name]: value }));
 	};
 	const { token } = useAppSelector((state) => state.root.user);
 	const handleEmployeesFormSubmit = async (
 		e: React.FormEvent<HTMLFormElement>
 	) => {
-		console.log('Submitting form');
 
 		e.preventDefault();
 

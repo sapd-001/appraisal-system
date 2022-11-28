@@ -24,7 +24,6 @@ const Admin = () => {
 		});
 
 		const data = res.data.data;
-		console.log('Departments', data);
 
 		dispatch(loadDepartmentSuccess(data));
 	};
@@ -36,7 +35,6 @@ const Admin = () => {
 			}
 		});
 		const data = res.data.data;
-		console.log('Employees', data);
 		dispatch(loadEmployeeSuccess(data));
 	};
 
@@ -47,7 +45,6 @@ const Admin = () => {
 			}
 		});
 		const data = res.data.data;
-		console.log('Roles', data);
 		
 		dispatch(loadRoleSuccess(data));
 	};
@@ -69,7 +66,6 @@ const Admin = () => {
 			}
 		});
 		const data = res.data.data;
-		console.log('Evaluators', data);
 
 		dispatch(loadEvaluatorSuccess(data));
 	};
@@ -103,7 +99,7 @@ const Admin = () => {
 			fetchAdmins(),
 			fetchNormalUsers()
 		]);
-	}, []);
+	}, [path]);
 
 	return (
 		<AdminLayout>
