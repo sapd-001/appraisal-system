@@ -2,7 +2,7 @@
  * @ Author: Felix Orinda
  * @ Create Time: 2022-11-10 13:55:28
  * @ Modified by: Felix Orinda
- * @ Modified time: 2022-11-28 19:08:51
+ * @ Modified time: 2022-11-28 19:24:50
  * @ Description:
  */
 
@@ -10,40 +10,38 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
-type RoleType = {
-	_id: string;
-	name: string;
-	description: string;
+type EValuatorType = {
+	[any: string]: any;
 };
 
-type RoleStateType = {
-	roles: RoleType[];
+type EvaluatorStateType = {
+	employees: EValuatorType[];
 	loading: boolean;
 	error: string | null;
 };
 
-const initialState: RoleStateType = {
-	roles: [],
+const initialState: EvaluatorStateType = {
+	employees: [],
 	loading: false,
 	error: null
 };
 
 const departmentSlice = createSlice({
-	name: 'roles',
+	name: 'evaluators',
 	initialState,
 	reducers: {
-		loadRoleStart: (state) => {
+		loadEvaluatorStart: (state) => {
 			state.loading = true;
 			state.error = null;
 		},
-		loadRoleSuccess: (state, action: PayloadAction<RoleType[]>) => {
-			state.roles = action.payload;
+		loadEvaluatorSuccess: (state, action: PayloadAction<EValuatorType[]>) => {
+			state.employees = action.payload;
 			state.loading = false;
 			state.error = null;
 		},
-		loadRoleFailure: (
+		loadEvaluatorFailure: (
 			state,
-			action: PayloadAction<Pick<RoleStateType, 'error'>>
+			action: PayloadAction<Pick<EvaluatorStateType, 'error'>>
 		) => {
 			state.loading = false;
 			state.error = action.payload.error;
@@ -51,7 +49,7 @@ const departmentSlice = createSlice({
 	}
 });
 
-export const { loadRoleFailure, loadRoleStart, loadRoleSuccess } =
+export const { loadEvaluatorFailure, loadEvaluatorStart, loadEvaluatorSuccess } =
 	departmentSlice.actions;
 
 export default departmentSlice.reducer;

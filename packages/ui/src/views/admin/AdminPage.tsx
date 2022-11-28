@@ -18,7 +18,10 @@ const Admin = () => {
 				Authorization: `Bearer ${token}`
 			}
 		});
-		dispatch(loadDepartmentSuccess(res.data.data));
+		
+		const data = res.data.data;
+
+		dispatch(loadDepartmentSuccess(data));
 	};
 
 	const fetchEmployees = async () => {
@@ -27,8 +30,8 @@ const Admin = () => {
 				Authorization: `Bearer ${token}`
 			}
 		});
-		
-		dispatch(loadEmployeeSuccess(res.data.data));
+		const data = res.data.data;
+		dispatch(loadEmployeeSuccess(data));
 	};
 
 	const fetchRoles = async () => {
@@ -37,8 +40,8 @@ const Admin = () => {
 				Authorization: `Bearer ${token}`
 			}
 		});
-		
-		dispatch(loadRoleSuccess(res.data.data));
+		const data = res.data.data;
+		dispatch(loadRoleSuccess(data));
 	};
 
 	const fetchDesignations = async () => {
@@ -47,7 +50,8 @@ const Admin = () => {
 				Authorization: `Bearer ${token}`
 			}
 		});
-		dispatch(loadDesignationSuccess(res.data.data));
+		const data = res.data.data;
+		dispatch(loadDesignationSuccess(data));
 	};
 
 	React.useEffect(() => {
