@@ -4,7 +4,7 @@ import { useAppSelector } from '../state/hooks';
 import { useLocation } from 'react-router-dom';
 
 type ProtectedProps = {
-	children: React.ReactNode|JSX.Element;
+	children: JSX.Element;
 };
 const Protected = ({ children }: ProtectedProps) => {
 	const { isAuthenticated } = useAppSelector((state) => state.root.user);

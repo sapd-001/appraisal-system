@@ -1,14 +1,16 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Link } from 'react-router-dom';
 import React from 'react';
+import { logoutUser } from '../state/slices/userSlice';
 import { navlinks } from '../data/nav';
-import { Link, useNavigate } from 'react-router-dom';
+import { useAppDispatch } from '../state/hooks';
 
 const AdminSidebar = () => {
-	const navigate = useNavigate();
+	const dispatch=useAppDispatch();
 	const handleLogout = () => {
 		alert('You have been logged out');
 		setTimeout(() => {
-			navigate('/');
+			dispatch(logoutUser());
 		}, 1000);
 	};
 
