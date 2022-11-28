@@ -1,5 +1,7 @@
 /* eslint-disable camelcase */
+import AddAdminEvaluators from './AddAdminEvaluators';
 import React from 'react';
+import { useAppSelector } from '../../state/hooks';
 import Table, { TableColumnProps } from '../../components/Table';
 const cols: TableColumnProps[] = [
 	// id,name,email,actions
@@ -53,12 +55,32 @@ const rows = [
 ];
 
 const AdminEvaluators = () => {
-	
+	const { evaluators } = useAppSelector((state) => state.evaluators);
+	const [addingEvaluators, setAddingEvaluators] =
+	React.useState<boolean>(false);
+	const closeOpenModal = () => {
+		setAddingEvaluators(false);
+	};
+
 	return (
 		<div>
-			<h1>Evaliuators</h1>
+			<div className="px-4 py-1 my-4 border mx-2 flex justify-between">
+				<h1>Evaluators</h1>
+				<button
+					onClick={(e) => {
+						e.stopPropagation();
+						setAddingEvaluators(true);
+					}}
+					className="bg-blue-700 text-white px-4 py-2 rounded"
+				>
+					<span className="material-icons">add new Evaluator</span>
+				</button>
+			</div>
 			<div>
-				<Table columns={cols} rows={rows} />
+				{addingEvaluators && (
+					<AddAdminEvaluators closeModal={closeOpenModal} />
+				)}
+				<Table columns={cols} rows={evaluators} />
 			</div>
 		</div>
 	);

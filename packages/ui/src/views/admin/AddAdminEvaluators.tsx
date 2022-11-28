@@ -3,33 +3,35 @@ import React from 'react';
 import { apiRequest } from '../../api';
 import { useAppSelector } from '../../state/hooks';
 
-import { ToastContainer, toast } from 'react-toastify';
-import InputElement from '../../components/InputElement';
 import { AxiosError } from 'axios';
+import InputElement from '../../components/InputElement';
+import { ToastContainer, toast } from 'react-toastify';
 
-type EvaluatorFormProps = {
+type EvaluatorsFormProps = {
 	name: string;
 	description: string;
 	department: string;
+	designation: string;
 };
 const AddAdminEvaluators: React.FC<{ closeModal: () => void }> = ({
 	closeModal
 }) => {
 	// Fullscreen modal with form
-	const [evaluatorForm, setEvaluatorForm] =
-		React.useState<EvaluatorFormProps>({} as EvaluatorFormProps);
+	const [evaluatorsForm, setEvaluatorsForm] =
+		React.useState<EvaluatorsFormProps>({} as EvaluatorsFormProps);
 	const { departments } = useAppSelector((state) => state.departments);
-	const handleEvaluatorFormChange = (
+	const { designations } = useAppSelector((state) => state.designations);
+	const handleEvaluatorsFormChange = (
 		e: React.ChangeEvent<
 			HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
 		>
 	) => {
 		const { name, value } = e.target;
 		console.log(name, value);
-		setEvaluatorForm((prev) => ({ ...prev, [name]: value }));
+		setEvaluatorsForm((prev) => ({ ...prev, [name]: value }));
 	};
 	const { token } = useAppSelector((state) => state.root.user);
-	const handleEvaluatorFormSubmit = async (
+	const handleEvaluatorsFormSubmit = async (
 		e: React.FormEvent<HTMLFormElement>
 	) => {
 		console.log('Submitting form');
@@ -39,7 +41,7 @@ const AddAdminEvaluators: React.FC<{ closeModal: () => void }> = ({
 		try {
 			const res = await apiRequest.post(
 				'/evaluators/create',
-				evaluatorForm,
+				evaluatorsForm,
 				{
 					headers: {
 						authorization: `Bearer ${token}`
@@ -96,7 +98,7 @@ const AddAdminEvaluators: React.FC<{ closeModal: () => void }> = ({
 			<ToastContainer />
 			<form
 				action=""
-				onSubmit={handleEvaluatorFormSubmit}
+				onSubmit={handleEvaluatorsFormSubmit}
 				className="min-w-[30rem] p-10 bg-white flex flex-col gap-4"
 				onClick={(e) => e.stopPropagation()}
 			>
@@ -105,17 +107,17 @@ const AddAdminEvaluators: React.FC<{ closeModal: () => void }> = ({
 				</h1>
 				<InputElement
 					name="name"
-					onChange={handleEvaluatorFormChange}
+					onChange={handleEvaluatorsFormChange}
 					type="text"
-					value={evaluatorForm.name}
+					value={evaluatorsForm.name}
 					labelText="Name"
 					placeholder="Enter Evaluator Name"
 				/>
 				<div>
 					<select
 						name="department"
-						value={evaluatorForm.department}
-						onChange={handleEvaluatorFormChange}
+						value={evaluatorsForm.department}
+						onChange={handleEvaluatorsFormChange}
 					>
 						<option value="" disabled>
 							Select Department
@@ -131,6 +133,26 @@ const AddAdminEvaluators: React.FC<{ closeModal: () => void }> = ({
 							))}
 					</select>
 				</div>
+				<div>
+					<select
+						name="designation"
+						value={evaluatorsForm.designation}
+						onChange={handleEvaluatorsFormChange}
+					>
+						<option value="" disabled>
+							Select Designation
+						</option>
+						{designations.length &&
+							designations.map((department) => (
+								<option
+									key={designation._id}
+									value={designation._id}
+								>
+									{designation.name}
+								</option>
+							))}
+					</select>
+				</div>
 				<div className="flex flex-col space-y-2">
 					<label htmlFor="description">Description</label>
 					<textarea
@@ -138,8 +160,8 @@ const AddAdminEvaluators: React.FC<{ closeModal: () => void }> = ({
 						id="description"
 						cols={30}
 						rows={10}
-						onChange={handleEvaluatorFormChange}
-						value={evaluatorForm.description}
+						onChange={handleEvaluatorsFormChange}
+						value={evaluatorsForm.description}
 						className="border border-gray-400 p-2 rounded-md"
 						placeholder="Enter department description"
 					/>
