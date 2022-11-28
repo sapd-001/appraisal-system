@@ -8,7 +8,8 @@ import { useAppSelector } from '../../state/hooks';
 import { ToastContainer, toast } from 'react-toastify';
 
 type EmployeesFormProps = {
-	name: string;
+	firstName: string;
+	lastName: string;
 	email: string;
 	department: string;
 	designation: string;
@@ -106,12 +107,20 @@ const AddAdminEmployees: React.FC<{ closeModal: () => void }> = ({
 					Add new employee
 				</h1>
 				<InputElement
-					name="name"
+					name="firstName"
 					onChange={handleEmployeesFormChange}
 					type="text"
-					value={employeesForm.name}
-					labelText="Name"
-					placeholder="Enter Employee Name"
+					value={employeesForm.firstName}
+					labelText="First Name"
+					placeholder="Enter First Name"
+				/>
+				<InputElement
+					name="lastName"
+					onChange={handleEmployeesFormChange}
+					type="text"
+					value={employeesForm.lastName}
+					labelText="Last Name"
+					placeholder="Enter Last Name"
 				/>
 				<InputElement
 					name="email"
@@ -122,6 +131,7 @@ const AddAdminEmployees: React.FC<{ closeModal: () => void }> = ({
 					placeholder="Enter Email"
 				/>
 				<div>
+				<label htmlFor="department">Department: </label>
 					<select
 						name="department"
 						value={employeesForm.department}
@@ -142,6 +152,7 @@ const AddAdminEmployees: React.FC<{ closeModal: () => void }> = ({
 					</select>
 				</div>
 				<div>
+				<label htmlFor="designation">Designation: </label>
 					<select
 						name="designation"
 						value={employeesForm.designation}

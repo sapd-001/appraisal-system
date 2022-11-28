@@ -1,38 +1,38 @@
-import { AxiosError } from 'axios';
-import InputElement from '../../components/InputElement';
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React from 'react';
 import { apiRequest } from '../../api';
 import { useAppSelector } from '../../state/hooks';
 
+import { AxiosError } from 'axios';
+import InputElement from '../../components/InputElement';
 import { ToastContainer, toast } from 'react-toastify';
 
-type EvaluatorsFormProps = {
-	firstName: string;
-	lastName: string;
-	email: string;
-	department: string;
-	designation: string;
+type TasksFormProps = {
+	name: string;
+	dueDate: Date;
+	assignedTo: string;
+	status: string;
+	employees: string;
 };
-const AddAdminEvaluators: React.FC<{ closeModal: () => void }> = ({
+const AddAdminTasks: React.FC<{ closeModal: () => void }> = ({
 	closeModal
 }) => {
 	// Fullscreen modal with form
-	const [evaluatorsForm, setEvaluatorsForm] =
-		React.useState<EvaluatorsFormProps>({} as EvaluatorsFormProps);
-	const { departments } = useAppSelector((state) => state.departments);
-	const { designations } = useAppSelector((state) => state.designations);
-	const handleEvaluatorsFormChange = (
+	const [TasksForm, setTasksForm] = React.useState<TasksFormProps>(
+		{} as TasksFormProps
+	);
+	const { employees } = useAppSelector((state) => state.employees);
+	const handleTasksFormChange = (
 		e: React.ChangeEvent<
 			HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
 		>
 	) => {
 		const { name, value } = e.target;
 		console.log(name, value);
-		setEvaluatorsForm((prev) => ({ ...prev, [name]: value }));
+		setTasksForm((prev) => ({ ...prev, [name]: value }));
 	};
 	const { token } = useAppSelector((state) => state.root.user);
-	const handleEvaluatorsFormSubmit = async (
+	const handleTasksFormSubmit = async (
 		e: React.FormEvent<HTMLFormElement>
 	) => {
 		console.log('Submitting form');
@@ -40,18 +40,14 @@ const AddAdminEvaluators: React.FC<{ closeModal: () => void }> = ({
 		e.preventDefault();
 
 		try {
-			const res = await apiRequest.post(
-				'/users/create/evaluator',
-				evaluatorsForm,
-				{
-					headers: {
-						authorization: `Bearer ${token}`
-					}
+			const res = await apiRequest.post('/tasks/create', TasksForm, {
+				headers: {
+					authorization: `Bearer ${token}`
 				}
-			);
+			});
 
 			if (res.status === 201) {
-				toast.success('Evaluator added successfully');
+				toast.success('Task added successfully');
 				setTimeout(() => {
 					closeModal();
 				}, 2000);
@@ -99,88 +95,67 @@ const AddAdminEvaluators: React.FC<{ closeModal: () => void }> = ({
 			<ToastContainer />
 			<form
 				action=""
-				onSubmit={handleEvaluatorsFormSubmit}
+				onSubmit={handleTasksFormSubmit}
 				className="min-w-[30rem] p-10 bg-white flex flex-col gap-4"
 				onClick={(e) => e.stopPropagation()}
 			>
 				<h1 className="text-3xl font-bold text-center">
-					Add new Evaluator
+					Add new Task
 				</h1>
 				<InputElement
-					name="fistName"
-					onChange={handleEvaluatorsFormChange}
+					name="name"
+					onChange={handleTasksFormChange}
 					type="text"
-					value={evaluatorsForm.firstName}
-					labelText="First Name"
-					placeholder="Enter First Name"
+					value={TasksForm.name}
+					labelText="Task Name"
+					placeholder="Enter Task Name"
 				/>
 				<InputElement
-					name="lastName"
-					onChange={handleEvaluatorsFormChange}
-					type="text"
-					value={evaluatorsForm.lastName}
-					labelText="Last Name"
-					placeholder="Enter Last Name"
-				/>
-				<InputElement
-					name="email"
-					onChange={handleEvaluatorsFormChange}
-					type="text"
-					value={evaluatorsForm.email}
-					labelText="Email"
-					placeholder="Enter Email"
+					name="dueDate"
+					onChange={handleTasksFormChange}
+					type="Date"
+					value={TasksForm.dueDate}
+					labelText="Due Date"
+					placeholder="Enter Due Date"
 				/>
 				<div>
-					<label htmlFor="department">Department: </label>
+					<label htmlFor="department">Assigned To: </label>
 					<select
 						name="department"
-						value={evaluatorsForm.department}
-						onChange={handleEvaluatorsFormChange}
+						value={TasksForm.employees}
+						onChange={handleTasksFormChange}
 					>
 						<option value="" disabled>
-							Select Department
+							Select Employee
 						</option>
-						{departments.length &&
-							departments.map((department) => (
-								<option
-									key={department._id}
-									value={department._id}
-								>
-									{department.name}
+						{employees.length &&
+							employees.map((employee) => (
+								<option key={employee._id} value={employee._id}>
+									{employee.firstName}
 								</option>
 							))}
 					</select>
 				</div>
 				<div>
-					<label htmlFor="designation">Designation: </label>
-					<select
-						name="designation"
-						value={evaluatorsForm.designation}
-						onChange={handleEvaluatorsFormChange}
-					>
+					<label htmlFor="department">Status: </label>
+					<select name="status" onChange={handleTasksFormChange}>
 						<option value="" disabled>
-							Select Designation
+							Select Status
 						</option>
-						{designations.length &&
-							designations.map((designation) => (
-								<option
-									key={designation._id}
-									value={designation._id}
-								>
-									{designation.name}
-								</option>
-							))}
+						<option value="Done">Done</option>
+						<option value="Pending">Pending</option>
+						<option value="Overdue">Overdue</option>
 					</select>
 				</div>
 				<button
 					className="w-full py-4 bg-blue-700 text-white rounded-md"
 					type="submit"
 				>
-					Add Evaluator
+					Add Task
 				</button>
 			</form>
 		</div>
 	);
 };
 
-export default AddAdminEvaluators;
+export default AddAdminTasks;
