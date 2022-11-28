@@ -1,28 +1,9 @@
 const nodemailer = require("nodemailer");
+const { mailConfig } = require("./../config");
 const { baseLogger } = require("../logger");
 
 const transporter = nodemailer.createTransport({
-  host: "smtp.ethereal.email",
-  port: 587,
-  auth: {
-    user: "jessica" + "@ethereal.email",
-    pass: "1" + "2" + "3" + "4" + "5" + "6",
-  },
-});
-
-const mailOptions = {
-  from: "jessica" + "@ethereal.email",
-  to: "jessica" + "@ethereal.email",
-  subject: "Sending Email using Node.js",
-  text: "That was easy!",
-};
-
-transporter.sendMail(mailOptions, function (error, info) {
-  if (error) {
-    console.log(error);
-  } else {
-    console.log("Email sent: " + info.response);
-  }
+  ...mailConfig,
 });
 
 /**
