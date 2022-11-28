@@ -131,7 +131,7 @@ const AddAdminEmployees: React.FC<{ closeModal: () => void }> = ({
 					placeholder="Enter Email"
 				/>
 				<div>
-				<label htmlFor="department">Department: </label>
+					<label htmlFor="department">Department: </label>
 					<select
 						name="department"
 						value={employeesForm.department}
@@ -152,7 +152,7 @@ const AddAdminEmployees: React.FC<{ closeModal: () => void }> = ({
 					</select>
 				</div>
 				<div>
-				<label htmlFor="designation">Designation: </label>
+					<label htmlFor="designation">Designation: </label>
 					<select
 						name="designation"
 						value={employeesForm.designation}
