@@ -2,7 +2,7 @@
  * @ Author: Felix Orinda
  * @ Create Time: 2022-11-14 08:37:11
  * @ Modified by: Felix Orinda
- * @ Modified time: 2022-11-29 00:30:43
+ * @ Modified time: 2022-11-29 01:09:49
  * @ Description:
  */
 const { sendWelcomeEmail } = require("../mailer");
@@ -33,10 +33,41 @@ router.get("/all", adminRequired, async (req, res, next) => {
   });
 });
 /**
- * Get a new evaluator
+ * Get all evaluators
  */
-router.get("/account/:id", async (req, res, next) => {
-  const user = await userModel.findById(req.params.id);
+router.get("/all/evaluators", async (req, res, next) => {
+  const evaluatorRole = await RoleModel.findOne({ name: "evaluator" });
+  const user = await userModel.find({
+    role: evaluatorRole._id,
+  });
+  res.status(200).json({
+    status: "success",
+    data: user,
+  });
+});
+
+/**
+ * Get all admins
+ */
+router.get("/all/admins", async (req, res, next) => {
+  const adminRole = await RoleModel.findOne({ name: "admin" });
+  const user = await userModel.find({
+    role: adminRole._id,
+  });
+  res.status(200).json({
+    status: "success",
+    data: user,
+  });
+});
+
+/**
+ * Get a normal users
+ */
+router.get("/all/normal-users", loginRequired, async (req, res, next) => {
+  const normalRole = await RoleModel.findOne({ name: "user" });
+  const user = await userModel.find({
+    role: normalRole._id,
+  });
   res.status(200).json({
     status: "success",
     data: user,

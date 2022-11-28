@@ -1,10 +1,10 @@
+import { AxiosError } from 'axios';
+import InputElement from '../../components/InputElement';
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React from 'react';
 import { apiRequest } from '../../api';
 import { useAppSelector } from '../../state/hooks';
 
-import { AxiosError } from 'axios';
-import InputElement from '../../components/InputElement';
 import { ToastContainer, toast } from 'react-toastify';
 
 type EvaluatorsFormProps = {
@@ -41,7 +41,7 @@ const AddAdminEvaluators: React.FC<{ closeModal: () => void }> = ({
 
 		try {
 			const res = await apiRequest.post(
-				'/evaluators/create',
+				'/users/create/evaluator',
 				evaluatorsForm,
 				{
 					headers: {
@@ -131,7 +131,7 @@ const AddAdminEvaluators: React.FC<{ closeModal: () => void }> = ({
 					placeholder="Enter Email"
 				/>
 				<div>
-				<label htmlFor="department">Department: </label>
+					<label htmlFor="department">Department: </label>
 					<select
 						name="department"
 						value={evaluatorsForm.department}
@@ -152,7 +152,7 @@ const AddAdminEvaluators: React.FC<{ closeModal: () => void }> = ({
 					</select>
 				</div>
 				<div>
-				<label htmlFor="designation">Designation: </label>
+					<label htmlFor="designation">Designation: </label>
 					<select
 						name="designation"
 						value={evaluatorsForm.designation}
