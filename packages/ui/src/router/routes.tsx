@@ -14,6 +14,7 @@ import EmployeeDashboard from '../views/employee/EmployeeDashboard';
 import EvaluatorDashboard from '../views/evaluator/EvaluatorDashboard';
 import EvaluatorProtected from '../components/EvaluatorProtected';
 import Homepage from '../views/Homepage';
+import Profile from '../views/Profile';
 import Protected from '../components/Protected';
 import React from 'react';
 import { createBrowserRouter } from 'react-router-dom';
@@ -94,6 +95,15 @@ const router = createBrowserRouter([
 		id: 'Employee',
 		path: '/employee/dashboard',
 		children: []
+	},
+	{
+		element: (
+			<Protected>
+				<Profile />
+			</Protected>
+		),
+		id: 'Profile',
+		path: '/auth/profile'
 	}
 ]);
 
