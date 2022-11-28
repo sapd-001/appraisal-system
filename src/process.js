@@ -2,24 +2,30 @@
  * @ Author: Felix Orinda
  * @ Create Time: 2022-11-14 12:18:10
  * @ Modified by: Felix Orinda
- * @ Modified time: 2022-11-14 18:01:07
+ * @ Modified time: 2022-11-28 08:20:13
  * @ Description:
  */
 
-const { processLogger } = require("./logger")
+const { processLogger } = require("./logger");
 
 module.exports = () => {
-    process.on('uncaughtException', (err, origin) => {
-        processLogger.error(JSON.stringify({
-            err: err.message,
-            origin: origin
-        }))
-    })
-    process.on('unhandledRejection', (reason, promise) => {
-        const promiseMessage =  promise.catch((err) = err.message)
-        processLogger.error(JSON.stringify({
-            err: reason,
-            promise: promiseMessage
-        }))
-    })
-}
+  process.on("uncaughtException", (err, origin) => {
+    // if (err!==null) {
+    //   processLogger.error(
+    //     JSON.stringify({
+    //       err: err.message,
+    //       origin: origin,
+    //     })
+    //   );
+    // }
+  });
+  process.on("unhandledRejection", (reason, promise) => {
+    const promiseMessage = promise.catch((err = err.message));
+    processLogger.error(
+      JSON.stringify({
+        err: reason,
+        promise: promiseMessage,
+      })
+    );
+  });
+};

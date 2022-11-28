@@ -30,22 +30,22 @@ const TaskSchema = new mongoose.Schema({
         unique: true
     },
     assignedTo: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: mongoose.SchemaTypes.ObjectId,
         ref: 'user',
         required: [true, 'Assigned to required']
     },
     assignedBy: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: mongoose.SchemaTypes.ObjectId,
         ref: 'user',
         required: [true, 'Assigned by required']
     },
     department: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: mongoose.SchemaTypes.ObjectId,
         ref: 'department',
         required: [true, 'Department required']
     },
     designation: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: mongoose.SchemaTypes.ObjectId,
         ref: 'designation',
         required: [true, 'Designation required']
     },

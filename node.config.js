@@ -2,7 +2,7 @@
  * @ Author: Felix Orinda
  * @ Create Time: 2022-11-14 11:17:35
  * @ Modified by: Felix Orinda
- * @ Modified time: 2022-11-14 18:01:37
+ * @ Modified time: 2022-11-28 08:35:53
  * @ Description:
  */
 const dotenv = require('dotenv')
@@ -16,5 +16,4 @@ const config = {
     dbUrl: process.env.MONGO_URL,
     secret: process.env.SECRET
 }
-
 module.exports = config

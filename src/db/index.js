@@ -2,14 +2,16 @@
  * @ Author: Felix Orinda
  * @ Create Time: 2022-11-14 11:11:33
  * @ Modified by: Felix Orinda
- * @ Modified time: 2022-11-14 17:59:19
+ * @ Modified time: 2022-11-28 08:47:14
  * @ Description:
  */
 const mongoose = require('mongoose');
 
-const { dbUrl } = require('./../config');
+const { mongoUrl } = require('./../config');
+const { dbLogger } = require('./../logger');
+const moment = require('moment');
 
-mongoose.connect(dbUrl);
+mongoose.connect(mongoUrl);
 
 mongoose.connection.on('connected', () => {
 	dbLogger.info(

@@ -25,12 +25,12 @@ const EvaluationSchema = new mongoose.Schema(
     },
 
     user: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: mongoose.SchemaTypes.ObjectId,
       ref: "user",
       required: [true, "User required"],
     },
     task: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: mongoose.SchemaTypes.ObjectId,
       ref: "task",
       required: [true, "Task required"],
     },

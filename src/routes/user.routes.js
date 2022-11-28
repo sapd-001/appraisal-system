@@ -2,7 +2,7 @@
  * @ Author: Felix Orinda
  * @ Create Time: 2022-11-14 08:37:11
  * @ Modified by: Felix Orinda
- * @ Modified time: 2022-11-28 08:10:26
+ * @ Modified time: 2022-11-28 09:00:30
  * @ Description:
  */
 const userModel = require("../models/user.model");

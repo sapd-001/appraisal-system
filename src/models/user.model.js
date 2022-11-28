@@ -2,7 +2,7 @@
  * @ Author: Felix Orinda
  * @ Create Time: 2022-11-14 11:11:19
  * @ Modified by: Felix Orinda
- * @ Modified time: 2022-11-28 07:50:26
+ * @ Modified time: 2022-11-28 09:00:37
  * @ Description:
  */
 const mongoose = require("./../db");
@@ -10,13 +10,11 @@ const mongoose = require("./../db");
 const UserSchema = new mongoose.Schema({
   firstName: {
     type: String,
-    required: [true, "First name required"],
     lowerCase: true,
     trim: true,
   },
   lastName: {
     type: String,
-    required: [true, "Last name required"],
     lowerCase: true,
     trim: true,
   },
@@ -29,25 +27,23 @@ const UserSchema = new mongoose.Schema({
   },
   password: {
     type: String,
-    required: [true, "Password address required"],
+    required: [true, "Password  required"],
     lowerCase: true,
     trim: true,
     unique: true,
   },
   role: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: mongoose.SchemaTypes.ObjectId,
     ref: "role",
     required: [true, "Role required"],
   },
   department: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: mongoose.SchemaTypes.ObjectId,
     ref: "department",
-    required: [true, "Department required"],
   },
   designation: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: mongoose.SchemaTypes.ObjectId,
     ref: "designation",
-    required: [true, "Designation required"],
   },
 });
 
