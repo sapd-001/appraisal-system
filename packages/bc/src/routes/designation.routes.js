@@ -2,19 +2,46 @@
  * @ Author: Felix Orinda
  * @ Create Time: 2022-11-28 08:13:32
  * @ Modified by: Felix Orinda
- * @ Modified time: 2022-11-28 18:22:50
+ * @ Modified time: 2022-11-28 21:54:17
  * @ Description:
  */
 
 const { adminRequired } = require("../middlewares/loginRequired");
 const DesignationModel = require("../models/designation.model");
+const { validateMongoId } = require("../utils/mongoId");
 
 const router = require("express").Router();
 
 /**
  * Create a new designation
  */
-router.post("/create", adminRequired, (req, res, next) => {});
+router.post("/create", adminRequired, async (req, res, next) => {
+  try {
+    const { name, description, department } = req.body;
+    if (!name || !description || !department) {
+      return res.status(400).json({
+        message: "Please fill all fields name, description and department",
+      });
+    }
+    if (!validateMongoId(department)) {
+      return res.status(400).json({
+        message: "Invalid department id",
+      });
+    }
+
+    await DesignationModel.create({
+      name,
+      description,
+      department,
+    });
+
+    return res.status(201).json({
+      message: "Designation created successfully",
+    });
+  } catch (error) {
+    return next(error);
+  }
+});
 
 /**
  * Get all designations
