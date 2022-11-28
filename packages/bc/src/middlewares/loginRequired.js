@@ -19,6 +19,7 @@ module.exports.loginRequired = async (req, res, next) => {
     if (!token) {
       return res.status(400).json({ error: "No auth token provided" });
     }
+
     const user = await verifyToken(token);
     const role = await RoleModel.findById(user.role);
     if (!role) {
@@ -37,15 +38,18 @@ module.exports.loginRequired = async (req, res, next) => {
     req.user = user;
     return next();
   } catch (err) {
-    console.log(err);
-    return next(
-      new ExpressError({
-        data: {},
-        message: err.message,
-        status: "err",
-        statusCode: 400,
-      })
-    );
+    return res
+      .status(400)
+      .json({ error: err.message ? err.message : "Please login" });
+    // console.log(err);
+    // return next(
+    //   new ExpressError({
+    //     data: {},
+    //     message: err.message,
+    //     status: "err",
+    //     statusCode: 400,
+    //   })
+    // );
   }
 };
 

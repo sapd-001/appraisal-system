@@ -2,16 +2,20 @@
  * @ Author: Felix Orinda
  * @ Create Time: 2022-11-14 08:37:11
  * @ Modified by: Felix Orinda
- * @ Modified time: 2022-11-28 14:46:54
+ * @ Modified time: 2022-11-28 23:25:41
  * @ Description:
  */
+const { sendWelcomeEmail } = require("../mailer");
 const {
   adminRequired,
   loginRequired,
 } = require("../middlewares/loginRequired");
+const userValidator = require("../middlewares/userValidator");
 const userModel = require("../models/user.model");
 const { validateMongoId } = require("../utils/mongoId");
 const { hashPassword } = require("../utils/passwordHash");
+// const { sendWelcomeEmail } = require("../mailer/index");
+
 
 const router = require("express").Router();
 
@@ -25,7 +29,7 @@ router.post("/account/create", async (req, res, next) => {
 /**
  * Get all users
  */
-router.get("/all", adminRequired,async (req, res, next) => {
+router.get("/all", adminRequired, async (req, res, next) => {
   const users = await userModel.find();
   res.status(200).json({
     status: "success",
@@ -46,24 +50,33 @@ router.get("/account/:id", async (req, res, next) => {
 /**
  * Create regular user
  */
-router.post("/create", adminRequired, async (req, res, next) => {
-  const role = req.body.role;
-  if (!validateMongoId(role))
-    return res
-      .status(400)
-      .json({ status: "error", message: "Invalid role id" });
-
-  if ((!firstName, !lastName, !email, !password, !role))
-    return res
-      .status(400)
-      .json({ status: "error", message: "Please fill all fields" });
-  req.body.password = await hashPassword(req.body.password);
-  const newUser = await userModel.create(req.body);
-  res.status(201).json({
-    status: "success",
-    newEntry: newUser._id,
-  });
-});
+router.post(
+  "/create/employee",
+  adminRequired,
+  userValidator,
+  async (req, res, next) => {
+    try {
+      const originalPassword = password;
+      req.body.password = await hashPassword(req.body.password);
+      const newUser = await userModel.create(req.body);
+      const response = await sendWelcomeEmail({
+        ...newUser,
+        password: originalPassword,
+      });
+      console.log(response);
+      res.status(201).json({
+        status: "success please check your email for login details",
+        newEntry: newUser._id,
+      });
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({
+        status: "error",
+        message: error.message,
+      });
+    }
+  }
+);
 
 /**
  * Get all users
@@ -175,5 +188,5 @@ router.all("*", (req, res, next) => {
     status: "error",
     message: "Invalid route",
   });
-})
+});
 module.exports = router;
