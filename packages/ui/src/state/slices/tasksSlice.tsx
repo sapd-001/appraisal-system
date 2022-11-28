@@ -2,7 +2,7 @@
  * @ Author: Felix Orinda
  * @ Create Time: 2022-11-10 13:55:28
  * @ Modified by: Felix Orinda
- * @ Modified time: 2022-11-28 16:41:33
+ * @ Modified time: 2022-11-28 18:29:09
  * @ Description:
  */
 
@@ -10,16 +10,16 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 type TaskType = {
-	id: string;
+	_id: string;
 	name: string;
 	description: string;
 	status: string;
-	createdAt: string;
-	updatedAt: string;
+	priority: string;
+	assignedTo: string;
+	assignedBy: string;
 	department: string;
-	departmentId: string;
-	createdBy: string;
-	createdByUserId: string;
+	designation: string;
+	evaluator: string;
 };
 
 type TasksState = {

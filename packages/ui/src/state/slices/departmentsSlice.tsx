@@ -2,7 +2,7 @@
  * @ Author: Felix Orinda
  * @ Create Time: 2022-11-10 13:55:28
  * @ Modified by: Felix Orinda
- * @ Modified time: 2022-11-28 16:45:55
+ * @ Modified time: 2022-11-28 18:31:11
  * @ Description:
  */
 
@@ -11,9 +11,9 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 type DepartmentType = {
-	id: string;
+	_id: string;
 	name: string;
-	[other: string]: any;
+	description: string;
 };
 
 type DepartmentStateType = {
@@ -31,9 +31,33 @@ const initialState: DepartmentStateType = {
 const departmentSlice = createSlice({
 	name: 'departments',
 	initialState,
-	reducers: {}
+	reducers: {
+		loadDepartmentStart: (state) => {
+			state.loading = true;
+			state.error = null;
+		},
+		loadDepartmentSuccess: (
+			state,
+			action: PayloadAction<DepartmentType[]>
+		) => {
+			state.departments = action.payload;
+			state.loading = false;
+			state.error = null;
+		},
+		loadDepartmentFailure: (
+			state,
+			action: PayloadAction<Pick<DepartmentStateType, 'error'>>
+		) => {
+			state.loading = false;
+			state.error = action.payload.error;
+		}
+	}
 });
 
-// export const {} = departmentSlice.actions;
+export const {
+	loadDepartmentFailure,
+	loadDepartmentStart,
+	loadDepartmentSuccess
+} = departmentSlice.actions;
 
 export default departmentSlice.reducer;

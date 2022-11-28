@@ -2,7 +2,7 @@
  * @ Author: Felix Orinda
  * @ Create Time: 2022-11-10 13:55:28
  * @ Modified by: Felix Orinda
- * @ Modified time: 2022-11-28 16:45:46
+ * @ Modified time: 2022-11-28 18:33:09
  * @ Description:
  */
 
@@ -11,9 +11,10 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 type DesignationType = {
-	id: string;
+	_id: string;
 	name: string;
-	[other: string]: any;
+	description: string;
+	department: string;
 };
 
 type DesignationStateType = {
@@ -31,9 +32,33 @@ const initialState: DesignationStateType = {
 const departmentSlice = createSlice({
 	name: 'designation',
 	initialState,
-	reducers: {}
+	reducers: {
+		loadDesignationStart: (state) => {
+			state.loading = true;
+			state.error = null;
+		},
+		loadDesignationSuccess: (
+			state,
+			action: PayloadAction<DesignationType[]>
+		) => {
+			state.designations = action.payload;
+			state.loading = false;
+			state.error = null;
+		},
+		loadDesignationFailure: (
+			state,
+			action: PayloadAction<Pick<DesignationStateType, 'error'>>
+		) => {
+			state.loading = false;
+			state.error = action.payload.error;
+		}
+	}
 });
 
-// export const {} = departmentSlice.actions;
+export const {
+	loadDesignationFailure,
+	loadDesignationStart,
+	loadDesignationSuccess
+} = departmentSlice.actions;
 
 export default departmentSlice.reducer;
