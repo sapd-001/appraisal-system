@@ -7,9 +7,9 @@ import Table, { TableColumnProps } from '../../components/Table';
 const cols: TableColumnProps[] = [
 	// id,name,description,actions
 	{
-		columnName: 'id',
+		columnName: '_id',
 		id: 1,
-		title: '#',
+		title: 'UID',
 		customElement: false
 	},
 	{
