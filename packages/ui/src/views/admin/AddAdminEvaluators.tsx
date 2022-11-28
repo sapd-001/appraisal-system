@@ -3,35 +3,33 @@ import React from 'react';
 import { apiRequest } from '../../api';
 import { useAppSelector } from '../../state/hooks';
 
-import { AxiosError } from 'axios';
-import InputElement from '../../components/InputElement';
 import { ToastContainer, toast } from 'react-toastify';
+import InputElement from '../../components/InputElement';
+import { AxiosError } from 'axios';
 
-type EmployeesFormProps = {
+type EvaluatorFormProps = {
 	name: string;
-	email: string;
+	description: string;
 	department: string;
-	designation: string;
 };
-const AddAdminEmployees: React.FC<{ closeModal: () => void }> = ({
+const AddAdminEvaluators: React.FC<{ closeModal: () => void }> = ({
 	closeModal
 }) => {
 	// Fullscreen modal with form
-	const [employeesForm, setEmployeesForm] =
-		React.useState<EmployeesFormProps>({} as EmployeesFormProps);
+	const [evaluatorForm, setEvaluatorForm] =
+		React.useState<EvaluatorFormProps>({} as EvaluatorFormProps);
 	const { departments } = useAppSelector((state) => state.departments);
-	const { designations } = useAppSelector((state) => state.designations);
-	const handleEmployeesFormChange = (
+	const handleEvaluatorFormChange = (
 		e: React.ChangeEvent<
 			HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
 		>
 	) => {
 		const { name, value } = e.target;
 		console.log(name, value);
-		setEmployeesForm((prev) => ({ ...prev, [name]: value }));
+		setEvaluatorForm((prev) => ({ ...prev, [name]: value }));
 	};
 	const { token } = useAppSelector((state) => state.root.user);
-	const handleEmployeesFormSubmit = async (
+	const handleEvaluatorFormSubmit = async (
 		e: React.FormEvent<HTMLFormElement>
 	) => {
 		console.log('Submitting form');
@@ -40,8 +38,8 @@ const AddAdminEmployees: React.FC<{ closeModal: () => void }> = ({
 
 		try {
 			const res = await apiRequest.post(
-				'/employees/create',
-				employeesForm,
+				'/evaluators/create',
+				evaluatorForm,
 				{
 					headers: {
 						authorization: `Bearer ${token}`
@@ -50,7 +48,7 @@ const AddAdminEmployees: React.FC<{ closeModal: () => void }> = ({
 			);
 
 			if (res.status === 201) {
-				toast.success('Employee added successfully');
+				toast.success('Evaluator added successfully');
 				setTimeout(() => {
 					closeModal();
 				}, 2000);
@@ -98,34 +96,26 @@ const AddAdminEmployees: React.FC<{ closeModal: () => void }> = ({
 			<ToastContainer />
 			<form
 				action=""
-				onSubmit={handleEmployeesFormSubmit}
+				onSubmit={handleEvaluatorFormSubmit}
 				className="min-w-[30rem] p-10 bg-white flex flex-col gap-4"
 				onClick={(e) => e.stopPropagation()}
 			>
 				<h1 className="text-3xl font-bold text-center">
-					Add new employee
+					Add new Evaluator
 				</h1>
 				<InputElement
 					name="name"
-					onChange={handleEmployeesFormChange}
+					onChange={handleEvaluatorFormChange}
 					type="text"
-					value={employeesForm.name}
+					value={evaluatorForm.name}
 					labelText="Name"
-					placeholder="Enter Employee Name"
-				/>
-				<InputElement
-					name="email"
-					onChange={handleEmployeesFormChange}
-					type="text"
-					value={employeesForm.email}
-					labelText="Email"
-					placeholder="Enter Email"
+					placeholder="Enter Evaluator Name"
 				/>
 				<div>
 					<select
 						name="department"
-						value={employeesForm.department}
-						onChange={handleEmployeesFormChange}
+						value={evaluatorForm.department}
+						onChange={handleEvaluatorFormChange}
 					>
 						<option value="" disabled>
 							Select Department
@@ -141,35 +131,28 @@ const AddAdminEmployees: React.FC<{ closeModal: () => void }> = ({
 							))}
 					</select>
 				</div>
-				<div>
-					<select
-						name="designation"
-						value={employeesForm.designation}
-						onChange={handleEmployeesFormChange}
-					>
-						<option value="" disabled>
-							Select Designation
-						</option>
-						{designations.length &&
-							designations.map((designation) => (
-								<option
-									key={designation._id}
-									value={designation._id}
-								>
-									{designation.name}
-								</option>
-							))}
-					</select>
+				<div className="flex flex-col space-y-2">
+					<label htmlFor="description">Description</label>
+					<textarea
+						name="description"
+						id="description"
+						cols={30}
+						rows={10}
+						onChange={handleEvaluatorFormChange}
+						value={evaluatorForm.description}
+						className="border border-gray-400 p-2 rounded-md"
+						placeholder="Enter department description"
+					/>
 				</div>
 				<button
 					className="w-full py-4 bg-blue-700 text-white rounded-md"
 					type="submit"
 				>
-					Add Employee
+					Add Evaluator
 				</button>
 			</form>
 		</div>
 	);
 };
 
-export default AddAdminEmployees;
+export default AddAdminEvaluators;
