@@ -22,8 +22,13 @@
   ],
   "author": "",
   "license": "ISC",
+  "dependencies": {
+    "test-component": "*",
+    "component2": "*"
+  },
   "devDependencies": {
     "concurrently": "^7.6.0",
-    "ngitignore": "^3.0.1"
+    "ngitignore": "^3.0.1",
+    "nodemon": "^2.0.20"
   }
 }
