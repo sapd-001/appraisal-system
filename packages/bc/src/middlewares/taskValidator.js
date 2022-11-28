@@ -10,11 +10,11 @@ const { validateMongoId } = require("../utils/mongoId");
  */
 module.exports = async function taskValidator(req, res, next) {
   try {
-    const { title, description, department, evaluator, assignedTo } = req.body;
-    if (!title) {
+    const { name, description, department, evaluator, assignedTo } = req.body;
+    if (!name) {
       return res.status(400).json({
         status: "error",
-        message: "Title is required",
+        message: "Name is required",
       });
     }
     if (!description) {

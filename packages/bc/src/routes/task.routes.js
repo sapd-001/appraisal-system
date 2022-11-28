@@ -2,39 +2,21 @@
  * @ Author: Felix Orinda
  * @ Create Time: 2022-11-14 08:37:25
  * @ Modified by: Felix Orinda
- * @ Modified time: 2022-11-28 14:23:32
+ * @ Modified time: 2022-11-29 02:38:39
  * @ Description:
  */
 
 const { adminRequired } = require("../middlewares/loginRequired");
+const taskValidator = require("../middlewares/taskValidator");
 const TaskModel = require("../models/task.model");
 const router = require("express").Router();
 
 /**
  * Create a new task
  */
-router.post("/create", adminRequired, async (req, res, next) => {
-    console.log("Here");
+router.post("/create", adminRequired, taskValidator, async (req, res, next) => {
+  console.log("Here");
   try {
-    const { title, description, department, evaluator, assignedTo } = req.body;
-    if ((!title, !description, !department, !evaluator, !assignedTo))
-      return res
-        .status(400)
-        .json({ status: "error", message: "Please fill all fields" });
-    if (!validateMongoId(department))
-      return res
-        .status(400)
-        .json({ status: "error", message: "Invalid department id" });
-
-    if (!validateMongoId(evaluator))
-      return res
-        .status(400)
-        .json({ status: "error", message: "Invalid evaluator id" });
-
-    if (!validateMongoId(assignedTo))
-      return res
-        .status(400)
-        .json({ status: "error", message: "Invalid assignedTo id" });
     req.body.assignedBy = req.user.id;
     const newTask = await TaskModel.create(req.body);
     res.status(201).json({
