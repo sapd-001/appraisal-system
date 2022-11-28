@@ -11,77 +11,61 @@ import AdminTasks from '../views/admin/AdminTasks';
 import AdminUsers from '../views/admin/AdminUsers';
 import Homepage from '../views/Homepage';
 import React from 'react';
+import { createBrowserRouter } from 'react-router-dom';
 
-interface IRouteProps {
-	pathName: string;
-	urlPath: string;
-	Component: React.ReactElement;
-	isNested: boolean;
-	children?: IRouteProps[];
-}
-
-const appRoutes: IRouteProps[] = [
+const router = createBrowserRouter([
 	{
-		pathName: 'Home',
-		urlPath: '/',
-		Component: <Homepage />,
-		isNested: false
+		id: 'Home',
+		path: '/',
+		element: <Homepage />
 	},
 	{
-		Component: <Admin />,
-		isNested: true,
-		pathName: 'Admin',
-		urlPath: '/admin',
+		element: <Admin />,
+		id: 'Admin',
+		path: '/admin',
 		children: [
 			{
-				Component: <AdminDashboard />,
-				isNested: false,
-				pathName: 'Dashboard',
-				urlPath: '/admin/'
+				element: <AdminDashboard />,
+				id: 'Dashboard',
+				path: '/admin/'
 			},
 			{
-				Component: <AdminDepartments />,
-				isNested: false,
-				pathName: 'Department',
-				urlPath: '/admin/departments'
+				element: <AdminDepartments />,
+				id: 'Department',
+				path: '/admin/departments'
 			},
 			{
-				Component: <AdminDesignations />,
-				isNested: false,
-				pathName: 'Designations',
-				urlPath: '/admin/designations'
+				element: <AdminDesignations />,
+				id: 'Designations',
+				path: '/admin/designations'
 			},
 			{
-				Component: <AdminEmployees />,
-				isNested: false,
-				pathName: 'Employees',
-				urlPath: '/admin/employees'
+				element: <AdminEmployees />,
+				id: 'Employees',
+				path: '/admin/employees'
 			},
 			{
-				Component: <AdminEvaluations />,
-				isNested: false,
-				pathName: 'Evaluations',
-				urlPath: '/admin/evaluation'
+				element: <AdminEvaluations />,
+				id: 'Evaluations',
+				path: '/admin/evaluation'
 			},
 			{
-				Component: <AdminTasks />,
-				isNested: false,
-				pathName: 'Tasks',
-				urlPath: '/admin/tasks'
+				element: <AdminTasks />,
+				id: 'Tasks',
+				path: '/admin/tasks'
 			},
 			{
-				Component: <AdminEvaluators />,
-				isNested: false,
-				pathName: 'Evaluators',
-				urlPath: '/admin/evaluators'
-			},{
-				Component: <AdminUsers />,
-				isNested: false,
-				pathName: 'Users',
-				urlPath: '/admin/users',
+				element: <AdminEvaluators />,
+				id: 'Evaluators',
+				path: '/admin/evaluators'
+			},
+			{
+				element: <AdminUsers />,
+				id: 'Users',
+				path: '/admin/users'
 			}
 		]
 	}
-];
+]);
 
-export { appRoutes as RoutePaths };
+export default router;

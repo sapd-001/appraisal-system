@@ -6,6 +6,8 @@ export type NavLinkType = {
 	icon?: IconDefinition;
 };
 
+export type RoleType = 'admin' | 'user' | 'evaluator';
+
 export type UserStateType = {
 	token: string;
 	isAuthenticated: boolean;
@@ -16,7 +18,7 @@ export type UserStateType = {
 		firstName?: string;
 		lastName?: string;
 		email: string;
-		role: string;
+		role: RoleType;
 	};
 };
 
