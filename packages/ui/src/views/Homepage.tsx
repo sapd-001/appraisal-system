@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { AxiosError } from 'axios';
+import InputElement from '../components/InputElement';
 import { Link } from 'react-router-dom';
 import React from 'react';
 import { RoleType } from '../types';
@@ -25,7 +26,11 @@ const Homepage = () => {
 		{} as LoginProps
 	);
 
-	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+	const handleChange = (
+		e: React.ChangeEvent<
+			HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+		>
+	) => {
 		setFormData({
 			...formData,
 			[e.target.name]: e.target.value
@@ -45,7 +50,7 @@ const Homepage = () => {
 					Authorization: `Bearer ${token}`
 				}
 			});
-			
+
 			toast.success('Login successful');
 			setTimeout(() => {
 				dispatch(loginUser({ token, user: res.data.data }));
@@ -70,7 +75,7 @@ const Homepage = () => {
 			<WidthWrapper>
 				<>
 					{isAuthenticated ? (
-						<div className='min-h-[20rem] min-w-[30rem] items-center bg-white py-10 px-4 shadow-sm rounded flex justify-center flex-col'>
+						<div className="min-h-[20rem] min-w-[30rem] items-center bg-white py-10 px-4 shadow-sm rounded flex justify-center flex-col">
 							<h1 className="text-xl font-bold text-black border p-3">
 								Welcome back, {user?.email}
 							</h1>
@@ -100,37 +105,22 @@ const Homepage = () => {
 							<h1 className="text-2xl font-bold text-center my-6">
 								Welcome to Astra Employee Appraisal system
 							</h1>
-							<div className="flex flex-col">
-								<label htmlFor="email">Email address</label>
-								<input
-									type="text"
-									className="w-full border-none outline-none bg-slate-200 rounded-md p-2 text-md"
-									placeholder="Email address "
-									name="email"
-									id="email"
-									onChange={handleChange}
-								/>
-							</div>
-							<div className="flex flex-col">
-								<label htmlFor="password">Password</label>
-								<input
-									type="password"
-									className="w-full border-none outline-none bg-slate-200 rounded-md p-2 text-md"
-									placeholder="Password"
-									name="password"
-									id="password"
-									onChange={handleChange}
-								/>
-							</div>
-							{/* <div className="flex flex-row-reverse justify-end gap-2 items-center">
-						<label htmlFor="remeber">Rember me</label>
-						<input
-							name="remember"
-							type="checkbox"
-							className="border-none h-4 outline-none bg-slate-200 rounded-md p-2 text-md"
-							placeholder="Password"
-						/>
-					</div> */}
+							<InputElement
+								type="email"
+								name="email"
+								labelText="Email address"
+								onChange={handleChange}
+								value={formData.email}
+							/>
+							<InputElement
+								onChange={handleChange}
+								type="password"
+								name="password"
+								placeholder="Password"
+								value={formData.password}
+								labelText="Password"
+							/>
+
 							<button
 								className="w-full bg-blue-600 py-2 rounded font-bold text-lg text-white"
 								type="submit"
