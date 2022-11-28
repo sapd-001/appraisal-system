@@ -9,7 +9,7 @@ import { ToastContainer, toast } from 'react-toastify';
 
 type EvaluatorsFormProps = {
 	name: string;
-	description: string;
+	email: string;
 	department: string;
 	designation: string;
 };
@@ -111,9 +111,18 @@ const AddAdminEvaluators: React.FC<{ closeModal: () => void }> = ({
 					type="text"
 					value={evaluatorsForm.name}
 					labelText="Name"
-					placeholder="Enter Evaluator Name"
+					placeholder="Enter Name"
+				/>
+				<InputElement
+					name="email"
+					onChange={handleEvaluatorsFormChange}
+					type="text"
+					value={evaluatorsForm.email}
+					labelText="Email"
+					placeholder="Enter Email"
 				/>
 				<div>
+				<label htmlFor="department">Department: </label>
 					<select
 						name="department"
 						value={evaluatorsForm.department}
@@ -134,6 +143,7 @@ const AddAdminEvaluators: React.FC<{ closeModal: () => void }> = ({
 					</select>
 				</div>
 				<div>
+				<label htmlFor="designation">Designation: </label>
 					<select
 						name="designation"
 						value={evaluatorsForm.designation}
@@ -143,7 +153,7 @@ const AddAdminEvaluators: React.FC<{ closeModal: () => void }> = ({
 							Select Designation
 						</option>
 						{designations.length &&
-							designations.map((department) => (
+							designations.map((designation) => (
 								<option
 									key={designation._id}
 									value={designation._id}
@@ -152,19 +162,6 @@ const AddAdminEvaluators: React.FC<{ closeModal: () => void }> = ({
 								</option>
 							))}
 					</select>
-				</div>
-				<div className="flex flex-col space-y-2">
-					<label htmlFor="description">Description</label>
-					<textarea
-						name="description"
-						id="description"
-						cols={30}
-						rows={10}
-						onChange={handleEvaluatorsFormChange}
-						value={evaluatorsForm.description}
-						className="border border-gray-400 p-2 rounded-md"
-						placeholder="Enter department description"
-					/>
 				</div>
 				<button
 					className="w-full py-4 bg-blue-700 text-white rounded-md"
