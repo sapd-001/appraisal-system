@@ -11,6 +11,7 @@
     "dev": "concurrently \"pnpm run dev:bc\" \"pnpm run dev:ui\"",
     "dev:bc": " pnpm --filter ./packages/bc run dev",
     "dev:ui": " pnpm --filter ./packages/ui run dev",
+    "migrate:bc": "pnpm --filter ./packages/bc run migrate",
     "gitignore": "pnpm ngitignore create",
     "watch": "pnpm -r --filter ./packages --parallel run dev"
   },
