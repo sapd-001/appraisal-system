@@ -24,9 +24,12 @@ type InputElementProps = {
 		| 'week'
 		| 'url'
 		| 'search'
-		| 'color';
+		| 'color'
+		| 'textarea';
 	placeholder?: string;
 	labelText?: string;
+	cols?: number;
+	rows?: number;
 };
 
 const InputElement: React.FC<InputElementProps> = (props) => {
@@ -46,7 +49,7 @@ const InputElement: React.FC<InputElementProps> = (props) => {
 					value={props.value}
 					onChange={props.onChange}
 					placeholder={props.placeholder}
-					className="w-full border  p-2 flex-1 focus:ring-0 focus:outline-none focus:border-0 border-none outline-none bg-white"
+					className="w-full border  p-2 flex-1 focus:ring-0 focus:outline-none focus:border-0 border-none outline-none bg-white min-h-[50rem]"
 					name={props.name}
 					id={props.name}
 				/>
@@ -60,12 +63,26 @@ const InputElement: React.FC<InputElementProps> = (props) => {
 				</button>
 			</div>
 		</div>
+	) : props.type === 'textarea' ? (
+		<div className="w-full bg-white">
+			<label>{props.labelText}</label>
+			<textarea
+				className="w-full border border-gray-300 rounded-md focus-within:border px-2 bg-white"
+				value={props.value}
+				onChange={props.onChange}
+				placeholder={props.placeholder}
+				name={props.name}
+				id={props.name}
+				cols={props.cols}
+				rows={props.rows}
+			/>
+		</div>
 	) : (
 		<div className="w-full bg-white">
 			<label>{props.labelText}</label>
 			<input
 				placeholder={props.placeholder}
-				className="w-full border border-gray-300 rounded-md p-2 bg-transparent"
+				className="w-full border border-gray-300 rounded-md p-2 bg-transparent "
 				value={props.value}
 				onChange={props.onChange}
 				type={props.type}

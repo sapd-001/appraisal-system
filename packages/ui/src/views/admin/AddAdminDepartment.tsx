@@ -1,3 +1,4 @@
+import InputElement from '../../components/InputElement';
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React from 'react';
 import { apiRequest } from '../../api';
@@ -17,7 +18,7 @@ const AddAdminDepartment: React.FC<{ closeModal: () => void }> = ({
 		React.useState<DepartmentFormProps>({} as DepartmentFormProps);
 
 	const handleDepartmentFormChange = (
-		e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+		e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
 	) => {
 		const { name, value } = e.target;
 		setDepartmentForm((prev) => ({ ...prev, [name]: value }));
@@ -109,19 +110,15 @@ const AddAdminDepartment: React.FC<{ closeModal: () => void }> = ({
 						placeholder="Enter department name"
 					/>
 				</div>
-				<div className="flex flex-col space-y-2">
-					<label htmlFor="description">Description</label>
-					<textarea
-						name="description"
-						id="description"
-						cols={30}
-						rows={10}
-						onChange={handleDepartmentFormChange}
-						value={departmentForm.description}
-						className="border border-gray-400 p-2 rounded-md"
-						placeholder="Enter department description"
-					/>
-				</div>
+				<InputElement
+					labelText="Description"
+					name="description"
+					type="textarea"
+					value={departmentForm.description || ''}
+					onChange={handleDepartmentFormChange}
+					cols={30}
+					rows={5}
+				/>
 				<button
 					className="w-full py-4 bg-blue-700 text-white rounded-md"
 					type="submit"
