@@ -2,11 +2,14 @@
  * @ Author: Felix Orinda
  * @ Create Time: 2022-11-14 08:37:25
  * @ Modified by: Felix Orinda
- * @ Modified time: 2022-11-29 09:43:40
+ * @ Modified time: 2022-11-29 13:09:39
  * @ Description:
  */
 
-const { adminRequired } = require("../middlewares/loginRequired");
+const {
+  adminRequired,
+  loginRequired,
+} = require("../middlewares/loginRequired");
 const taskValidator = require("../middlewares/taskValidator");
 const TaskModel = require("../models/task.model");
 const router = require("express").Router();
@@ -61,13 +64,54 @@ router.get("/:id", (req, res, next) => {});
  */
 router.put("/:id", (req, res, next) => {});
 /**
+ * Update a task by id
+ */
+router.patch("/update/status/:id", loginRequired, async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { status } = req.body;
+    const task = await TaskModel.findByIdAndUpdate(
+      id,
+      { status },
+      { new: true }
+    );
+    return res.status(200).json({
+      status: "success",
+      data: task,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      status: "error",
+      message: error.message,
+    });
+  }
+});
+/**
  * Delete a task by id
  */
 router.delete("/:id", (req, res, next) => {});
 /**
  * Get all tasks assigned to a user
  */
-router.get("/assigned-to/:id", (req, res, next) => {});
+router.get("/user/assigned", loginRequired, async (req, res, next) => {
+  try {
+    const tasks = await TaskModel.find({ assignedTo: req.user.id })
+      .populate("assignedTo", "firstName lastName")
+      .populate("assignedBy", "firstName lastName")
+      .populate("evaluator", "firstName lastName")
+      .populate("department", "name")
+      .populate("designation", "name");
+    return res.status(200).json({
+      status: "success",
+      data: tasks,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      status: "error",
+      message: error.message ? error.message : "Internal Server Error",
+    });
+  }
+});
 /**
  * Get all tasks assigned by a user
  */
