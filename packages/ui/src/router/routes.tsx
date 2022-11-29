@@ -14,6 +14,7 @@ import EmployeeDashboard from '../views/employee/EmployeeDashboard';
 import EvaluatorDashboard from '../views/evaluator/EvaluatorDashboard';
 import EvaluatorProtected from '../components/EvaluatorProtected';
 import Homepage from '../views/Homepage';
+import NotFound from '../views/NotFound';
 import Profile from '../views/Profile';
 import Protected from '../components/Protected';
 import React from 'react';
@@ -93,7 +94,8 @@ const router = createBrowserRouter([
 			</Protected>
 		),
 		id: 'Employee',
-		path: '/employee/dashboard',
+		path: '/user/dashboard',
+		errorElement: <div>Not Found</div>,
 		children: []
 	},
 	{
@@ -103,7 +105,12 @@ const router = createBrowserRouter([
 			</Protected>
 		),
 		id: 'Profile',
-		path: '/auth/profile'
+		path: '/account/profile'
+	},
+	{
+		element: <NotFound />,
+		id: 'Not Found',
+		path: '*'
 	}
 ]);
 

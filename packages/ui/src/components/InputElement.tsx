@@ -43,7 +43,7 @@ const InputElement: React.FC<InputElementProps> = (props) => {
 				<label className="block">{props.labelText}</label>
 			)}
 			<div
-				className="flex items-center gap-1 border-gray-300 rounded-md focus-within:border border px-2 bg-white"
+				className="flex items-center gap-1 border-gray-300 rounded-md focus-within:border border px-2 bg-white h-fit"
 				tabIndex={0}
 			>
 				<input
@@ -51,7 +51,7 @@ const InputElement: React.FC<InputElementProps> = (props) => {
 					value={props.value}
 					onChange={props.onChange}
 					placeholder={props.placeholder}
-					className="w-full border  p-2 flex-1 focus:ring-0 focus:outline-none focus:border-0 border-none outline-none bg-white min-h-[50rem]"
+					className="w-full border  p-2 flex-1 focus:ring-0 focus:outline-none focus:border-0 border-none outline-none bg-white "
 					name={props.name}
 					id={props.name}
 				/>

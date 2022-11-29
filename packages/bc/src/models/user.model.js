@@ -2,7 +2,7 @@
  * @ Author: Felix Orinda
  * @ Create Time: 2022-11-14 11:11:19
  * @ Modified by: Felix Orinda
- * @ Modified time: 2022-11-29 10:11:56
+ * @ Modified time: 2022-11-29 11:00:42
  * @ Description:
  */
 const mongoose = require("../db");
@@ -44,6 +44,10 @@ const UserSchema = new mongoose.Schema({
   designation: {
     type: mongoose.SchemaTypes.ObjectId,
     ref: "designation",
+  },
+  phone: {
+    type: String,
+    trim: true,
   },
 });
 

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { IconDefinition } from '@fortawesome/free-brands-svg-icons';
 
 export type NavLinkType = {
@@ -19,6 +20,8 @@ export type UserStateType = {
 		lastName?: string;
 		email: string;
 		role: RoleType;
+		phone?: string;
+		avatar?: string;
 	};
 };
 

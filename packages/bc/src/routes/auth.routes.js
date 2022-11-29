@@ -71,4 +71,32 @@ router.get("/profile", loginRequired, async (req, res) => {
   }
 });
 
+/**
+ * Update profile
+ */
+router.put("/profile/update", loginRequired, async (req, res) => {
+  try {
+    const { email, firstName, lastName, phone } = req.body;
+    const user = await UserModel.findByIdAndUpdate(
+      req.user.id,
+      {
+        email,
+        firstName,
+        lastName,
+        phone,
+      },
+      { new: true }
+    );
+    res.status(200).json({
+      status: "success",
+      data: user,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      status: "error",
+      message: error.message ? error.message : "Internal Server error",
+    });
+  }
+});
+
 module.exports = router;

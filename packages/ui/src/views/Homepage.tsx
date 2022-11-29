@@ -89,7 +89,7 @@ const Homepage = () => {
 								</button>
 
 								<button className="bg-blue-700 text-white px-4 py-2 rounded-md">
-									<Link to="/auth/profile">
+									<Link to="/account/profile">
 										Explore profile
 									</Link>
 								</button>

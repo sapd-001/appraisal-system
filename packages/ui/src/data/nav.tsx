@@ -43,7 +43,11 @@ export const navlinks = {
 			urlPath: '/admin/dashboard/evaluators',
 			icon: faPencilSquare
 		},
-		{ pathName: 'Users', urlPath: '/admin/dashboard/Users', icon: faUsers }
+		{ pathName: 'Users', urlPath: '/admin/dashboard/Users', icon: faUsers },
+		{
+			pathName: 'Profile',
+			urlPath: '/account/profile'
+		}
 	],
 	employee: [
 		{
