@@ -52,17 +52,17 @@ export const navlinks = {
 	employee: [
 		{
 			pathName: 'Dashboard',
-			urlPath: '/employee/dashboard/',
+			urlPath: '/user/dashboard/',
 			icon: faDashboard
 		},
 		{
 			pathName: 'Tasks',
-			urlPath: '/employee/dashboard/tasks',
+			urlPath: '/user/dashboard/tasks',
 			icon: faTasks
 		},
 		{
 			pathName: 'Evaluation',
-			urlPath: '/employee/dashboard/evaluation',
+			urlPath: '/user/dashboard/evaluations',
 			icon: faPencilSquare
 		}
 	],

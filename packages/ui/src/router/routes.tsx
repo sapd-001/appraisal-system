@@ -11,6 +11,9 @@ import AdminProtected from '../components/AdminProtected';
 import AdminTasks from '../views/admin/AdminTasks';
 import AdminUsers from '../views/admin/AdminUsers';
 import EmployeeDashboard from '../views/employee/EmployeeDashboard';
+import EmployeeEvaluations from '../views/employee/EmployeeEvaluations';
+import EmployeePage from '../views/employee/EmployeePage';
+import Employeetasks from '../views/employee/Employeetasks';
 import EvaluatorDashboard from '../views/evaluator/EvaluatorDashboard';
 import EvaluatorProtected from '../components/EvaluatorProtected';
 import Homepage from '../views/Homepage';
@@ -37,7 +40,7 @@ const router = createBrowserRouter([
 		children: [
 			{
 				element: <AdminDashboard />,
-				id: 'Dashboard',
+				id: 'Admin Dashboard',
 				path: '/admin/dashboard/'
 			},
 			{
@@ -90,13 +93,29 @@ const router = createBrowserRouter([
 	{
 		element: (
 			<Protected>
-				<EmployeeDashboard />
+				<EmployeePage />
 			</Protected>
 		),
 		id: 'Employee',
 		path: '/user/dashboard',
 		errorElement: <div>Not Found</div>,
-		children: []
+		children: [
+			{
+				element: <EmployeeDashboard />,
+				id: 'Employee Dashboard',
+				path: '/user/dashboard/'
+			},
+			{
+				element: <Employeetasks />,
+				id: 'Employee Tasks',
+				path: '/user/dashboard/tasks'
+			},
+			{
+				element: <EmployeeEvaluations />,
+				id: 'Employee Evaluations',
+				path: '/user/dashboard/evaluations'
+			}
+		]
 	},
 	{
 		element: (

@@ -6,7 +6,7 @@ import { logoutUser } from '../state/slices/userSlice';
 import { navlinks } from '../data/nav';
 import { useAppDispatch } from '../state/hooks';
 
-const AdminSidebar = () => {
+const EmployeeSidebar = () => {
 	const dispatch=useAppDispatch();
 	const handleLogout = () => {
 		alert('You have been logged out');
@@ -19,11 +19,11 @@ const AdminSidebar = () => {
 		<div className="flex flex-col h-screen w-64 bg-black py-4 text-white sticky top-0">
 			<div className='h-full'>
 				<h2 className="text-2xl font-bold uppercase text-center">
-					Admin
+					Employee
 				</h2>
 				<hr className="my-3" />
 				<div>
-					{navlinks.admin.map((n) => (
+					{navlinks.employee.map((n) => (
 						<Link
 							key={n.pathName}
 							to={n.urlPath}
@@ -42,4 +42,4 @@ const AdminSidebar = () => {
 	);
 };
 
-export default AdminSidebar;
+export default EmployeeSidebar;
