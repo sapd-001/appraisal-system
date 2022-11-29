@@ -1,6 +1,7 @@
 import AddAdminTasks from './AddAdminTasks';
 import React from 'react';
 import StatusBadge from '../../components/StatusBadge';
+import moment from 'moment';
 import { useAppSelector } from '../../state/hooks';
 
 import Table, { TableColumnProps } from '../../components/Table';
@@ -8,32 +9,37 @@ import Table, { TableColumnProps } from '../../components/Table';
 const AdminTasks = () => {
 	const cols: TableColumnProps[] = [
 		{
-			columnName: 'id',
+			columnName: 'name',
 			id: 1,
-			title: 'UID',
-			customElement: false
-		},
-		{
-			columnName: 'title',
-			id: 2,
 			title: 'Task Name',
 			customElement: false
 		},
 		{
-			columnName: 'dueDate',
+			columnName: 'evaluator',
+			id: 2,
+			title: 'Task evaluator',
+			customElement: false
+		},{
+			columnName: 'designation',
 			id: 3,
+			title: 'Task Designation',
+			customElement: false
+		},
+		{
+			columnName: 'dueDate',
+			id: 4,
 			title: 'Due Date',
 			customElement: false
 		},
 		{
-			columnName: 'assignee',
-			id: 4,
+			columnName: 'assignedTo',
+			id: 5,
 			title: 'Assigned to',
 			customElement: false
 		},
 		{
 			columnName: 'status',
-			id: 5,
+			id: 6,
 			title: 'Status',
 			customElement: true,
 			element: ({ data }) => (
@@ -42,7 +48,7 @@ const AdminTasks = () => {
 		},
 		{
 			columnName: 'Actions',
-			id: 6,
+			id: 7,
 			title: 'Actions',
 			customElement: true,
 			element: ({ data }) => {
@@ -84,7 +90,30 @@ const AdminTasks = () => {
 	const closeOpenModal = () => {
 		setAddingTasks(false);
 	};
-	
+
+	const adminTasks = React.useMemo(() => {
+		return tasks.map((task) => {
+			const { firstName, lastName } = task.assignedTo as unknown as {
+				firstName: string;
+				lastName: string;
+			};
+			const { evaluator, designation, department } = task as unknown as {
+				evaluator: Record<string, unknown>;
+				designation: Record<string, unknown>;
+				department: Record<string, unknown>;
+			};
+
+			return {
+				...task,
+				assignedTo: `${firstName} ${lastName}`,
+				dueDate: moment(task.dueDate).format('LLL'),
+				evaluator: `${evaluator.firstName} ${evaluator.lastName}`,
+				designation: designation.name,
+				department: department.name
+			};
+		});
+	}, [tasks]);
+
 	return (
 		<div>
 			<div className="px-4 py-1 my-4 border mx-2 flex justify-between">
@@ -101,7 +130,7 @@ const AdminTasks = () => {
 			</div>
 			<div>
 				{addingTasks && <AddAdminTasks closeModal={closeOpenModal} />}
-				<Table columns={cols} rows={tasks} />
+				<Table columns={cols} rows={adminTasks} />
 			</div>
 		</div>
 	);

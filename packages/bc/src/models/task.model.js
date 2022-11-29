@@ -28,7 +28,6 @@ const TaskSchema = new mongoose.Schema(
       required: [true, "Task priority required"],
       lowerCase: true,
       trim: true,
-      unique: true,
     },
     assignedTo: {
       type: mongoose.SchemaTypes.ObjectId,
@@ -54,6 +53,10 @@ const TaskSchema = new mongoose.Schema(
       type: mongoose.SchemaTypes.ObjectId,
       ref: "user",
       required: [true, "Evaluator required"],
+    },
+    dueDate: {
+      type: String,
+      required: [true, "Due date required"],
     },
   },
   { timestamps: true }

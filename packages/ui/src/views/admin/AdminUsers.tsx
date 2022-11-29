@@ -1,11 +1,14 @@
 import React from 'react';
+import { useAppSelector } from '../../state/hooks';
+
 import Table, { TableColumnProps } from '../../components/Table';
+
 const cols: TableColumnProps[] = [
 	// id,name,email,designation,phone,actions
 	{
-		columnName: 'id',
+		columnName: '_id',
 		id: 1,
-		title: '#',
+		title: 'UID',
 		customElement: false
 	},
 	{
@@ -13,9 +16,7 @@ const cols: TableColumnProps[] = [
 		id: 2,
 		title: 'Name',
 		customElement: true,
-		element: ({ data }) => (
-			<div>{`${data.first_name} ${data.last_name}`}</div>
-		)
+		element: ({ data }) => <div>{`${data.firstName} ${data.lastName}`}</div>
 	},
 	{
 		columnName: 'email',
@@ -53,11 +54,16 @@ const cols: TableColumnProps[] = [
 ];
 
 const AdminUsers = () => {
+	const { normalUsers } = useAppSelector((state) => state.normalUsers);
+	const employees = React.useMemo(() => {
+		return [...normalUsers];
+	}, [normalUsers]);
+
 	return (
 		<div>
 			<h1>Users</h1>
 			<div>
-				<Table columns={cols} rows={[]} />
+				<Table columns={cols} rows={employees} />
 			</div>
 		</div>
 	);

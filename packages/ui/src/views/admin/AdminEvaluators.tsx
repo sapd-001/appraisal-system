@@ -2,11 +2,13 @@
 import AddAdminEvaluators from './AddAdminEvaluators';
 import React from 'react';
 import { useAppSelector } from '../../state/hooks';
+
 import Table, { TableColumnProps } from '../../components/Table';
+
 const cols: TableColumnProps[] = [
 	// id,name,email,actions
 	{
-		columnName: 'id',
+		columnName: '_id',
 		id: 1,
 		title: 'UID',
 		customElement: false
@@ -16,9 +18,7 @@ const cols: TableColumnProps[] = [
 		id: 2,
 		title: 'Name',
 		customElement: true,
-		element: ({data}) => (
-			<div>{`${data.first_name} ${data.last_name}`}</div>
-		)
+		element: ({ data }) => <div>{`${data.firstName} ${data.lastName}`}</div>
 	},
 	{
 		columnName: 'email',
@@ -57,7 +57,7 @@ const rows = [
 const AdminEvaluators = () => {
 	const { evaluators } = useAppSelector((state) => state.evaluators);
 	const [addingEvaluators, setAddingEvaluators] =
-	React.useState<boolean>(false);
+		React.useState<boolean>(false);
 	const closeOpenModal = () => {
 		setAddingEvaluators(false);
 	};

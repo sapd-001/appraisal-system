@@ -2,7 +2,7 @@
  * @ Author: Felix Orinda
  * @ Create Time: 2022-11-14 08:37:25
  * @ Modified by: Felix Orinda
- * @ Modified time: 2022-11-29 02:38:39
+ * @ Modified time: 2022-11-29 09:43:40
  * @ Description:
  */
 
@@ -15,8 +15,8 @@ const router = require("express").Router();
  * Create a new task
  */
 router.post("/create", adminRequired, taskValidator, async (req, res, next) => {
-  console.log("Here");
   try {
+    req.body.dueDate = new Date(req.body.dueDate);
     req.body.assignedBy = req.user.id;
     const newTask = await TaskModel.create(req.body);
     res.status(201).json({
@@ -32,11 +32,23 @@ router.post("/create", adminRequired, taskValidator, async (req, res, next) => {
  * Get all tasks
  */
 router.get("/all", adminRequired, async (req, res, next) => {
-  const tasks = await task.find();
-  res.status(200).json({
-    status: "success",
-    data: tasks,
-  });
+  try {
+    const tasks = await TaskModel.find({})
+      .populate("assignedTo", "firstName lastName")
+      .populate("assignedBy", "firstName lastName")
+      .populate("evaluator", "firstName lastName")
+      .populate("department", "name")
+      .populate("designation", "name");
+    return res.status(200).json({
+      status: "success",
+      data: tasks,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      status: "error",
+      message: error.message,
+    });
+  }
 });
 
 /**

@@ -30,11 +30,6 @@ module.exports = async function userValidator(req, res, next) {
         message: "Email is required",
       });
     }
-
-    if (!validateMongoId(role))
-      return res
-        .status(400)
-        .json({ status: "error", message: "Invalid role id" });
     if (!validateMongoId(designation))
       return res
         .status(400)

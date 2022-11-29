@@ -1,7 +1,7 @@
+import AddAdminDesignation from './AddAdminDesignation';
 import React from 'react';
 import { useAppSelector } from '../../state/hooks';
 
-import AddAdminDesignation from './AddAdminDesignation';
 import Table, { TableColumnProps } from '../../components/Table';
 
 const cols: TableColumnProps[] = [
@@ -44,15 +44,16 @@ const cols: TableColumnProps[] = [
 	}
 ];
 
-
 const AdminDesignations = () => {
-	const { designations:{designations}} = useAppSelector((state) => state);
+	const {
+		designations: { designations }
+	} = useAppSelector((state) => state);
 	const [addingDesignation, setAddingDesignation] =
 		React.useState<boolean>(false);
 	const closeOpenModal = () => {
 		setAddingDesignation(false);
 	};
-	
+
 	return (
 		<div>
 			<div className="px-4 py-1 my-4 border mx-2 flex justify-between">
@@ -68,7 +69,7 @@ const AdminDesignations = () => {
 				</button>
 			</div>
 			<div>
-			{addingDesignation && (
+				{addingDesignation && (
 					<AddAdminDesignation closeModal={closeOpenModal} />
 				)}
 				<Table columns={cols} rows={designations} />

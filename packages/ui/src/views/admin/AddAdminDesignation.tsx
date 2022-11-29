@@ -2,6 +2,7 @@ import { AxiosError } from 'axios';
 import InputElement from '../../components/InputElement';
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React from 'react';
+import SelectElement from '../../components/SelectElement';
 import { apiRequest } from '../../api';
 import { useAppSelector } from '../../state/hooks';
 
@@ -31,7 +32,6 @@ const AddAdminDesignation: React.FC<{ closeModal: () => void }> = ({
 	const handleDesignationFormSubmit = async (
 		e: React.FormEvent<HTMLFormElement>
 	) => {
-
 		e.preventDefault();
 
 		try {
@@ -84,6 +84,7 @@ const AddAdminDesignation: React.FC<{ closeModal: () => void }> = ({
 			window.removeEventListener('click', handleClickOutside);
 		};
 	}, []);
+	console.log(designationForm);
 
 	return (
 		// Add fullscreen modal with form
@@ -109,7 +110,7 @@ const AddAdminDesignation: React.FC<{ closeModal: () => void }> = ({
 					labelText="Name"
 					placeholder="Enter Designation Name"
 				/>
-				<div>
+				{/* <div>
 					<select
 						name="department"
 						value={designationForm.department}
@@ -128,20 +129,24 @@ const AddAdminDesignation: React.FC<{ closeModal: () => void }> = ({
 								</option>
 							))}
 					</select>
-				</div>
-				<div className="flex flex-col space-y-2">
-					<label htmlFor="description">Description</label>
-					<textarea
-						name="description"
-						id="description"
-						cols={30}
-						rows={10}
-						onChange={handleDesignationFormChange}
-						value={designationForm.description}
-						className="border border-gray-400 p-2 rounded-md"
-						placeholder="Enter department description"
-					/>
-				</div>
+				</div> */}
+				<SelectElement
+					label={'Department'}
+					options={departments}
+					name="department"
+					value={designationForm.department}
+					onChange={handleDesignationFormChange}
+					objectKey="_id"
+				/>
+				<InputElement
+					name="description"
+					cols={10}
+					rows={5}
+					onChange={handleDesignationFormChange}
+					value={designationForm.description}
+					placeholder="Enter department description"
+					type="textarea"
+				/>
 				<button
 					className="w-full py-4 bg-blue-700 text-white rounded-md"
 					type="submit"

@@ -1,9 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 type InputElementProps = {
+	[key: string]: any;
 	value: string;
 	name: string;
 	onChange: (
@@ -75,6 +77,20 @@ const InputElement: React.FC<InputElementProps> = (props) => {
 				id={props.name}
 				cols={props.cols}
 				rows={props.rows}
+			/>
+		</div>
+	) : props.type === 'number' ? (
+		<div className="w-full bg-white">
+			<label>{props.labelText}</label>
+			<input
+				{...props}
+				placeholder={props.placeholder}
+				className="w-full border border-gray-300 rounded-md p-2 bg-transparent "
+				value={props.value}
+				onChange={props.onChange}
+				type={props.type}
+				name={props.name}
+				id={props.name}
 			/>
 		</div>
 	) : (

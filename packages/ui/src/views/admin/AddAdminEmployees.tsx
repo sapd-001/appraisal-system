@@ -2,6 +2,7 @@ import { AxiosError } from 'axios';
 import InputElement from '../../components/InputElement';
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React from 'react';
+import SelectElement from '../../components/SelectElement';
 import { apiRequest } from '../../api';
 import { useAppSelector } from '../../state/hooks';
 
@@ -34,7 +35,6 @@ const AddAdminEmployees: React.FC<{ closeModal: () => void }> = ({
 	const handleEmployeesFormSubmit = async (
 		e: React.FormEvent<HTMLFormElement>
 	) => {
-
 		e.preventDefault();
 
 		try {
@@ -128,48 +128,24 @@ const AddAdminEmployees: React.FC<{ closeModal: () => void }> = ({
 					labelText="Email"
 					placeholder="Enter Email"
 				/>
-				<div>
-					<label htmlFor="department">Department: </label>
-					<select
-						name="department"
-						value={employeesForm.department}
-						onChange={handleEmployeesFormChange}
-					>
-						<option value="" disabled>
-							Select Department
-						</option>
-						{departments.length &&
-							departments.map((department) => (
-								<option
-									key={department._id}
-									value={department._id}
-								>
-									{department.name}
-								</option>
-							))}
-					</select>
-				</div>
-				<div>
-					<label htmlFor="designation">Designation: </label>
-					<select
-						name="designation"
-						value={employeesForm.designation}
-						onChange={handleEmployeesFormChange}
-					>
-						<option value="" disabled>
-							Select Designation
-						</option>
-						{designations.length &&
-							designations.map((designation) => (
-								<option
-									key={designation._id}
-									value={designation._id}
-								>
-									{designation.name}
-								</option>
-							))}
-					</select>
-				</div>
+				<SelectElement
+					name="department"
+					value={employeesForm.department}
+					onChange={handleEmployeesFormChange}
+					label="Department"
+					options={departments}
+					objectKey="_id"
+				/>
+
+				<SelectElement
+					name="designation"
+					value={employeesForm.designation}
+					onChange={handleEmployeesFormChange}
+					options={designations}
+					objectKey="_id"
+					label='Designation'
+				/>
+
 				<button
 					className="w-full py-4 bg-blue-700 text-white rounded-md"
 					type="submit"

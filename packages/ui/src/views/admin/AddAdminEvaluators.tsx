@@ -2,6 +2,7 @@ import { AxiosError } from 'axios';
 import InputElement from '../../components/InputElement';
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React from 'react';
+import SelectElement from '../../components/SelectElement';
 import { apiRequest } from '../../api';
 import { useAppSelector } from '../../state/hooks';
 
@@ -34,7 +35,6 @@ const AddAdminEvaluators: React.FC<{ closeModal: () => void }> = ({
 	const handleEvaluatorsFormSubmit = async (
 		e: React.FormEvent<HTMLFormElement>
 	) => {
-
 		e.preventDefault();
 
 		try {
@@ -105,7 +105,7 @@ const AddAdminEvaluators: React.FC<{ closeModal: () => void }> = ({
 					Add new Evaluator
 				</h1>
 				<InputElement
-					name="fistName"
+					name="firstName"
 					onChange={handleEvaluatorsFormChange}
 					type="text"
 					value={evaluatorsForm.firstName}
@@ -128,48 +128,22 @@ const AddAdminEvaluators: React.FC<{ closeModal: () => void }> = ({
 					labelText="Email"
 					placeholder="Enter Email"
 				/>
-				<div>
-					<label htmlFor="department">Department: </label>
-					<select
-						name="department"
-						value={evaluatorsForm.department}
-						onChange={handleEvaluatorsFormChange}
-					>
-						<option value="" disabled>
-							Select Department
-						</option>
-						{departments.length &&
-							departments.map((department) => (
-								<option
-									key={department._id}
-									value={department._id}
-								>
-									{department.name}
-								</option>
-							))}
-					</select>
-				</div>
-				<div>
-					<label htmlFor="designation">Designation: </label>
-					<select
-						name="designation"
-						value={evaluatorsForm.designation}
-						onChange={handleEvaluatorsFormChange}
-					>
-						<option value="" disabled>
-							Select Designation
-						</option>
-						{designations.length &&
-							designations.map((designation) => (
-								<option
-									key={designation._id}
-									value={designation._id}
-								>
-									{designation.name}
-								</option>
-							))}
-					</select>
-				</div>
+				<SelectElement
+					name="department"
+					value={evaluatorsForm.department}
+					onChange={handleEvaluatorsFormChange}
+					options={departments}
+					label={'Deparement'}
+					objectKey={'_id'}
+				/>
+				<SelectElement
+					name="designation"
+					value={evaluatorsForm.designation}
+					onChange={handleEvaluatorsFormChange}
+					options={designations}
+					label={'Designation'}
+					objectKey={'_id'}
+				/>
 				<button
 					className="w-full py-4 bg-blue-700 text-white rounded-md"
 					type="submit"

@@ -8,6 +8,7 @@ import { loadEmployeeSuccess } from '../../state/slices/employeesSlice';
 import { loadEvaluatorSuccess } from '../../state/slices/evaluatorsSlice';
 import { loadNormalUserSuccess } from '../../state/slices/normalUsersSlice';
 import { loadRoleSuccess } from '../../state/slices/rolesSlice';
+import { loadTaskSuccess } from '../../state/slices/tasksSlice';
 
 import { Outlet, useLocation } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../state/hooks';
@@ -45,7 +46,7 @@ const Admin = () => {
 			}
 		});
 		const data = res.data.data;
-		
+
 		dispatch(loadRoleSuccess(data));
 	};
 
@@ -88,6 +89,21 @@ const Admin = () => {
 		const data = res.data.data;
 		dispatch(loadNormalUserSuccess(data));
 	};
+	const fetchTasks = async () => {
+		try {
+			const res = await apiRequest.get('/tasks/all', {
+				headers: {
+					Authorization: `Bearer ${token}`
+				}
+			});
+			const data = res.data.data;
+			console.log('tasks', data);
+
+			dispatch(loadTaskSuccess(data));
+		} catch (error) {
+			console.log(error);
+		}
+	};
 
 	React.useEffect(() => {
 		Promise.all([
@@ -97,7 +113,8 @@ const Admin = () => {
 			fetchDesignations(),
 			fetchEvaluators(),
 			fetchAdmins(),
-			fetchNormalUsers()
+			fetchNormalUsers(),
+			fetchTasks()
 		]);
 	}, [path]);
 

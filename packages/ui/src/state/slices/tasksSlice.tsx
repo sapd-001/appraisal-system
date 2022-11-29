@@ -2,7 +2,7 @@
  * @ Author: Felix Orinda
  * @ Create Time: 2022-11-10 13:55:28
  * @ Modified by: Felix Orinda
- * @ Modified time: 2022-11-28 18:29:09
+ * @ Modified time: 2022-11-29 09:35:58
  * @ Description:
  */
 
@@ -15,11 +15,13 @@ type TaskType = {
 	description: string;
 	status: string;
 	priority: string;
-	assignedTo: string;
+	assignedTo: string|Record<string, any>;
 	assignedBy: string;
 	department: string;
 	designation: string;
 	evaluator: string;
+	dueDate: string;
+	timeLeft?: string;
 };
 
 type TasksState = {
