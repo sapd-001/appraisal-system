@@ -2,7 +2,7 @@
  * @ Author: Felix Orinda
  * @ Create Time: 2022-11-28 08:13:32
  * @ Modified by: Felix Orinda
- * @ Modified time: 2022-11-28 19:59:46
+ * @ Modified time: 2022-11-29 14:38:31
  * @ Description:
  */
 
@@ -19,6 +19,14 @@ router.post("/create", adminRequired, async (req, res, next) => {
     return res
       .status(400)
       .json({ message: "Please provide name and description" });
+  }
+  const existingDepartment = await DepartmentModel.findOne({
+    $or: [{ name }, { description }],
+  });
+  if (existingDepartment) {
+    return res.status(400).json({
+      message: "Department already name or description exists",
+    });
   }
   const department = await DepartmentModel.create({ name, description });
 

@@ -2,7 +2,7 @@
  * @ Author: Felix Orinda
  * @ Create Time: 2022-11-28 08:13:32
  * @ Modified by: Felix Orinda
- * @ Modified time: 2022-11-28 21:54:17
+ * @ Modified time: 2022-11-29 14:35:51
  * @ Description:
  */
 
@@ -26,6 +26,15 @@ router.post("/create", adminRequired, async (req, res, next) => {
     if (!validateMongoId(department)) {
       return res.status(400).json({
         message: "Invalid department id",
+      });
+    }
+    const existingDesignation = await DesignationModel.findOne({
+      $and: [{ name }, { department }],
+    });
+    console.log(existingDesignation);
+    if (existingDesignation) {
+      return res.status(400).json({
+        message: "Designation already exists",
       });
     }
 

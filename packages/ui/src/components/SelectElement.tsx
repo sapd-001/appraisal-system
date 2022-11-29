@@ -23,7 +23,7 @@ const SelectElement: React.FC<SelectElementProps> = (props) => {
 				value={props.value}
 				id={props.name}
 			>
-				<option value="">Nothing Selected</option>
+				<option value=""></option>
 				{props.options.map((option, index) => {
 					return typeof option === 'string' ? (
 						<option value={option} key={index}>

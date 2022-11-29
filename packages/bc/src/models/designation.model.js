@@ -7,14 +7,12 @@ const DesignationSchema = new mongoose.Schema(
       required: [true, "Designation name required"],
       lowerCase: true,
       trim: true,
-      unique: true,
     },
     description: {
       type: String,
       required: [true, "Designation description required"],
       lowerCase: true,
       trim: true,
-      unique: true,
     },
     department: {
       type: mongoose.SchemaTypes.ObjectId,

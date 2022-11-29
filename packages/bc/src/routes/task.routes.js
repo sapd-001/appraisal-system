@@ -2,7 +2,7 @@
  * @ Author: Felix Orinda
  * @ Create Time: 2022-11-14 08:37:25
  * @ Modified by: Felix Orinda
- * @ Modified time: 2022-11-29 13:09:39
+ * @ Modified time: 2022-11-29 15:32:58
  * @ Description:
  */
 
@@ -21,13 +21,17 @@ router.post("/create", adminRequired, taskValidator, async (req, res, next) => {
   try {
     req.body.dueDate = new Date(req.body.dueDate);
     req.body.assignedBy = req.user.id;
+    console.log(req.body.priority);
     const newTask = await TaskModel.create(req.body);
     res.status(201).json({
       status: "success",
-      newEntry: newTask._id,
+      prioritynewEntry: newTask._id,
     });
   } catch (error) {
-    next(error);
+    return res.status(500).json({
+      status: "error",
+      message: error.message ? error.message : "Internal Server Error",
+    });
   }
 });
 

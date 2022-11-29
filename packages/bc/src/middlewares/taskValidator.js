@@ -59,7 +59,12 @@ module.exports = async function taskValidator(req, res, next) {
         message: "Invalid assigned to id",
       });
     }
-
+    if (!req.body.priority) {
+      return res.status(400).json({
+        status: "error",
+        message: "Task priority is required",
+      });
+    }
     return next();
   } catch (error) {
     return res.status(400).json({

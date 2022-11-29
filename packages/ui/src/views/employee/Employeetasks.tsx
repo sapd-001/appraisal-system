@@ -72,7 +72,7 @@ const Employeetasks = () => {
 				...task,
 				dueDate: moment(task.dueDate).format('DD/MM/YYYY'),
 				designation: task.designation.name,
-				evaluator: `${task.evaluator.firstName} ${task.evaluator.lastName}`,
+				evaluator: `${task.evaluator.firstName} ${task.evaluator.lastName}`
 				// status: moment(task.dueDate).isBefore(moment())
 				// 	? 'overdue'
 				// 	: task.status
@@ -85,7 +85,8 @@ const Employeetasks = () => {
 	};
 
 	const [currentlyUpdating, setCurrentlyUpdating] = React.useState<any>(null);
-    
+
+
 	return (
 		<div>
 			<h1 className="p-4 my-2 text-xl font-bold border">Tasks</h1>
@@ -94,6 +95,7 @@ const Employeetasks = () => {
 					closeModal={closeModal}
 					task={currentlyUpdating}
 				/>
+
 			)}
 			<Table columns={cols} rows={usertasks} />
 		</div>

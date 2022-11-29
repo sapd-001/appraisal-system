@@ -1,5 +1,7 @@
 import { AxiosError } from 'axios';
+import FullScreenLoader from '../../components/FullScreenLoader';
 import InputElement from '../../components/InputElement';
+import ModalComponent from '../../components/ModalComponent';
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React from 'react';
 import SelectElement from '../../components/SelectElement';
@@ -36,124 +38,108 @@ const AddAdminEmployees: React.FC<{ closeModal: () => void }> = ({
 		e: React.FormEvent<HTMLFormElement>
 	) => {
 		e.preventDefault();
+		setLoading(true);
 
 		try {
-			const res = await apiRequest.post(
-				'/users/create/employee',
-				employeesForm,
-				{
-					headers: {
-						authorization: `Bearer ${token}`
-					}
+			await apiRequest.post('/users/create/employee', employeesForm, {
+				headers: {
+					authorization: `Bearer ${token}`
 				}
-			);
+			});
 
-			if (res.status === 201) {
-				toast.success('Employee added successfully');
-				setTimeout(() => {
-					closeModal();
-				}, 2000);
-			}
+			toast.success('Employee added successfully');
+			setTimeout(() => {
+				window.location.reload();
+			}, 2000);
 		} catch (error) {
 			if (error instanceof AxiosError)
 				toast.error(error.response!.data.message);
+		} finally {
+			setLoading(false);
 		}
 	};
-	const wrapperRef = React.useRef<HTMLDivElement>(null);
 
-	const handleClickOutside = (event: MouseEvent) => {
-		if (
-			wrapperRef.current &&
-			!wrapperRef.current.contains(event.target as Node)
-		)
-			closeModal();
-	};
-	const handleEscapeClose = (event: KeyboardEvent) => {
-		if (event.key === 'Escape') closeModal();
-	};
-	window.addEventListener('keydown', handleEscapeClose);
-	// window.addEventListener('click', handleClickOutside);
-	wrapperRef.current &&
-		wrapperRef.current.addEventListener('mousedown', handleClickOutside);
+	const designationOptions = React.useMemo(() => {
+		const designats = designations
+			.slice()
+			.filter((desig) => desig.department === employeesForm.department);
 
-	React.useEffect(() => {
-		return () => {
-			wrapperRef.current &&
-				wrapperRef.current.removeEventListener(
-					'mousedown',
-					handleClickOutside
-				);
-			window.removeEventListener('keydown', handleEscapeClose);
-			window.removeEventListener('click', handleClickOutside);
-		};
-	}, []);
+		return designats;
+	}, [designations, employeesForm.department]);
+	const [loading, setLoading] = React.useState<boolean>(false);
 
 	return (
 		// Add fullscreen modal with form
-		<div
-			className="flex flex-col space-y-2 h-screen fixed justify-center items-center bg-gray-600 z-[2000] w-full top-0 bg-opacity-60"
-			ref={wrapperRef}
-		>
+		<ModalComponent onClose={closeModal}>
 			<ToastContainer />
-			<form
-				action=""
-				onSubmit={handleEmployeesFormSubmit}
-				className="min-w-[30rem] p-10 bg-white flex flex-col gap-4"
-				onClick={(e) => e.stopPropagation()}
-			>
-				<h1 className="text-3xl font-bold text-center">
-					Add new employee
-				</h1>
-				<InputElement
-					name="firstName"
-					onChange={handleEmployeesFormChange}
-					type="text"
-					value={employeesForm.firstName}
-					labelText="First Name"
-					placeholder="Enter First Name"
-				/>
-				<InputElement
-					name="lastName"
-					onChange={handleEmployeesFormChange}
-					type="text"
-					value={employeesForm.lastName}
-					labelText="Last Name"
-					placeholder="Enter Last Name"
-				/>
-				<InputElement
-					name="email"
-					onChange={handleEmployeesFormChange}
-					type="text"
-					value={employeesForm.email}
-					labelText="Email"
-					placeholder="Enter Email"
-				/>
-				<SelectElement
-					name="department"
-					value={employeesForm.department}
-					onChange={handleEmployeesFormChange}
-					label="Department"
-					options={departments}
-					objectKey="_id"
-				/>
-
-				<SelectElement
-					name="designation"
-					value={employeesForm.designation}
-					onChange={handleEmployeesFormChange}
-					options={designations}
-					objectKey="_id"
-					label='Designation'
-				/>
-
-				<button
-					className="w-full py-4 bg-blue-700 text-white rounded-md"
-					type="submit"
+			{loading ? (
+				<FullScreenLoader />
+			) : (
+				<form
+					action=""
+					onSubmit={handleEmployeesFormSubmit}
+					className="min-w-[30rem] p-10 bg-white flex flex-col gap-4"
+					onClick={(e) => e.stopPropagation()}
 				>
-					Add Employee
-				</button>
-			</form>
-		</div>
+					<h1 className="text-3xl font-bold text-center">
+						Add new employee
+					</h1>
+					<InputElement
+						name="firstName"
+						onChange={handleEmployeesFormChange}
+						type="text"
+						value={employeesForm.firstName}
+						labelText="First Name"
+						placeholder="Enter First Name"
+					/>
+					<InputElement
+						name="lastName"
+						onChange={handleEmployeesFormChange}
+						type="text"
+						value={employeesForm.lastName}
+						labelText="Last Name"
+						placeholder="Enter Last Name"
+					/>
+					<InputElement
+						name="email"
+						onChange={handleEmployeesFormChange}
+						type="text"
+						value={employeesForm.email}
+						labelText="Email"
+						placeholder="Enter Email"
+					/>
+					<SelectElement
+						name="department"
+						value={employeesForm.department}
+						onChange={handleEmployeesFormChange}
+						label="Department"
+						options={departments}
+						objectKey="_id"
+					/>
+
+					{employeesForm.department !== '' && (
+						<SelectElement
+							name="designation"
+							value={employeesForm.designation}
+							onChange={handleEmployeesFormChange}
+							options={designationOptions.sort((a, b) =>
+								a.name.localeCompare(b.name)
+							)}
+							objectKey="_id"
+							label="Designation"
+						/>
+					)}
+
+					<button
+						className="w-full py-4 bg-blue-700 text-white rounded-md disabled:opacity-50 disabled:cursor-not-allowed"
+						type="submit"
+						disabled={loading}
+					>
+						{loading ? 'Loading...' : 'Add Employee'}
+					</button>
+				</form>
+			)}
+		</ModalComponent>
 	);
 };
 

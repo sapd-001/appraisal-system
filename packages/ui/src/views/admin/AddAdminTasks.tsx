@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { AxiosError } from 'axios';
+import FullScreenLoader from '../../components/FullScreenLoader';
 import InputElement from '../../components/InputElement';
+import ModalComponent from '../../components/ModalComponent';
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React from 'react';
 import SelectElement from '../../components/SelectElement';
@@ -51,6 +53,8 @@ const AddAdminTasks: React.FC<{ closeModal: () => void }> = ({
 	) => {
 		e.preventDefault();
 
+		setLoading(true);
+
 		try {
 			const res = await apiRequest.post('/tasks/create', tasksForm, {
 				headers: {
@@ -62,30 +66,16 @@ const AddAdminTasks: React.FC<{ closeModal: () => void }> = ({
 				toast.success('Task added successfully');
 				setTimeout(() => {
 					closeModal();
+					window.location.reload();
 				}, 2000);
 			}
 		} catch (error) {
-			if (error instanceof AxiosError) 
+			if (error instanceof AxiosError)
 				toast.error(error.response!.data.message);
-			
+		} finally {
+			setLoading(false);
 		}
 	};
-	const wrapperRef = React.useRef<HTMLDivElement>(null);
-
-	const handleClickOutside = (event: MouseEvent) => {
-		if (
-			wrapperRef.current &&
-			!wrapperRef.current.contains(event.target as Node)
-		)
-			closeModal();
-	};
-	const handleEscapeClose = (event: KeyboardEvent) => {
-		if (event.key === 'Escape') closeModal();
-	};
-	window.addEventListener('keydown', handleEscapeClose);
-	// window.addEventListener('click', handleClickOutside);
-	wrapperRef.current &&
-		wrapperRef.current.addEventListener('mousedown', handleClickOutside);
 
 	const normalEmployees = React.useMemo(() => {
 		const nEmployees: any[] = employees.slice().map((employee) => {
@@ -113,142 +103,137 @@ const AddAdminTasks: React.FC<{ closeModal: () => void }> = ({
 
 		return people;
 	}, [evaluators]);
-
-	React.useEffect(() => {
-		return () => {
-			wrapperRef.current &&
-				wrapperRef.current.removeEventListener(
-					'mousedown',
-					handleClickOutside
-				);
-			window.removeEventListener('keydown', handleEscapeClose);
-			window.removeEventListener('click', handleClickOutside);
-		};
-	}, []);
+	const [loading, setLoading] = React.useState<boolean>(false);
 
 	return (
 		// Add fullscreen modal with form
-		<div
-			className="flex flex-col space-y-2 h-screen fixed justify-center items-center bg-gray-600 z-[2000] w-full top-0 bg-opacity-60"
-			ref={wrapperRef}
-		>
+		<ModalComponent onClose={closeModal}>
 			<ToastContainer />
-			<form
-				action=""
-				onSubmit={handleTasksFormSubmit}
-				className="min-w-[30rem] p-10 bg-white flex flex-col gap-4"
-				onClick={(e) => e.stopPropagation()}
-			>
-				<h1 className="text-3xl font-bold text-center">Add new Task</h1>
-				<div
-					className="flex gap-6
-				"
+			{loading ? (
+				<FullScreenLoader />
+			) : (
+				<form
+					action=""
+					onSubmit={handleTasksFormSubmit}
+					className="min-w-[30rem] p-10 bg-white flex flex-col gap-4"
+					onClick={(e) => e.stopPropagation()}
 				>
-					<div>
-						<InputElement
-							name="name"
-							onChange={handleTasksFormChange}
-							type="text"
-							value={tasksForm.name}
-							labelText="Task Name"
-							placeholder="Enter Task Name"
-						/>
-						<InputElement
-							name="dueDate"
-							onChange={handleTasksFormChange}
-							type="datetime-local"
-							value={tasksForm.dueDate}
-							labelText="Due Date"
-							placeholder="Enter Due Date"
-						/>
-						<SelectElement
-							name="department"
-							value={tasksForm.department}
-							onChange={handleTasksFormChange}
-							label="Select Department"
-							options={departments}
-							objectKey="_id"
-							// displayKey='email'
-						/>
-						{tasksForm.department && (
-							<SelectElement
-								name="assignedTo"
-								value={tasksForm.assignedTo}
+					<h1 className="text-3xl font-bold text-center">
+						Add new Task
+					</h1>
+					<div
+						className="flex gap-6
+				"
+					>
+						<div>
+							<InputElement
+								name="name"
 								onChange={handleTasksFormChange}
-								label="Select Assigneee"
-								options={normalEmployees.filter(
-									(user) =>
-										user.department === tasksForm.department
-								)}
+								type="text"
+								value={tasksForm.name}
+								labelText="Task Name"
+								placeholder="Enter Task Name"
+							/>
+							<InputElement
+								name="dueDate"
+								onChange={handleTasksFormChange}
+								type="datetime-local"
+								value={tasksForm.dueDate}
+								labelText="Due Date"
+								placeholder="Enter Due Date"
+							/>
+							<SelectElement
+								name="department"
+								value={tasksForm.department}
+								onChange={handleTasksFormChange}
+								label="Select Department"
+								options={departments}
+								objectKey="_id"
+								// displayKey='email'
+							/>
+							{tasksForm.department && (
+								<SelectElement
+									name="assignedTo"
+									value={tasksForm.assignedTo}
+									onChange={handleTasksFormChange}
+									label="Select Assigneee"
+									options={normalEmployees.filter(
+										(user) =>
+											user.department ===
+											tasksForm.department
+									)}
+									objectKey="_id"
+									// displayKey="email"
+								/>
+							)}
+							<SelectElement
+								name="evaluator"
+								value={tasksForm.evaluator}
+								onChange={handleTasksFormChange}
+								label="Select Evaluator"
+								options={evaluatorOptions}
 								objectKey="_id"
 								// displayKey="email"
 							/>
-						)}
-						<SelectElement
-							name="evaluator"
-							value={tasksForm.evaluator}
-							onChange={handleTasksFormChange}
-							label="Select Evaluator"
-							options={evaluatorOptions}
-							objectKey="_id"
-							// displayKey="email"
-						/>
-					</div>
-					<div>
-						{tasksForm.department && (
+						</div>
+						<div>
+							{tasksForm.department && (
+								<SelectElement
+									name="designation"
+									value={tasksForm.designation}
+									onChange={handleTasksFormChange}
+									label="Select Designation"
+									options={designations.filter(
+										(des) =>
+											des.department ===
+											tasksForm.department
+									)}
+									objectKey="_id"
+								/>
+							)}
 							<SelectElement
-								name="designation"
-								value={tasksForm.designation}
+								name="priority"
+								value={tasksForm.priority}
 								onChange={handleTasksFormChange}
-								label="Select Designation"
-								options={designations.filter(
-									(des) =>
-										des.department === tasksForm.department
-								)}
-								objectKey="_id"
+								label="Select Priority"
+								options={[
+									{ name: 'High', value: '1' },
+									{ name: 'Medium', value: '2' },
+									{ name: 'Low', value: '3' },
+									{ name: 'None', value: '4' }
+								]}
+								objectKey="value"
 							/>
-						)}
-						<SelectElement
-							name="priority"
-							value={tasksForm.priority}
-							onChange={handleTasksFormChange}
-							label="Select Priority"
-							options={[
-								{ name: 'High', value: '1' },
-								{ name: 'Medium', value: '2' },
-								{ name: 'Low', value: '3' },
-								{ name: 'None', value: '4' }
-							]}
-							objectKey="value"
-						/>
-						<SelectElement
-							name="status"
-							value={tasksForm.status}
-							onChange={handleTasksFormChange}
-							label="Select Status"
-							options={taskStatus}
-							objectKey="value"
-						/>
-						<InputElement
-							name="description"
-							onChange={handleTasksFormChange}
-							type="textarea"
-							value={tasksForm.description}
-							labelText="Description"
-							placeholder="Enter Description"
-							cols={30}
-							rows={8}
-						/>
+							<SelectElement
+								name="status"
+								value={tasksForm.status}
+								onChange={handleTasksFormChange}
+								label="Select Status"
+								options={taskStatus}
+								objectKey="value"
+							/>
+							<InputElement
+								name="description"
+								onChange={handleTasksFormChange}
+								type="textarea"
+								value={tasksForm.description}
+								labelText="Description"
+								placeholder="Enter Description"
+								cols={30}
+								rows={8}
+							/>
+						</div>
 					</div>
-				</div>
-				<button
-					className="w-full py-4 bg-blue-700 text-white rounded-md"
-					type="submit"
-				>
-					Add Task
-				</button>
-			</form>
-		</div>
+					<button
+						className="w-full py-4 bg-blue-700 text-white rounded-md"
+						type="submit"
+						disabled={loading}
+					>
+						Add Task
+					</button>
+				</form>
+			)}
+		</ModalComponent>
 	);
 };
 

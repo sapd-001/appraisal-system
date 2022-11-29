@@ -1,5 +1,7 @@
 import { AxiosError } from 'axios';
+import FullScreenLoader from '../../components/FullScreenLoader';
 import InputElement from '../../components/InputElement';
+import ModalComponent from '../../components/ModalComponent';
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React from 'react';
 import SelectElement from '../../components/SelectElement';
@@ -36,6 +38,7 @@ const AddAdminEvaluators: React.FC<{ closeModal: () => void }> = ({
 		e: React.FormEvent<HTMLFormElement>
 	) => {
 		e.preventDefault();
+		setLoading(true);
 
 		try {
 			const res = await apiRequest.post(
@@ -52,106 +55,93 @@ const AddAdminEvaluators: React.FC<{ closeModal: () => void }> = ({
 				toast.success('Evaluator added successfully');
 				setTimeout(() => {
 					closeModal();
+					window.location.reload();
 				}, 2000);
 			}
 		} catch (error) {
 			if (error instanceof AxiosError)
 				toast.error(error.response!.data.message);
+		} finally {
+			setLoading(false);
 		}
 	};
-	const wrapperRef = React.useRef<HTMLDivElement>(null);
+	const designationOptions = React.useMemo(() => {
+		const opts = designations
+			.slice()
+			.filter((d) => d.department === evaluatorsForm.department);
 
-	const handleClickOutside = (event: MouseEvent) => {
-		if (
-			wrapperRef.current &&
-			!wrapperRef.current.contains(event.target as Node)
-		)
-			closeModal();
-	};
-	const handleEscapeClose = (event: KeyboardEvent) => {
-		if (event.key === 'Escape') closeModal();
-	};
-	window.addEventListener('keydown', handleEscapeClose);
-	// window.addEventListener('click', handleClickOutside);
-	wrapperRef.current &&
-		wrapperRef.current.addEventListener('mousedown', handleClickOutside);
+		return opts.sort((a, b) => a.name.localeCompare(b.name));
+	}, [designations, evaluatorsForm.department]);
 
-	React.useEffect(() => {
-		return () => {
-			wrapperRef.current &&
-				wrapperRef.current.removeEventListener(
-					'mousedown',
-					handleClickOutside
-				);
-			window.removeEventListener('keydown', handleEscapeClose);
-			window.removeEventListener('click', handleClickOutside);
-		};
-	}, []);
+	const [loading, setLoading] = React.useState<boolean>(false);
 
 	return (
 		// Add fullscreen modal with form
-		<div
-			className="flex flex-col space-y-2 h-screen fixed justify-center items-center bg-gray-600 z-[2000] w-full top-0 bg-opacity-60"
-			ref={wrapperRef}
-		>
+		<ModalComponent onClose={closeModal}>
 			<ToastContainer />
-			<form
-				action=""
-				onSubmit={handleEvaluatorsFormSubmit}
-				className="min-w-[30rem] p-10 bg-white flex flex-col gap-4"
-				onClick={(e) => e.stopPropagation()}
-			>
-				<h1 className="text-3xl font-bold text-center">
-					Add new Evaluator
-				</h1>
-				<InputElement
-					name="firstName"
-					onChange={handleEvaluatorsFormChange}
-					type="text"
-					value={evaluatorsForm.firstName}
-					labelText="First Name"
-					placeholder="Enter First Name"
-				/>
-				<InputElement
-					name="lastName"
-					onChange={handleEvaluatorsFormChange}
-					type="text"
-					value={evaluatorsForm.lastName}
-					labelText="Last Name"
-					placeholder="Enter Last Name"
-				/>
-				<InputElement
-					name="email"
-					onChange={handleEvaluatorsFormChange}
-					type="text"
-					value={evaluatorsForm.email}
-					labelText="Email"
-					placeholder="Enter Email"
-				/>
-				<SelectElement
-					name="department"
-					value={evaluatorsForm.department}
-					onChange={handleEvaluatorsFormChange}
-					options={departments}
-					label={'Deparement'}
-					objectKey={'_id'}
-				/>
-				<SelectElement
-					name="designation"
-					value={evaluatorsForm.designation}
-					onChange={handleEvaluatorsFormChange}
-					options={designations}
-					label={'Designation'}
-					objectKey={'_id'}
-				/>
-				<button
-					className="w-full py-4 bg-blue-700 text-white rounded-md"
-					type="submit"
+			{loading ? (
+				<FullScreenLoader />
+			) : (
+				<form
+					action=""
+					onSubmit={handleEvaluatorsFormSubmit}
+					className="min-w-[30rem] p-10 bg-white flex flex-col gap-4"
+					onClick={(e) => e.stopPropagation()}
 				>
-					Add Evaluator
-				</button>
-			</form>
-		</div>
+					<h1 className="text-3xl font-bold text-center">
+						Add new Evaluator
+					</h1>
+					<InputElement
+						name="firstName"
+						onChange={handleEvaluatorsFormChange}
+						type="text"
+						value={evaluatorsForm.firstName}
+						labelText="First Name"
+						placeholder="Enter First Name"
+					/>
+					<InputElement
+						name="lastName"
+						onChange={handleEvaluatorsFormChange}
+						type="text"
+						value={evaluatorsForm.lastName}
+						labelText="Last Name"
+						placeholder="Enter Last Name"
+					/>
+					<InputElement
+						name="email"
+						onChange={handleEvaluatorsFormChange}
+						type="text"
+						value={evaluatorsForm.email}
+						labelText="Email"
+						placeholder="Enter Email"
+					/>
+					<SelectElement
+						name="department"
+						value={evaluatorsForm.department}
+						onChange={handleEvaluatorsFormChange}
+						options={departments}
+						label={'Deparement'}
+						objectKey={'_id'}
+					/>
+					{evaluatorsForm.department && (
+						<SelectElement
+							name="designation"
+							value={evaluatorsForm.designation}
+							onChange={handleEvaluatorsFormChange}
+							options={designationOptions}
+							label={'Designation'}
+							objectKey={'_id'}
+						/>
+					)}
+					<button
+						className="w-full py-4 bg-blue-700 text-white rounded-md"
+						type="submit"
+					>
+						Add Evaluator
+					</button>
+				</form>
+			)}
+		</ModalComponent>
 	);
 };
 

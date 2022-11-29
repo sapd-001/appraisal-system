@@ -2,7 +2,7 @@
  * @ Author: Felix Orinda
  * @ Create Time: 2022-11-14 08:37:11
  * @ Modified by: Felix Orinda
- * @ Modified time: 2022-11-29 10:16:11
+ * @ Modified time: 2022-11-29 14:55:38
  * @ Description:
  */
 const { sendWelcomeEmail } = require("../mailer");
@@ -103,9 +103,7 @@ router.post(
           ...req.body,
           role: userRole._id,
         })
-        .populate("role", "name -_id")
-        .populate("department", "name -_id")
-        .populate("designation", "name -_id");
+      
       const response = await sendWelcomeEmail({
         password: originalPassword,
         email: req.body.email,
@@ -117,10 +115,9 @@ router.post(
         newEntry: newUser._id,
       });
     } catch (error) {
-      console.log(error);
       res.status(500).json({
         status: "error",
-        message: error.message,
+        message: error.message? error.message : "Internal Server Error",
       });
     }
   }
@@ -142,9 +139,7 @@ router.post(
           ...req.body,
           role: evaluatorRole._id,
         })
-        .populate("role", "name -_id")
-        .populate("department", "name -_id")
-        .populate("designation", "name -_id");
+        
       const response = await sendWelcomeEmail({
         password: originalPassword,
         email: req.body.email,
