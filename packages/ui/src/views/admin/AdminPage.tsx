@@ -97,7 +97,6 @@ const Admin = () => {
 				}
 			});
 			const data = res.data.data;
-			console.log('tasks', data);
 
 			dispatch(loadTaskSuccess(data));
 		} catch (error) {

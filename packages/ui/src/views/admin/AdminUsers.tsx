@@ -31,14 +31,20 @@ const cols: TableColumnProps[] = [
 		customElement: false
 	},
 	{
-		columnName: 'phone',
+		columnName: 'department',
 		id: 5,
+		title: 'Department',
+		customElement: false
+	},
+	{
+		columnName: 'phone',
+		id: 6,
 		title: 'Phone',
 		customElement: false
 	},
 	{
 		columnName: 'actions',
-		id: 6,
+		id: 7,
 		title: 'Actions',
 		customElement: true,
 		element: () => {
@@ -56,7 +62,14 @@ const cols: TableColumnProps[] = [
 const AdminUsers = () => {
 	const { normalUsers } = useAppSelector((state) => state.normalUsers);
 	const employees = React.useMemo(() => {
-		return [...normalUsers];
+		return normalUsers.map((user) => {
+			return {
+				...user,
+				department: user.department.name,
+				designation: user.designation.name,
+				role: user.role.name
+			};
+		});
 	}, [normalUsers]);
 
 	return (

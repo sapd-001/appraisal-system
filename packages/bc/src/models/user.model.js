@@ -2,7 +2,7 @@
  * @ Author: Felix Orinda
  * @ Create Time: 2022-11-14 11:11:19
  * @ Modified by: Felix Orinda
- * @ Modified time: 2022-11-28 15:30:55
+ * @ Modified time: 2022-11-29 10:11:56
  * @ Description:
  */
 const mongoose = require("../db");
@@ -30,7 +30,6 @@ const UserSchema = new mongoose.Schema({
     required: [true, "Password  required"],
     lowerCase: true,
     trim: true,
-    unique: true,
     select: false,
   },
   role: {

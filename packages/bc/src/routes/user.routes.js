@@ -2,7 +2,7 @@
  * @ Author: Felix Orinda
  * @ Create Time: 2022-11-14 08:37:11
  * @ Modified by: Felix Orinda
- * @ Modified time: 2022-11-29 02:11:52
+ * @ Modified time: 2022-11-29 10:16:11
  * @ Description:
  */
 const { sendWelcomeEmail } = require("../mailer");
@@ -65,14 +65,25 @@ router.get("/all/admins", async (req, res, next) => {
  * Get a normal users
  */
 router.get("/all/normal-users", loginRequired, async (req, res, next) => {
-  const normalRole = await RoleModel.findOne({ name: "user" });
-  const user = await userModel.find({
-    role: normalRole._id,
-  });
-  res.status(200).json({
-    status: "success",
-    data: user,
-  });
+  try {
+    const normalRole = await RoleModel.findOne({ name: "user" });
+    const users = await userModel
+      .find({
+        role: normalRole._id,
+      })
+      .populate("role", "name -_id")
+      .populate("department", "name -_id")
+      .populate("designation", "name -_id");
+    res.status(200).json({
+      status: "success",
+      data: users,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      status: "error",
+      message: error.message,
+    });
+  }
 });
 
 /**
@@ -87,10 +98,14 @@ router.post(
       const originalPassword = req.body.password;
       req.body.password = await hashPassword(req.body.password);
       const userRole = await RoleModel.findOne({ name: "user" });
-      const newUser = await userModel.create({
-        ...req.body,
-        role: userRole._id,
-      });
+      const newUser = await userModel
+        .create({
+          ...req.body,
+          role: userRole._id,
+        })
+        .populate("role", "name -_id")
+        .populate("department", "name -_id")
+        .populate("designation", "name -_id");
       const response = await sendWelcomeEmail({
         password: originalPassword,
         email: req.body.email,
@@ -122,10 +137,14 @@ router.post(
       const originalPassword = req.body.password;
       req.body.password = await hashPassword(req.body.password);
       const evaluatorRole = await RoleModel.findOne({ name: "evaluator" });
-      const newUser = await userModel.create({
-        ...req.body,
-        role: evaluatorRole._id,
-      });
+      const newUser = await userModel
+        .create({
+          ...req.body,
+          role: evaluatorRole._id,
+        })
+        .populate("role", "name -_id")
+        .populate("department", "name -_id")
+        .populate("designation", "name -_id");
       const response = await sendWelcomeEmail({
         password: originalPassword,
         email: req.body.email,

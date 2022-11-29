@@ -32,7 +32,9 @@ const AddAdminTasks: React.FC<{ closeModal: () => void }> = ({
 		evaluators: { evaluators },
 		designations: { designations },
 		departments: { departments },
-		normalUsers: { normalUsers }
+		normalUsers: { normalUsers },
+		employees: { employees },
+		roles: { roles }
 	} = useAppSelector((state) => state);
 	const handleTasksFormChange = (
 		e: React.ChangeEvent<
@@ -47,7 +49,6 @@ const AddAdminTasks: React.FC<{ closeModal: () => void }> = ({
 		e: React.FormEvent<HTMLFormElement>
 	) => {
 		e.preventDefault();
-		console.log('Submit', tasksForm);
 
 		try {
 			const res = await apiRequest.post('/tasks/create', tasksForm, {
@@ -63,11 +64,9 @@ const AddAdminTasks: React.FC<{ closeModal: () => void }> = ({
 				}, 2000);
 			}
 		} catch (error) {
-			if (error instanceof AxiosError) {
-				console.log(error.response?.data);
-
+			if (error instanceof AxiosError) 
 				toast.error(error.response!.data.message);
-			}
+			
 		}
 	};
 	const wrapperRef = React.useRef<HTMLDivElement>(null);
@@ -88,17 +87,30 @@ const AddAdminTasks: React.FC<{ closeModal: () => void }> = ({
 		wrapperRef.current.addEventListener('mousedown', handleClickOutside);
 
 	const normalEmployees = React.useMemo(() => {
-		return normalUsers.map((user) => ({
-			...user,
-			name: user.firstName + ' ' + user.lastName
-		}));
-	}, [normalUsers]);
+		const nEmployees: any[] = employees.slice().map((employee) => {
+			const name = `${employee.firstName} ${employee.lastName}`;
+
+			return {
+				...employee,
+				name
+			};
+		});
+		const userRole = roles.find((role) => role.name === 'user');
+
+		return nEmployees.filter(
+			(employee) =>
+				employee.role === userRole?._id &&
+				employee.department === tasksForm.department
+		);
+	}, [normalUsers, tasksForm.department]);
 
 	const evaluatorOptions = React.useMemo(() => {
-		return evaluators.map((evaluator) => ({
+		const people = evaluators.map((evaluator) => ({
 			...evaluator,
 			name: evaluator.firstName + ' ' + evaluator.lastName
 		}));
+
+		return people;
 	}, [evaluators]);
 
 	React.useEffect(() => {
@@ -157,15 +169,20 @@ const AddAdminTasks: React.FC<{ closeModal: () => void }> = ({
 							objectKey="_id"
 							// displayKey='email'
 						/>
-						<SelectElement
-							name="assignedTo"
-							value={tasksForm.assignedTo}
-							onChange={handleTasksFormChange}
-							label="Select Assigneee"
-							options={normalEmployees}
-							objectKey="_id"
-							// displayKey="email"
-						/>
+						{tasksForm.department && (
+							<SelectElement
+								name="assignedTo"
+								value={tasksForm.assignedTo}
+								onChange={handleTasksFormChange}
+								label="Select Assigneee"
+								options={normalEmployees.filter(
+									(user) =>
+										user.department === tasksForm.department
+								)}
+								objectKey="_id"
+								// displayKey="email"
+							/>
+						)}
 						<SelectElement
 							name="evaluator"
 							value={tasksForm.evaluator}
@@ -177,14 +194,19 @@ const AddAdminTasks: React.FC<{ closeModal: () => void }> = ({
 						/>
 					</div>
 					<div>
-						<SelectElement
-							name="designation"
-							value={tasksForm.designation}
-							onChange={handleTasksFormChange}
-							label="Select Designation"
-							options={designations}
-							objectKey="_id"
-						/>
+						{tasksForm.department && (
+							<SelectElement
+								name="designation"
+								value={tasksForm.designation}
+								onChange={handleTasksFormChange}
+								label="Select Designation"
+								options={designations.filter(
+									(des) =>
+										des.department === tasksForm.department
+								)}
+								objectKey="_id"
+							/>
+						)}
 						<SelectElement
 							name="priority"
 							value={tasksForm.priority}

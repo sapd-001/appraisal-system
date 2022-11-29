@@ -1,3 +1,4 @@
+import { AxiosError } from 'axios';
 import InputElement from '../../components/InputElement';
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React from 'react';
@@ -18,7 +19,9 @@ const AddAdminDepartment: React.FC<{ closeModal: () => void }> = ({
 		React.useState<DepartmentFormProps>({} as DepartmentFormProps);
 
 	const handleDepartmentFormChange = (
-		e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+		e: React.ChangeEvent<
+			HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+		>
 	) => {
 		const { name, value } = e.target;
 		setDepartmentForm((prev) => ({ ...prev, [name]: value }));
@@ -27,7 +30,6 @@ const AddAdminDepartment: React.FC<{ closeModal: () => void }> = ({
 	const handleDepartmentFormSubmit = async (
 		e: React.FormEvent<HTMLFormElement>
 	) => {
-
 		e.preventDefault();
 
 		try {
@@ -48,9 +50,8 @@ const AddAdminDepartment: React.FC<{ closeModal: () => void }> = ({
 				}, 2000);
 			}
 		} catch (error) {
-			console.log(error);
-
-			toast.error('Something went wrong');
+			if (error instanceof AxiosError)
+				toast.error(error.response!.data.message);
 		}
 	};
 	const wrapperRef = React.useRef<HTMLDivElement>(null);
